@@ -6,11 +6,21 @@
 
 .layout {
   display: flex;
+  background-color: #F8F4F0;
 }
 
 main {
   display: flex;
+  flex-direction: column;
   flex: 1;
+  padding: 2em;
+  width: 100%;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 2.5rem;
+  color: #201F24;
 }
 
 h3 {

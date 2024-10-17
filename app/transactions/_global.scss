@@ -1,0 +1,12 @@
+@import '@sass/utilities/_variables.scss';
+
+.home {
+    display: flex;
+    flex-direction: column;
+    gap : $spacing-3xl;
+}
+
+.overview-cards {
+    display: flex;
+    gap : $spacing-2xl;
+}

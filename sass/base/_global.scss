@@ -9,9 +9,14 @@
 
 .layout {
     display: flex;
+    background-color: $color-beige-light;
 }
 
 main {
     display: flex;
+    flex-direction: column;
     flex : 1;
+    padding: 2em;
+
+    width: 100%;
 }

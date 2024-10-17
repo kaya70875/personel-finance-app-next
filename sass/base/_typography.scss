@@ -2,6 +2,12 @@
 
 // basic
 
+h1 {
+    font-weight: $font-weight-bold;
+    font-size: $font-size-2xl;
+    color : $color-gray-dark;
+}
+
 h3 {
     font-weight: $font-weight-bold;
     font-size : $font-size-lg;
