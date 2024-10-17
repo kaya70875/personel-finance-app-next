@@ -1,0 +1,25 @@
+@import '@sass/utilities/_variables.scss';
+
+.overview-card-wrapper {
+    background-color: white;
+    padding: 2em;
+
+    display: flex;
+    gap : $spacing-lg;
+    flex : 1;
+    flex-direction: column;
+    border-radius: 15px;
+
+    &.active {
+        background: $color-gray-dark;
+
+        > * {
+            color : $color-beige-light;
+        }
+    }
+}
+
+.overview-card-header {
+    color : $color-beige;
+    font-weight: $font-weight-regular;
+}
