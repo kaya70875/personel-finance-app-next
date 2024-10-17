@@ -1,4 +1,6 @@
+import Sidebar from "@components/Sidebar";
 import type { Metadata } from "next";
+import '@sass/styles/main.scss';
 
 export const metadata: Metadata = {
   title: "FinanceG",
@@ -13,7 +15,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <div className="layout">
+          <Sidebar />
+          <main>
+            {children}
+          </main>
+        </div>
+        
       </body>
     </html>
   );
