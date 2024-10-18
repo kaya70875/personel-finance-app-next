@@ -10,3 +10,54 @@
     display: flex;
     gap : $spacing-2xl;
 }
+
+.overview-content-section {
+    width: 100%;
+    display: flex;
+    gap : $spacing-2xl;
+}
+
+.overview-left {
+    display: flex;
+    flex-direction: column;
+    gap : $spacing-2xl;
+    width: 60%;
+}
+
+.pots-overview-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap : $spacing-md;
+
+    padding: 2em;
+    background-color: white;
+}
+
+.pots-overview-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pots-overview-card-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pots-overview-card-total {
+    display: flex;
+    width: 60%;
+    gap : $spacing-lg;
+
+    padding-inline: 1em;
+    padding-block: 2em;
+    border-radius: 15px;
+}
+
+.post-overview-card-visuals {
+    display: grid;
+    width: 60%;
+    grid-template-columns: repeat(2 , 1fr);
+    gap : $spacing-3xl;
+}
