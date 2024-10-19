@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import '@sass/styles/main.scss';
 
 import { Public_Sans } from "next/font/google";
+import insertToDatabase from "@utils/insertToDatabase";
 
 export const metadata: Metadata = {
   title: "FinanceG",

@@ -13,7 +13,7 @@ const OverviewCard = ({cardHeader , cardPrice , isActive} : OverviewCardProps) =
         <header className="overview-card-header">
             {cardHeader}
         </header>
-        <h1>{`$${cardPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}</h1>
+        <h1>{cardPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</h1>
     </div>
   )
 }
