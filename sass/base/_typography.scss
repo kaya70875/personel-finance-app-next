@@ -20,6 +20,17 @@ h3 {
     color : $color-gray-light;
 }
 
+h4 {
+    font-weight: $font-weight-bold;
+    color : $color-gray-dark;
+}
+
+h5 {
+    font-weight: $font-weight-regular;
+    font-size: $font-size-sm;
+    color : $color-beige;
+}
+
 
 // list-items
 
