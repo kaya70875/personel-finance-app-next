@@ -1,23 +1,31 @@
-.x-box {
+@import '@sass/utilities/_variables.scss';
+
+.chart-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 65%;
+
     position: relative;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    overflow: hidden; /* To ensure the pseudo-element is clipped */
+
 }
 
-.x-box::before {
-    content: '';
+.chart-overlay {
     position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-    border-radius: 50%;
-    background: conic-gradient(
-        yellow 0% 25%,
-        red 25% 50%,
-        blue 50% 100%
-    );
-    z-index: -1; /* Ensure it is behind the main box */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none; 
+
+    gap : $spacing-md;
+}
+
+.chart-itself {
+    width: 100%!important;
+    height: 100%!important;
 }
