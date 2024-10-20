@@ -7,7 +7,7 @@ export interface Balance {
 export interface Budgets {
     category : string;
     maximum : number;
-    themen : string;
+    theme : string;
     percentage : number;
 }
 
