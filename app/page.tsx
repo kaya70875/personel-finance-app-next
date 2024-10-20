@@ -42,22 +42,22 @@ export default function Home() {
 
           <section className="pots-overview-card-wrapper">
             <header className="pots-overview-card-header">
-              <h2>Pots</h2>
+              <h3>Pots</h3>
               <DetailsLink href="/pots"/>
             </header>
 
             <div className="pots-overview-card-content">
               <div className="pots-overview-card-total">
-                <div className="post-overview-card-img">
+                <div className="pots-overview-card-img">
                   <Image src={iconPot} alt="pot" width={50} height={50} />
                 </div>
-                <div className="post-overview-card-total-info">
+                <div className="pots-overview-card-total-info">
                   <p>Total Saved</p>
-                  <h1>850</h1>
+                  <h1>$850</h1>
                 </div>
               </div>
 
-              <div className="post-overview-card-visuals">
+              <div className="pots-overview-card-visuals">
                 {data?.potsData.slice(0 , 4).map(pot => (
                   <CardVisuals
                     cardHeader={pot.name}

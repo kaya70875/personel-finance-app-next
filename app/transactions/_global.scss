@@ -17,11 +17,19 @@
     gap : $spacing-2xl;
 }
 
+/* Left and Right section */
+
 .overview-left {
     display: flex;
     flex-direction: column;
     gap : $spacing-2xl;
-    width: 60%;
+    width: 55%;
+}
+
+.overview-right {
+    display: flex;
+    flex : 1;
+    flex-direction: column;
 }
 
 .pots-overview-card-wrapper {
@@ -37,6 +45,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    h3 {
+        color : $color-gray-dark;
+        font-size: $font-size-lg + .25rem;
+    }
 }
 
 .pots-overview-card-content {
@@ -53,9 +66,15 @@
     padding-inline: 1em;
     padding-block: 2em;
     border-radius: 15px;
+
+    &-info {
+        display: flex;
+        flex-direction: column;
+        gap : $spacing-sm;
+    }
 }
 
-.post-overview-card-visuals {
+.pots-overview-card-visuals {
     display: grid;
     width: 60%;
     grid-template-columns: repeat(2 , 1fr);
