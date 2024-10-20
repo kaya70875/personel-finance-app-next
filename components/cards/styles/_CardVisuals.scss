@@ -19,5 +19,10 @@
 .card-visual-info {
     display: flex;
     flex-direction: column;
-    gap: $spacing-md;
+    gap: $spacing-sm;
+
+    p {
+        color : $color-gray-normal;
+        font-size: $font-size-sm;
+    }
 }

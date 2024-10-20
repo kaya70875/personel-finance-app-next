@@ -11,7 +11,7 @@ const CardVisuals = ({ cardVisualColor, cardHeader, cardPrice }: CardVisualsProp
     <div className='card-visual-container' style={{'--card-visual-color': cardVisualColor} as React.CSSProperties}>
         <div className="card-visual-info">
             <p>{cardHeader}</p>
-            <h4>{cardPrice}</h4>
+            <h4>${cardPrice}</h4>
         </div>
     </div>
   )
