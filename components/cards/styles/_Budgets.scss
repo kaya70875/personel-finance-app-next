@@ -1,0 +1,35 @@
+@import '@sass/utilities/_variables.scss';
+
+.budgets-wrapper {
+    background: white;
+    border-radius: 15px;
+    padding: 2em;
+
+    display: flex;
+    flex-direction: column;
+    gap : $spacing-3xl;
+}
+
+.budgets-inline-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+        color : $color-gray-dark;
+        font-size: $font-size-lg + .25rem;
+    }
+}
+
+.chart-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.budgets-visuals {
+    display: flex;
+    flex-direction: column;
+    gap : $spacing-lg;
+}
