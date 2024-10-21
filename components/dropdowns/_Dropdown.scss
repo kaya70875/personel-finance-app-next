@@ -1,0 +1,67 @@
+@import '@sass/utilities/_variables.scss';
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+
+    cursor: pointer;
+}
+
+.dropdown-button-wrapper {
+    border: 1px solid $color-navy;
+    padding: 1em 1.5em;
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+    gap : $spacing-sm;
+    transition : all 0.3s ease-in;
+
+    &:hover {
+        border: 1px solid $color-gray-dark;
+    }
+
+    button {
+        border: none;
+        background: none;
+        outline: none;
+
+        color : $color-gray-dark;
+        font-weight: $font-weight-regular;
+        font-size: $font-size-md;
+    }
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    width: 100%;
+    overflow: auto;
+
+    padding: 1em;
+    border-radius: 10px;
+
+    &.active {
+        display: block;
+    }
+
+    max-height: 300px;
+}
+
+.dropdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap : $spacing-lg;
+
+    text-align: start;
+
+    p {
+        padding-block: .25em;
+        &:hover {
+            background: $color-gray-light;
+        }
+    }
+
+}
