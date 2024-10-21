@@ -90,7 +90,7 @@ export default function TransactionsComponent({ transactionFilters }: Transactio
               </div>
 
               <div className="transaction-amount">
-                <h5 style={transaction.amount > 0 ? { color: '#277C78' } : { color: '#201F24' }}>${transaction.amount}</h5>
+                <h4 style={transaction.amount > 0 ? { color: '#277C78' } : { color: '#201F24' }}>${transaction.amount}</h4>
               </div>
             </div>
 
