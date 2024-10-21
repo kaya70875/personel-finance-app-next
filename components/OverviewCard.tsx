@@ -10,7 +10,7 @@ interface OverviewCardProps {
 const OverviewCard = ({cardHeader , cardPrice , isActive} : OverviewCardProps) => {
   return (
     <div className={`overview-card-wrapper ${isActive ? 'active' : ''}`}>
-        <header className="overview-card-header">
+        <header className="overview-card-header-section">
             {cardHeader}
         </header>
         <h1>{cardPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</h1>
