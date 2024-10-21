@@ -1,12 +1,16 @@
-import React from 'react'
+import './_global.scss';
+import TransactionsComponent from '@components/cards/TransactionsComponent'
 
 const Transactions = () => {
+
   return (
-    <div>   
-        <h1>Trans</h1>
-    </div>
+    <main className="transactions">
+      <header className="page-header">
+        <h1>Transactions</h1>
+      </header>
+      <TransactionsComponent transactionFilters={true} />
+    </main>
   )
 }
 
 export default Transactions
-
