@@ -14,9 +14,6 @@ export async function GET(req: Request) {
     const balanceData = await balance.findOne({});
     const potsData = await pots.find({});
 
-    console.log('potsData : ' , potsData);
-
-
     return NextResponse.json({
       balanceData,
       budgetsData,
