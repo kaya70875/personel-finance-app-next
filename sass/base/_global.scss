@@ -20,3 +20,26 @@ main {
 
     width: 100%;
 }
+
+/* Card Header Section */
+
+.overview-card-header-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+        color : $color-gray-dark;
+        font-size: $font-size-lg + .25rem;
+    }
+}
+
+.overview-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    gap : $spacing-md;
+
+    background: white;
+    border-radius: 15px;
+}
