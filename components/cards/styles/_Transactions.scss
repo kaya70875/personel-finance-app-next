@@ -1,0 +1,115 @@
+@import '@sass/utilities/_variables.scss';
+
+.transactions-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap : $spacing-2xl;
+
+    padding: 2em;
+
+    background: white;
+    border-radius: 15px;
+}
+
+.transactions-filter-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+}
+
+.actual-filters {
+    display: flex;
+    align-items: center;
+    gap : $spacing-2xl;
+}
+
+.sort-by-wrapper , .category-wrapper {
+    display: flex;
+    align-items: center;
+    gap : $spacing-md;
+}
+
+.search-input {
+    input {
+        border: none;
+        outline: none;
+
+        &::placeholder {
+            font-size: $font-size-md;
+            color : $color-gray-light;
+        }
+    }
+
+    border : 1px solid $color-navy;
+    border-radius: 10px;
+    padding: 1em 1em;
+    width: 30%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease-in;
+
+    &:hover {
+        border: 1px solid $color-gray-dark;
+    }
+}
+
+.transactions-main-section {
+    display: flex;
+    flex-direction: column;
+    gap : $spacing-2xl;
+}
+
+.transactions-info-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap : $spacing-2xl;
+}
+
+.transactions-info-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.transactions-main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.transaction-middle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+}
+
+.transaction-sender {
+    display: flex;
+    align-items: center;
+    gap : $spacing-lg;
+    width: 40%;
+}
+
+.transaction-amount {
+    width: 25%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+
+    h5 {
+        font-size: $font-size-md;
+        font-weight: $font-weight-bold;
+    }
+  }
+
+.avatar {
+    border-radius: 50%;
+}
