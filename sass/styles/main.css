@@ -17,6 +17,26 @@ main {
   width: 100%;
 }
 
+/* Card Header Section */
+.overview-card-header-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.overview-card-header-section h3 {
+  color: #201F24;
+  font-size: 1.45rem;
+}
+
+.overview-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  gap: 1rem;
+  background: white;
+  border-radius: 15px;
+}
+
 h1 {
   font-weight: bold;
   font-size: 2.5rem;
