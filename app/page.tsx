@@ -8,6 +8,7 @@ import Image from "next/image";
 import useFetch from "@hooks/useFetch";
 import DetailsLink from "@components/links/DetailsLink";
 import Budgets from "@components/cards/Budgets";
+import TransactionsComponent from "@components/cards/TransactionsComponent";
 
 export default function Home() {
 
@@ -40,10 +41,10 @@ export default function Home() {
         <div className="overview-left">
           {/* Pots Overview Card */}
 
-          <section className="pots-overview-card-wrapper">
-            <header className="pots-overview-card-header">
+          <section className="overview-card-wrapper">
+            <header className="overview-card-header-section">
               <h3>Pots</h3>
-              <DetailsLink href="/pots"/>
+              <DetailsLink href="/pots" />
             </header>
 
             <div className="pots-overview-card-content">
@@ -58,7 +59,7 @@ export default function Home() {
               </div>
 
               <div className="pots-overview-card-visuals">
-                {data?.potsData.slice(0 , 4).map(pot => (
+                {data?.potsData.slice(0, 4).map(pot => (
                   <CardVisuals
                     cardHeader={pot.name}
                     cardPrice={pot.total}
@@ -69,10 +70,20 @@ export default function Home() {
               </div>
             </div>
           </section>
+
+          <section className="overview-card-wrapper">
+            <header className="overview-card-header-section">
+              <h3>Transactions</h3>
+              <DetailsLink href="/transactions" header="View All" />
+            </header>
+
+            <TransactionsComponent transactionFilters={false} />
+
+          </section>
         </div>
 
         <div className="overview-right">
-            <Budgets gridType="" headerSection={true}/>
+          <Budgets gridType="" headerSection={true} />
         </div>
       </section>
     </div>

@@ -32,26 +32,6 @@
     flex-direction: column;
 }
 
-.pots-overview-card-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap : $spacing-md;
-
-    padding: 2em;
-    background-color: white;
-}
-
-.pots-overview-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    h3 {
-        color : $color-gray-dark;
-        font-size: $font-size-lg + .25rem;
-    }
-}
-
 .pots-overview-card-content {
     display: flex;
     align-items: center;
@@ -79,4 +59,10 @@
     width: 60%;
     grid-template-columns: repeat(2 , 1fr);
     gap : $spacing-3xl;
+}
+
+.transactions {
+    display: flex;
+    flex-direction: column;
+    gap : $spacing-2xl;
 }
