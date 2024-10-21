@@ -5,7 +5,7 @@ import { Balance, Budgets, Pots, Transactions } from '../types/finance';
 interface Data {
     balanceData : Balance;
     budgetsData : Budgets[];
-    transactionData : Transactions;
+    transactionsData : Transactions[];
     potsData : Pots[];
 }
 
