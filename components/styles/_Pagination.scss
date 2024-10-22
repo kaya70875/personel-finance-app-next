@@ -1,0 +1,30 @@
+@import '@sass/utilities/_variables.scss';
+
+.pagination-wrapper {
+    display: flex;
+    align-items: center;
+    gap : $spacing-md;
+}
+
+.pagination-btn {
+    border : 1px solid $color-navy;
+    display: flex;
+    align-items: center;
+    padding: .9em 1.1em;
+
+    border-radius: 5px;
+    cursor: pointer;
+
+    color : $color-gray-dark;
+    transition: all .2s ease-in;
+
+    &:hover {
+        background: $color-beige;
+        color : white;
+    }
+
+    &.active {
+        background: $color-gray-dark;
+        color : white;
+    }
+}
