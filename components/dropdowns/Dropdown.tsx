@@ -19,6 +19,10 @@ export default function Dropdown({ buttonName , children }: DropdownProps) {
         setIsOpen(prev => (!prev));
     }
 
+    const handleReset = () => {
+        
+    }
+
     return (
         <div className="dropdown" onClick={handleOpen}>
             <div className="dropdown-button-wrapper">
@@ -33,7 +37,7 @@ export default function Dropdown({ buttonName , children }: DropdownProps) {
             <div className={`dropdown-menu ${isOpen ? 'active' : ''}`}>
                 <ul className="dropdown-items">
                     <li className="dropdown-item">
-                        <h4>{buttonName}</h4>
+                        <h4 onClick={handleReset}>{'All'}</h4>
                         {children}
                     </li>
                 </ul>
