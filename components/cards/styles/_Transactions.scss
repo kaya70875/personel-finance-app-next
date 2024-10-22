@@ -3,7 +3,7 @@
 .transactions-wrapper {
     display: flex;
     flex-direction: column;
-    gap : $spacing-2xl;
+    gap : $spacing-3xl;
 
     padding: 2em;
 
@@ -107,4 +107,37 @@
 
 .avatar {
     border-radius: 50%;
+}
+
+.transactions-button-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.prev-btn , .next-btn {
+    background: none;
+    outline: none;
+    border : 1px solid $color-gray-light;
+
+    display: flex;
+    align-items: center;
+    gap : $spacing-xl;
+    padding: .8em 1.3em;
+    border-radius: 5px;
+
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+
+    svg {
+        color : #696868;
+    }
+
+    &:hover {
+        background: $color-gray-light;
+        svg , p{
+            color : white;
+        }
+    }
 }
