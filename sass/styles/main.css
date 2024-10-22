@@ -66,6 +66,18 @@ h5 {
   color: #98908B;
 }
 
+.small-bolt {
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #201F24;
+}
+
+p {
+  font-weight: normal;
+  font-size: 0.9rem;
+  color: #201F24;
+}
+
 ul {
   list-style: none;
   cursor: pointer;
