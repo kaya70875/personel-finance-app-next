@@ -7,10 +7,12 @@ import useFetch from '@hooks/useFetch';
 
 interface BudgetsProps {
     headerSection: boolean;
-    gridType: string;
+    chartWidth? : string;
+    cardDisplayStyle? : React.CSSProperties;
+    cardInfoDisplayStyle? : React.CSSProperties;
 }
 
-export default function Budgets({ headerSection, gridType }: BudgetsProps) {
+export default function Budgets({ headerSection, chartWidth}: BudgetsProps) {
 
     const { data, error, loading } = useFetch();
     if (loading) return <div>loading</div>
@@ -18,21 +20,23 @@ export default function Budgets({ headerSection, gridType }: BudgetsProps) {
 
 
     return (
-        <div className="budgets-wrapper">
+        <div className='budgets-wrapper' style={{width : chartWidth}}>
             {headerSection && (
                 <header className="budgets-inline-header">
                     <h3>Budgets</h3>
                     <DetailsLink href='/budgets' />
                 </header>
             )}
-            <div className="chart-main">
+
+            <div className='chart-main'>
                 <PieChart />
-                <div className="budgets-visuals">
+                <div className='budget-visuals'>
                     {data?.budgetsData.map(budget => (
                         <CardVisuals
                             cardHeader={budget.category}
                             cardPrice={budget.maximum}
                             cardVisualColor={budget.theme}
+                            cardSpend={budget.spend}
                         />
                     ))}
                 </div>
