@@ -11,13 +11,14 @@ import { Transactions } from '../../types/finance';
 interface TransactionsProps {
   transactionFilters: boolean;
   pagination?: boolean;
+  posts?: number;
 }
 
-export default function TransactionsComponent({ transactionFilters, pagination=true }: TransactionsProps) {
+export default function TransactionsComponent({ transactionFilters, pagination=true  , posts = 10}: TransactionsProps) {
   const { data, error, loading } = useFetch();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [postsPerPage, setPostsPerPage] = useState(posts);
 
   // Manage filtered data
   const [filteredData, setFilteredData] = useState<Transactions[] | null | undefined>(null);
@@ -87,6 +88,11 @@ export default function TransactionsComponent({ transactionFilters, pagination=t
                 <h4 style={transaction.amount > 0 ? { color: '#277C78' } : { color: '#201F24' }}>
                   ${transaction.amount}
                 </h4>
+                <h5 className='date-q'>{new Date(transaction.date).toLocaleDateString('en-US', {
+                  day: '2-digit',
+                  month: 'short',
+                  year: 'numeric',
+                })}</h5>
               </div>
             </div>
           ))}
