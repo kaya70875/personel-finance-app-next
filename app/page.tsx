@@ -77,7 +77,7 @@ export default function Home() {
               <DetailsLink href="/transactions" header="View All" />
             </header>
 
-            <TransactionsComponent transactionFilters={false} pagination={false} />
+            <TransactionsComponent transactionFilters={false} pagination={false} posts={5}/>
 
           </section>
         </div>
