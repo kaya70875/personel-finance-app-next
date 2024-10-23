@@ -3,8 +3,9 @@
 import Image from 'next/image';
 import logo from '@public/assets/images/logo-large.svg';
 import './styles/_Sidebar.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const menuItems = [
     {
@@ -50,12 +51,13 @@ const menuItems = [
 ];
 
 function Sidebar() {
+    const [activeNav, setActiveNav] = useState(0);
+    const pathName = usePathname();
 
-    const [activeIndex, setActiveIndex] = useState(0);
-
-    const handleActiveLink = (index: number) => () => {
-        setActiveIndex(index);
-    };
+    useEffect(() => {
+        const index = menuItems.findIndex(item => item.route === pathName);
+        setActiveNav(index);
+    } , [pathName]);
 
     return (
         <nav className="sidebar-main">
@@ -73,7 +75,7 @@ function Sidebar() {
                     <ul className="sidebar-items">
                         {menuItems.map((item, index) => (
                             item.route && (
-                                <Link href={item.route} key={index} className={`sidebar-item ${index === activeIndex ? 'active' : ''}`} onClick={handleActiveLink(index)}>
+                                <Link href={item.route} key={index} className={`sidebar-item ${index === activeNav ? 'active' : ''}`}>
                                     <div className="sidebar-item-img">
                                         {item.svg}
                                     </div>

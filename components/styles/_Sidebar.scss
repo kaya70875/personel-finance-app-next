@@ -2,7 +2,7 @@
 
 .sidebar-main {
     background: $color-gray-dark;
-    width: 22%;
+    width: $sidebar-width;
     max-width : 400px;
     height: 100vh;
 
@@ -10,6 +10,9 @@
     flex-direction: column;
 
     border-top-right-radius: 15px;
+
+    position: fixed;
+    top: 0;
 }
 
 .sidebar-menu {
