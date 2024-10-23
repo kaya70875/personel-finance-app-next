@@ -9,6 +9,8 @@
 
     background: white;
     border-radius: 15px;
+
+    container-type: inline-size;
 }
 
 .transactions-filter-section {
@@ -101,6 +103,8 @@
 .transaction-amount {
     width: 25%;
     display: flex;
+    flex-direction: column;
+    gap : $spacing-md;
     justify-content: end;
     align-items: end;
   }
@@ -140,4 +144,32 @@
             color : white;
         }
     }
+}
+
+.date-q {
+    display: none;
+}
+
+@container (max-width : 620px) {
+    .transactions-main-header {
+        display: none;
+    }
+
+    .transaction-sender {
+        width: 100%;
+    }
+
+    .transaction-middle {
+        display: none;
+    }
+
+    .date-q {
+        display: block;
+    }
+}
+
+@media (max-width : 1440px) {
+    .transactions-wrapper {
+    padding: 0;
+}
 }
