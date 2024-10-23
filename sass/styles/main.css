@@ -58,6 +58,7 @@ h3 {
 h4 {
   font-weight: bold;
   color: #201F24;
+  font-size: 1rem;
 }
 
 h5 {
@@ -74,7 +75,7 @@ h5 {
 
 p {
   font-weight: normal;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #201F24;
 }
 
