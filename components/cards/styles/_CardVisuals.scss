@@ -3,6 +3,7 @@
 .card-visual-container {
     display: flex;
     position: relative;
+    width: 100%;
 
     &::before {
         content: '';
@@ -20,9 +21,4 @@
     display: flex;
     flex-direction: column;
     gap: $spacing-sm;
-
-    p {
-        color : $color-gray-normal;
-        font-size: $font-size-sm;
-    }
 }
