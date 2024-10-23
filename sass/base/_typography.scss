@@ -23,6 +23,7 @@ h3 {
 h4 {
     font-weight: $font-weight-bold;
     color : $color-gray-dark;
+    font-size: $font-size-md;
 }
 
 h5 {
@@ -39,7 +40,7 @@ h5 {
 
 p {
     font-weight: $font-weight-regular;
-    font-size: $font-size-sm;
+    font-size: $font-size-md;
     color : $color-gray-dark;
 }
 
