@@ -44,7 +44,7 @@ export default function Home() {
           <section className="overview-card-wrapper">
             <header className="overview-card-header-section">
               <h3>Pots</h3>
-              <DetailsLink href="/pots" />
+              <DetailsLink href="/pots"/>
             </header>
 
             <div className="pots-overview-card-content">
@@ -74,7 +74,7 @@ export default function Home() {
           <section className="overview-card-wrapper">
             <header className="overview-card-header-section">
               <h3>Transactions</h3>
-              <DetailsLink href="/transactions" header="View All" />
+              <DetailsLink href="/transactions" header="View All"/>
             </header>
 
             <TransactionsComponent transactionFilters={false} pagination={false} posts={5}/>
@@ -83,7 +83,8 @@ export default function Home() {
         </div>
 
         <div className="overview-right">
-          <Budgets gridType="" headerSection={true} />
+          <Budgets headerSection={true}
+           />
         </div>
       </section>
     </div>
