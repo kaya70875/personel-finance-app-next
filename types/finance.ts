@@ -9,6 +9,7 @@ export interface Budgets {
     maximum : number;
     theme : string;
     percentage : number;
+    spend : number;
 }
 
 export interface Transactions {
