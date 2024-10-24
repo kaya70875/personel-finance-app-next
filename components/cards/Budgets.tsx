@@ -7,12 +7,10 @@ import useFetch from '@hooks/useFetch';
 
 interface BudgetsProps {
     headerSection: boolean;
-    chartWidth? : string;
-    cardDisplayStyle? : React.CSSProperties;
-    cardInfoDisplayStyle? : React.CSSProperties;
+    isFullPage?: boolean;
 }
 
-export default function Budgets({ headerSection, chartWidth}: BudgetsProps) {
+export default function Budgets({ headerSection , isFullPage = false}: BudgetsProps) {
 
     const { data, error, loading } = useFetch();
     if (loading) return <div>loading</div>
@@ -20,7 +18,7 @@ export default function Budgets({ headerSection, chartWidth}: BudgetsProps) {
 
 
     return (
-        <div className='budgets-wrapper' style={{width : chartWidth}}>
+        <div className={`budgets-wrapper ${isFullPage ? 'budgets-wrapper--main' : ''}`}>
             {headerSection && (
                 <header className="budgets-inline-header">
                     <h3>Budgets</h3>
@@ -31,12 +29,18 @@ export default function Budgets({ headerSection, chartWidth}: BudgetsProps) {
             <div className='chart-main'>
                 <PieChart />
                 <div className='budget-visuals'>
+                    {isFullPage && (
+                        <div className='spending-summary'>
+                            <h3>Spending Summary</h3>
+                        </div>
+                    )}
                     {data?.budgetsData.map(budget => (
                         <CardVisuals
                             cardHeader={budget.category}
                             cardPrice={budget.maximum}
                             cardVisualColor={budget.theme}
                             cardSpend={budget.spend}
+                            isFullPage={isFullPage}
                         />
                     ))}
                 </div>

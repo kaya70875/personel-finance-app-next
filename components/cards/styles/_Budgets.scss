@@ -8,6 +8,20 @@
     display: flex;
     flex-direction: column;
     gap : $spacing-3xl;
+
+    &--main {
+        width: 45%;
+        .chart-main {
+            flex-direction: column;
+            gap : $spacing-2xl;
+        }
+
+        .budget-visuals {
+            width: 100%;
+            display: flex;
+            align-items: start;
+        }
+    }
 }
 
 .budgets-inline-header {
@@ -31,5 +45,5 @@
 .budget-visuals {
     display: flex;
     flex-direction: column;
-    gap : $spacing-lg;
+    gap : $spacing-xl;
 }
