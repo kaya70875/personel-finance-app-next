@@ -37,6 +37,14 @@ main {
   border-radius: 15px;
 }
 
+.ellipse {
+  border: none;
+  outline: none;
+  background: green;
+  padding: 0.75em;
+  border-radius: 50%;
+}
+
 h1 {
   font-weight: bold;
   font-size: 2.5rem;
@@ -52,7 +60,13 @@ h2 {
 h3 {
   font-weight: bold;
   font-size: 1.2rem;
-  color: #B3B3B3;
+  color: #201F24;
+}
+
+.h3-nav {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #98908B;
 }
 
 h4 {
