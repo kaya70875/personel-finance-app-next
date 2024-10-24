@@ -1,0 +1,52 @@
+@import '@sass/utilities/variables';
+
+.edit-dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.edit-dropdown-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.edit-dropdown-menu {
+    background: $color-beige-light;
+    opacity: 0;
+    padding: 1.5em 2em;
+
+    position: absolute;
+    right: 30%;
+    z-index: 1;
+    transition: all .3s ease-in-out;
+    visibility: hidden;
+
+    border-radius: 10px;
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.edit-dropdown-items {
+    display: flex;
+    width: 100%;
+}
+
+.edit-dropdown-item {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2xl;
+
+    p {
+        text-wrap: nowrap;
+    }
+
+    .red {
+        color : $color-red;
+    }
+}
