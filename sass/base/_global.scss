@@ -21,6 +21,14 @@ main {
     width: 100%;
 }
 
+.home {
+    display: flex;
+    flex-direction: column;
+    gap : $spacing-3xl;
+    margin-left: $sidebar-width;
+    height: 100vh;
+}
+
 /* Card Header Section */
 
 .overview-card-header-section {
@@ -42,4 +50,12 @@ main {
 
     background: white;
     border-radius: 15px;
+}
+
+.ellipse {
+    border: none;
+    outline: none;
+    padding: .75em;
+
+    border-radius: 50%;
 }
