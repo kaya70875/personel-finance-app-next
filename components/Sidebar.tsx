@@ -79,7 +79,7 @@ function Sidebar() {
                                     <div className="sidebar-item-img">
                                         {item.svg}
                                     </div>
-                                    <h3>{item.label}</h3>
+                                    <h3 className='h3-nav'>{item.label}</h3>
                                 </Link>
                             )
                         ))}
