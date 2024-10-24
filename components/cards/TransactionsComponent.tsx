@@ -7,18 +7,21 @@ import { useEffect, useMemo, useState } from 'react';
 import Pagination from '@components/Pagination';
 import TransactionFilter from '@components/filter/TransactionFilter';
 import { Transactions } from '../../types/finance';
+import TransactionsInfoWrapper from '@components/reusables/TransactionsInfoWrapper';
+import { post } from '@node_modules/axios/index.cjs';
 
 interface TransactionsProps {
   transactionFilters: boolean;
   pagination?: boolean;
-  posts?: number;
+  postsCount?: number;
+  posts?: Transactions[] | null;
 }
 
-export default function TransactionsComponent({ transactionFilters, pagination=true  , posts = 10}: TransactionsProps) {
+export default function TransactionsComponent({ transactionFilters, pagination = true, postsCount = 10, posts }: TransactionsProps) {
   const { data, error, loading } = useFetch();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(posts);
+  const [postsPerPage, setPostsPerPage] = useState(postsCount);
 
   // Manage filtered data
   const [filteredData, setFilteredData] = useState<Transactions[] | null | undefined>(null);
@@ -27,7 +30,7 @@ export default function TransactionsComponent({ transactionFilters, pagination=t
 
   // When fetching is done, set the filtered data initially
   useEffect(() => {
-    if(transactionData) {
+    if (transactionData) {
       setFilteredData(transactionData);
     }
   }, [transactionData]);
@@ -46,7 +49,7 @@ export default function TransactionsComponent({ transactionFilters, pagination=t
           currentPosts={currentPosts!}
         />
       )}
-      
+
       <section className="transactions-main-section">
         <header className="transactions-main-header">
           <div className="transaction-sender">
@@ -62,47 +65,18 @@ export default function TransactionsComponent({ transactionFilters, pagination=t
         </header>
 
         <div className="transactions-info-section">
-          {currentPosts?.map((transaction, index) => (
-            <div className='transactions-info-wrapper' key={index}>
-              <div className="transaction-sender">
-                <Image
-                  src={transaction.avatar.replace('.', '')}
-                  alt={transaction.name}
-                  width={48}
-                  height={48}
-                  className='avatar'
-                />
-                <h4>{transaction.name}</h4>
-              </div>
-
-              <div className="transaction-middle">
-                <h5>{transaction.category}</h5>
-                <h5>{new Date(transaction.date).toLocaleDateString('en-US', {
-                  day: '2-digit',
-                  month: 'short',
-                  year: 'numeric',
-                })}</h5>
-              </div>
-
-              <div className="transaction-amount">
-                <h4 style={transaction.amount > 0 ? { color: '#277C78' } : { color: '#201F24' }}>
-                  ${transaction.amount}
-                </h4>
-                <h5 className='date-q'>{new Date(transaction.date).toLocaleDateString('en-US', {
-                  day: '2-digit',
-                  month: 'short',
-                  year: 'numeric',
-                })}</h5>
-              </div>
-            </div>
-          ))}
+          {posts ? (
+            <TransactionsInfoWrapper currentPosts={posts.slice(0, 3)} /> // Show max of 3 transactions.
+          ) : (
+            <TransactionsInfoWrapper currentPosts={currentPosts!} />
+          )}
         </div>
       </section>
 
       {pagination && (
         <section className="transactions-button-section">
-          <button 
-            className="prev-btn" 
+          <button
+            className="prev-btn"
             onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
           >
@@ -121,8 +95,8 @@ export default function TransactionsComponent({ transactionFilters, pagination=t
             />
           </div>
 
-          <button 
-            className="next-btn" 
+          <button
+            className="next-btn"
             onClick={() => setCurrentPage(prev => (filteredData && prev < Math.ceil(filteredData.length / postsPerPage)) ? prev + 1 : prev)}
             disabled={currentPage === Math.ceil((filteredData?.length ?? 0) / postsPerPage)}
           >
