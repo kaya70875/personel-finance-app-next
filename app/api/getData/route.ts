@@ -1,3 +1,4 @@
+// app/api/getData/route.ts
 import balance from "@models/balance";
 import budgets from "@models/budgets";
 import pots from "@models/pots";
@@ -9,12 +10,12 @@ export async function GET(req: Request) {
   await connectToDB();
 
   try {
-    // Run the database queries in parallel
+    // Use lean to improve performance
     const [budgetsData, transactionsData, balanceData, potsData] = await Promise.all([
-      budgets.find({}),
-      transactions.find({}),
-      balance.findOne({}),
-      pots.find({}),
+      budgets.find({}).lean(),
+      transactions.find({}).lean(),
+      balance.findOne({}).lean(),
+      pots.find({}).lean(),
     ]);
 
     return NextResponse.json({
@@ -24,7 +25,7 @@ export async function GET(req: Request) {
       potsData,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }
