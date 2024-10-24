@@ -9,10 +9,13 @@ export async function GET(req: Request) {
   await connectToDB();
 
   try {
-    const budgetsData = await budgets.find({});
-    const transactionsData = await transactions.find({});
-    const balanceData = await balance.findOne({});
-    const potsData = await pots.find({});
+    // Run the database queries in parallel
+    const [budgetsData, transactionsData, balanceData, potsData] = await Promise.all([
+      budgets.find({}),
+      transactions.find({}),
+      balance.findOne({}),
+      pots.find({}),
+    ]);
 
     return NextResponse.json({
       balanceData,
