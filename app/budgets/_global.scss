@@ -2,4 +2,14 @@
 
 .budgets-main {
     display: flex;
+    gap : $spacing-lg;
+}
+
+.budgets-cards {
+    display: flex;
+    flex : 1;
+    flex-direction: column;
+
+    background: white;
+    border-radius: 15px;
 }
