@@ -17,7 +17,13 @@ h2 {
 h3 {
     font-weight: $font-weight-bold;
     font-size : $font-size-lg;
-    color : $color-gray-light;
+    color : $color-gray-dark;
+}
+
+.h3-nav {
+    font-weight: $font-weight-bold;
+    font-size : $font-size-lg;
+    color : $color-beige;
 }
 
 h4 {
