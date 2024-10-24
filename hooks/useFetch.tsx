@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { Balance, Budgets, Pots, Transactions } from '../types/finance';
+import useSWR from "swr";
 
 interface Data {
     balanceData : Balance;
@@ -9,30 +9,24 @@ interface Data {
     potsData : Pots[];
 }
 
+const fetcher = async () => {
+    const response = await axios.get<Data>(`api/getData`);
+    return response.data;
+}
+
 const useFetch = () => {
 
-    const [data, setData] = useState<Data | null>(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+    const {data , error , isValidating} = useSWR('api/getData', fetcher, {
+        revalidateOnFocus : false,
+        revalidateOnReconnect : false,
+        revalidateOnMount : true,
+    });
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setLoading(true);
-                const response = await axios.get<Data>(`api/getData`);
-                setData(response.data);
-            } catch (err: any) {
-                setError(err.message || 'Something went wrong.');
-            } finally {
-                setLoading(false);
-            }
-
-        };
-
-        fetchData();
-    }, []);
-
-    return { data, loading, error }
+    return {
+        data,
+        loading : isValidating,
+        error : error ? error.message : '',
+    }
 }
 
 export default useFetch;
