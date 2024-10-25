@@ -150,6 +150,12 @@
     display: none;
 }
 
+.due-date {
+    display: flex;
+    align-items: center;
+    gap : $spacing-sm;
+}
+
 @container (max-width : 620px) {
     .transactions-main-header {
         display: none;
