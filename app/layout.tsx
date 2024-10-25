@@ -2,6 +2,7 @@ import Sidebar from "@components/Sidebar";
 import type { Metadata } from "next";
 import '@sass/styles/main.scss';
 import { Public_Sans } from "next/font/google";
+import { TransactionProvider } from "@context/RecurBillsContext";
 
 export const metadata: Metadata = {
   title: "FinanceG",
@@ -21,13 +22,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={publicSans.className}>
-        <div className="layout">
-          <Sidebar />
-          <main>
-            {children}
-          </main>
-        </div>
-        
+        <TransactionProvider>
+          <div className="layout">
+            <Sidebar />
+            <main>
+              {children}
+            </main>
+          </div>
+        </TransactionProvider>
+
       </body>
     </html>
   );
