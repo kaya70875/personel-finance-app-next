@@ -4,6 +4,7 @@ import Budgets from '@components/cards/Budgets';
 import './_global.scss';
 import BudgetsInfoCard from '@components/cards/BudgetsInfoCard';
 import useFetch from '@hooks/useFetch';
+import AddButton from '@components/buttons/AddButton';
 
 export default function page() {
   const { data, loading, error } = useFetch();
@@ -18,6 +19,7 @@ export default function page() {
     <div className="home">
       <header className="page-header">
         <h1>Budgets</h1>
+        <AddButton buttonText='Budget'/>
       </header>
       <div className="budgets-main">
         <Budgets headerSection={false}
