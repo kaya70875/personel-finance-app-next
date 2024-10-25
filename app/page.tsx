@@ -77,7 +77,11 @@ export default function Home() {
               <DetailsLink href="/transactions" header="View All"/>
             </header>
 
-            <TransactionsComponent transactionFilters={false} pagination={false} postsCount={5}/>
+            <TransactionsComponent transactionFilters={false} pagination={false} postsCount={5}
+            sender="Recipient / Sender"
+            middle={['Category' , 'Transaction Date']}
+            amount='Amount'
+            />
 
           </section>
         </div>

@@ -8,7 +8,11 @@ const Transactions = () => {
       <header className="page-header">
         <h1>Transactions</h1>
       </header>
-      <TransactionsComponent transactionFilters={true} />
+      <TransactionsComponent transactionFilters={true} 
+      sender='Recipient / Sender'
+      middle={['Category' , 'Transaction Date']}
+      amount='Amount'
+      />
     </div>
   )
 }
