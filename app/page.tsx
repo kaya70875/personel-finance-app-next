@@ -78,9 +78,9 @@ export default function Home() {
             </header>
 
             <TransactionsComponent transactionFilters={false} pagination={false} postsCount={5}
-            sender="Recipient / Sender"
-            middle={['Category' , 'Transaction Date']}
-            amount='Amount'
+            sender=""
+            middle={[]}
+            amount=''
             />
 
           </section>

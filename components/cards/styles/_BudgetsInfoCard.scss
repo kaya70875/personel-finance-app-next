@@ -11,25 +11,17 @@
     padding: 2em;
 }
 
-.budgets-info-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap : $spacing-md;
-
-    width: 100%;
-
-    &-details {
-        display: flex;
-        align-items: center;
-        gap : $spacing-md;
-    }
-}
-
 .budgets-info-card-progress {
     display: flex;
     flex-direction: column;
     gap : $spacing-md;
+}
+
+.budgets-info-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .budgets-info-card-visuals {
@@ -40,21 +32,5 @@
 
     gap : $spacing-md;
     padding-inline: 1em;
-}
-
-.progress-bar {
-    width: 100%;
-    background-color: $color-beige-light;
-    border-radius: 10px;
-    overflow: hidden;
-    height: 20px;          
-    position: relative;  
-  }
-
-.progress {
-    height: 100%;      
-    width: 0%;           
-    border-radius: 10px 0 0 10px;
-    transition: width 0.3s ease-in-out;
 }
 

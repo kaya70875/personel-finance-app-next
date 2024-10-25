@@ -6,6 +6,7 @@ import Image from 'next/image';
 import CardVisuals from './CardVisuals';
 import EditDropdown from '@components/dropdowns/EditDropdown';
 import Dropdown from '@components/dropdowns/Dropdown';
+import InfoCardHeader from './atomic/InfoCardHeader';
 
 interface BudgetsInfoCardProps {
     category: string;
@@ -22,17 +23,7 @@ export default function BudgetsInfoCard({ category, cardTheme, maximum, spend, p
     return (
         <div className="budgets-info-card-wrapper">
             <section className="budgets-info-card-top">
-                <header className="budgets-info-card-header">
-                    <div className="budgets-info-card-header-details">
-                        <button className="ellipse" style={{ backgroundColor: cardTheme }}></button>
-                        <h3>{category}</h3>
-                    </div>
-                    <div className="budgets-edit">
-                        
-                        <EditDropdown header='Budgets'/>
-                    </div>
-
-                </header>
+                <InfoCardHeader category={category} cardTheme={cardTheme} />
                 <div className="budgets-info-card-progress">
                     <p>Maximum of ${maximum}</p>
                     <div className="progress-bar">
@@ -55,6 +46,9 @@ export default function BudgetsInfoCard({ category, cardTheme, maximum, spend, p
                         transactionFilters={false}
                         pagination={false}
                         posts={posts}
+                        amount=''
+                        middle={[]}
+                        sender=''
                     />
                 </div>
             </section>

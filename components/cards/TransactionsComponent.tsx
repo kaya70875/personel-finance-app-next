@@ -14,13 +14,13 @@ interface TransactionsProps {
   postsCount?: number;
   posts?: Transactions[] | null;
   isRecurring?: boolean;
-  sender: string;
-  middle: string[];
-  amount: string;
+  sender?: string;
+  middle?: string[];
+  amount?: string;
 }
 
 export default function TransactionsComponent({ transactionFilters, pagination = true, postsCount = 10, posts
-  , isRecurring = false , sender , middle , amount}: TransactionsProps) {
+  , isRecurring = false , sender = 'Recipient / Sender' , middle = ['Category' , 'Transaction Date'] , amount = 'Amount'}: TransactionsProps) {
   const { data, error, loading } = useFetch();
 
   const [currentPage, setCurrentPage] = useState(1);
