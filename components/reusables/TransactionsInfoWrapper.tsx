@@ -1,11 +1,13 @@
 import { Transactions } from '../../types/finance';
 import Image from 'next/image';
+import TransactionsInfoRecur from './TransactionsInfoRecur';
 
 interface TransactionsInfoWrapperProps {
     currentPosts: Transactions[];
+    isRecurring?: boolean;
 }
 
-export default function TransactionsInfoWrapper({ currentPosts } : TransactionsInfoWrapperProps) {
+export default function TransactionsInfoWrapper({ currentPosts, isRecurring = false }: TransactionsInfoWrapperProps) {
     return (
         <>
             {currentPosts?.map((transaction, index) => (
@@ -22,12 +24,21 @@ export default function TransactionsInfoWrapper({ currentPosts } : TransactionsI
                     </div>
 
                     <div className="transaction-middle">
-                        <h5>{transaction.category}</h5>
-                        <h5>{new Date(transaction.date).toLocaleDateString('en-US', {
-                            day: '2-digit',
-                            month: 'short',
-                            year: 'numeric',
-                        })}</h5>
+                        {isRecurring ? (
+                            <>
+                                <TransactionsInfoRecur transaction={transaction}/>
+                            </>
+                        ) : (
+                            <>
+                                <h5>{transaction.category}</h5>
+                                <h5>{new Date(transaction.date).toLocaleDateString('en-US', {
+                                    day: '2-digit',
+                                    month: 'short',
+                                    year: 'numeric',
+                                })}</h5>
+                            </>
+                        )}
+
                     </div>
 
                     <div className="transaction-amount">
