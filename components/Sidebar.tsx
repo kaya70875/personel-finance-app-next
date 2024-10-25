@@ -46,7 +46,7 @@ const menuItems = [
         ),
         alt: 'Recurring Bils',
         label: 'Recurring Bills',
-        route : '/recurring-bills',
+        route : '/recurring',
     }
 ];
 
