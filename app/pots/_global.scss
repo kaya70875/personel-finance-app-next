@@ -1,0 +1,7 @@
+@import '@sass/utilities/_variables';
+
+.pots-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-lg;
+}

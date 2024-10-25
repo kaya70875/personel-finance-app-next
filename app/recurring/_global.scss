@@ -1,0 +1,47 @@
+@import '@sass/utilities/variables';
+
+.recurrings-wrapper {
+    display: flex;
+    gap : $spacing-xl;
+}
+
+.recurrings-info-section {
+    display: flex;
+    flex-direction: column;
+    gap : $spacing-xl;
+
+    width: 30%;
+}
+
+.recurrings-filter-section {
+    width: 70%;
+
+    .category-wrapper {
+        display: none;
+    }
+
+    .search-input {
+        width: 50%;
+    }
+
+    .transaction-middle {
+        width: auto;
+    }
+}
+
+.summary {
+    background: white;
+    border-radius: 15px;
+    padding : 2em;
+
+    display: flex;
+    flex-direction: column;
+    gap : $spacing-2xl;
+}
+
+.paid-bills , .total-upcomings , .due-soon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
