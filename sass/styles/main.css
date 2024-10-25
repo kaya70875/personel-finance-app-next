@@ -52,6 +52,51 @@ main {
   border-radius: 50%;
 }
 
+.add-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #201F24;
+  color: #F8F4F0;
+  font-size: 1rem;
+  padding: 1.5em;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+.add-button:hover {
+  background: #98908B;
+}
+.add-button--light {
+  background: #F8F4F0;
+  color: #201F24;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #F8F4F0;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 20px;
+  position: relative;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  border-radius: 10px 0 0 10px;
+  transition: width 0.3s ease-in-out;
+}
+
 h1 {
   font-weight: bold;
   font-size: 2.5rem;
@@ -76,10 +121,13 @@ h3 {
   color: #98908B;
 }
 
-h4 {
+h4, .h4 {
   font-weight: bold;
   color: #201F24;
   font-size: 1rem;
+}
+h4--alert, .h4--alert {
+  color: #C94736;
 }
 
 h5 {
@@ -94,10 +142,13 @@ h5 {
   color: #201F24;
 }
 
-p {
+p, .p {
   font-weight: normal;
   font-size: 1rem;
   color: #201F24;
+}
+p--alert, .p--alert {
+  color: #C94736;
 }
 
 ul {
