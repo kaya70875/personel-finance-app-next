@@ -1,0 +1,37 @@
+@import '@sass/utilities/_variables';
+
+.pot-wrapper {
+    background: white;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3xl;
+
+    border-radius: 15px;
+    
+    justify-content: space-between;
+}
+
+.pot-details{
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+}
+
+.pot-details-info , .progress-bar-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.pot-buttons-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap : $spacing-md;
+
+    button {
+        width: 100%;
+    }
+}
