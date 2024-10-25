@@ -59,3 +59,53 @@ main {
 
     border-radius: 50%;
 }
+
+.add-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: $color-gray-dark;
+    color : $color-beige-light;
+
+    font-size: $font-size-md;
+    padding: 1.5em;
+    border-radius: 10px;
+    outline: none;
+    border : none;
+
+    cursor: pointer;
+    font-weight: $font-weight-bold;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+        background: $color-beige;
+    }
+
+    &--light {
+        background: $color-beige-light;
+        color : $color-gray-dark;
+    }
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: $color-beige-light;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 20px;
+    position: relative;  
+  }
+
+.progress {
+    height: 100%;
+    width: 0%;           
+    border-radius: 10px 0 0 10px;
+    transition: width 0.3s ease-in-out;
+}
