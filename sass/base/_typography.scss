@@ -26,10 +26,14 @@ h3 {
     color : $color-beige;
 }
 
-h4 {
+h4 , .h4 {
     font-weight: $font-weight-bold;
     color : $color-gray-dark;
     font-size: $font-size-md;
+
+    &--alert {
+        color : $color-red;
+    }
 }
 
 h5 {
@@ -44,10 +48,14 @@ h5 {
     color : $color-gray-dark;
 }
 
-p {
+p , .p{
     font-weight: $font-weight-regular;
     font-size: $font-size-md;
     color : $color-gray-dark;
+
+    &--alert {
+        color : $color-red;
+    }
 }
 
 
