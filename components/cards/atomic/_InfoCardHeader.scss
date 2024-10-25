@@ -1,0 +1,16 @@
+@import '@sass/utilities/_variables.scss';
+
+.info-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap : $spacing-md;
+
+    width: 100%;
+
+    &-details {
+        display: flex;
+        align-items: center;
+        gap : $spacing-md;
+    }
+}
