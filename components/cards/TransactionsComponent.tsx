@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import './styles/_Transactions.scss';
 import useFetch from '@hooks/useFetch';
 import { useEffect, useMemo, useState } from 'react';
@@ -8,16 +7,20 @@ import Pagination from '@components/Pagination';
 import TransactionFilter from '@components/filter/TransactionFilter';
 import { Transactions } from '../../types/finance';
 import TransactionsInfoWrapper from '@components/reusables/TransactionsInfoWrapper';
-import { post } from '@node_modules/axios/index.cjs';
 
 interface TransactionsProps {
   transactionFilters: boolean;
   pagination?: boolean;
   postsCount?: number;
   posts?: Transactions[] | null;
+  isRecurring?: boolean;
+  sender: string;
+  middle: string[];
+  amount: string;
 }
 
-export default function TransactionsComponent({ transactionFilters, pagination = true, postsCount = 10, posts }: TransactionsProps) {
+export default function TransactionsComponent({ transactionFilters, pagination = true, postsCount = 10, posts
+  , isRecurring = false , sender , middle , amount}: TransactionsProps) {
   const { data, error, loading } = useFetch();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,20 +56,21 @@ export default function TransactionsComponent({ transactionFilters, pagination =
       <section className="transactions-main-section">
         <header className="transactions-main-header">
           <div className="transaction-sender">
-            <h5>Recipient/Sender</h5>
+            <h5>{sender}</h5>
           </div>
           <div className="transaction-middle">
-            <h5>Category</h5>
-            <h5>Transaction Date</h5>
+            {middle?.map(item => (
+              <h5>{item}</h5>
+            ))}            
           </div>
           <div className="transaction-amount">
-            <h5>Amount</h5>
+            <h5>{amount}</h5>
           </div>
         </header>
 
         <div className="transactions-info-section">
           {posts ? (
-            <TransactionsInfoWrapper currentPosts={posts.slice(0, 3)} /> // Show max of 3 transactions.
+            <TransactionsInfoWrapper currentPosts={posts} isRecurring={isRecurring} /> // Show max of 3 transactions.
           ) : (
             <TransactionsInfoWrapper currentPosts={currentPosts!} />
           )}
