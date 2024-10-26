@@ -1,3 +1,5 @@
+import { Transactions } from '../types/finance';
+
 export function isBillPaid(dateString: string): boolean {
   const date = new Date(dateString);
   const now = new Date();
@@ -37,4 +39,13 @@ export function formatMonthlyDate(dateString: string) {
   }
 
   return `Monthly - ${day}${suffix}`;
+}
+
+export function getUniqueCategories(transactions: Transactions[] | null) {
+  // Filter out same categories for mapping over these categories without hardcoding.
+  const uniqueCategories = Array.from(
+    new Set(transactions?.map((transaction) => transaction.category))
+  );
+
+  return uniqueCategories;
 }

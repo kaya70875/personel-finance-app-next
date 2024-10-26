@@ -6,6 +6,7 @@ import searchIcon from '@public/assets/images/icon-search.svg';
 import Dropdown from '@components/dropdowns/Dropdown';
 import { Transactions } from '../../types/finance';
 import { sortTransactions } from '@utils/sortTransactions';
+import { getUniqueCategories } from '@utils/helpers';
 
 interface TransactionFilterProps {
     transactionData: Transactions[] | null;
@@ -24,12 +25,8 @@ export default function TransactionFilter({ transactionData, setFilteredData, cu
         setFilteredData(filteredTransactions);
     }, [currentSearch]);
 
-    // Filter out same categories for mapping over these categories without hardcoding.
-    const uniqueCategories = Array.from(
-        new Set(transactionData?.map((transaction) => transaction.category))
-    );
-
-
+    const uniqueCategories = getUniqueCategories(transactionData);
+    
     const handleCategorySorting = (currentIndex: number) => {
         const currentCategory = uniqueCategories[currentIndex];
         console.log(currentCategory);
