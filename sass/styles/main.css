@@ -97,6 +97,17 @@ main {
   transition: width 0.3s ease-in-out;
 }
 
+.modal-input-item {
+  border: 1px solid #626070;
+  border-radius: 5px;
+  padding: 1.25em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease-in;
+}
+
 h1 {
   font-weight: bold;
   font-size: 2.5rem;
@@ -149,6 +160,12 @@ p, .p {
 }
 p--alert, .p--alert {
   color: #C94736;
+}
+
+label, .label {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #696868;
 }
 
 ul {
