@@ -9,6 +9,7 @@ import useFetch from "@hooks/useFetch";
 import DetailsLink from "@components/links/DetailsLink";
 import Budgets from "@components/cards/Budgets";
 import TransactionsComponent from "@components/cards/TransactionsComponent";
+import RecurringOverviewCard from "@components/cards/RecurringOverviewCard";
 
 export default function Home() {
 
@@ -89,6 +90,7 @@ export default function Home() {
         <div className="overview-right">
           <Budgets headerSection={true}
            />
+           <RecurringOverviewCard />
         </div>
       </section>
     </div>

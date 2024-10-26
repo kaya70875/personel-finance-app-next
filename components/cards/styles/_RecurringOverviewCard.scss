@@ -1,0 +1,46 @@
+@import "@sass/utilities/_variables.scss";
+
+.recurring-overview-card-wrapper {
+    padding : 2em;
+    background: white;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    gap : $spacing-xl;
+}
+
+.recurring-overview-cards {
+    display: flex;
+    flex-direction: column;
+    gap : $spacing-lg;
+
+   
+}
+
+.recurring-overview-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    background: $color-beige-light;
+    padding-inline: 1em;
+    padding-block: 2em;
+
+    border-left : 5px solid transparent;
+    border-radius: 10px;
+
+    &:first-child {
+        border-left-color: $color-green;
+    }
+
+    &:nth-child(2) {
+        border-left-color: $color-yellow;
+    }
+
+    &:last-child {
+        border-left-color: $color-cyan;
+    }
+}
