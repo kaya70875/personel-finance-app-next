@@ -7,7 +7,7 @@ import arrowDown from '@public/assets/images/icon-caret-down.svg';
 import { ReactNode, useState } from 'react';
 
 interface DropdownProps {
-    buttonName: string;
+    buttonName: string | ReactNode;
     children : ReactNode;
 }
 
@@ -17,10 +17,6 @@ export default function Dropdown({ buttonName , children }: DropdownProps) {
 
     const handleOpen = () => {
         setIsOpen(prev => (!prev));
-    }
-
-    const handleReset = () => {
-        
     }
 
     return (
@@ -37,7 +33,6 @@ export default function Dropdown({ buttonName , children }: DropdownProps) {
             <div className={`dropdown-menu ${isOpen ? 'active' : ''}`}>
                 <ul className="dropdown-items">
                     <li className="dropdown-item">
-                        <h4 onClick={handleReset}>{'All'}</h4>
                         {children}
                     </li>
                 </ul>

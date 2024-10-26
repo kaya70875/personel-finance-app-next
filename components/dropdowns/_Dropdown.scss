@@ -42,6 +42,8 @@
     padding: 1em;
     border-radius: 10px;
 
+    z-index: 9999;
+
     &.active {
         display: block;
     }
