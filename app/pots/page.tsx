@@ -1,6 +1,5 @@
 'use client';
 
-import AddButton from '@components/buttons/AddButton';
 import './_global.scss';
 import PotCard from '@components/cards/PotCard';
 import useFetch from '@hooks/useFetch';
@@ -18,7 +17,6 @@ export default function page() {
         <div className="home">
             <header className="page-header">
                 <h1>Pots</h1>
-                <AddButton buttonText='Pot' />
             </header>
             <div className="pots-wrapper">
                 {potsData.map((pot , index) => (

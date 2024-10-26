@@ -4,7 +4,6 @@ import Budgets from '@components/cards/Budgets';
 import './_global.scss';
 import BudgetsInfoCard from '@components/cards/BudgetsInfoCard';
 import useFetch from '@hooks/useFetch';
-import AddButton from '@components/buttons/AddButton';
 import { useState } from 'react';
 import Modal from '@components/cards/Modal';
 import Dropdown from '@components/dropdowns/Dropdown';
