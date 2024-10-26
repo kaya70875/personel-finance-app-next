@@ -1,0 +1,74 @@
+@import '@sass/utilities/variables';
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 45%;
+    max-width: 600px;
+    max-height: 580px;
+    height: 60%;
+    margin: auto;
+
+    background: $color-beige-light;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap : $spacing-xl;
+    z-index: 1000;
+
+    border-radius: 15px;
+
+    padding: 2em;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.modal-close-button {
+    cursor: pointer;
+}
+
+.modal-input{
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    .dropdown {
+        width: 100%;
+    }
+
+    .dropdown-button-wrapper {
+        justify-content: space-between;
+    }
+}
+
+.modal-desc{
+    p {
+        color : $color-gray-normal;
+    }
+}
+
+.color-option {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+}
