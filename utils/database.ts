@@ -7,7 +7,7 @@ export const connectToDB = async () => {
 
     if (mongoose.connection.readyState === 1) {
         console.log("MongoDB is already connected");
-        return;
+        return mongoose.connection.db;
     }
 
     try {
@@ -18,6 +18,8 @@ export const connectToDB = async () => {
 
         isConnected = true;
         console.log("MongoDB connected");
+
+        return mongoose.connection.db;
     } catch (error) {
         console.error("MongoDB connection error:", error);
     }
