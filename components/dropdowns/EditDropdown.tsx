@@ -18,6 +18,10 @@ export default function EditDropdown({ header }: EditDropdownProps) {
         setIsOpen(prev => (!prev));
     }
 
+    const handleDelete = () => {
+        
+    }
+
     return (
         <div className='edit-dropdown' onClick={handleOpen}>
             <div className="edit-dropdown-button-wrapper">
@@ -33,7 +37,7 @@ export default function EditDropdown({ header }: EditDropdownProps) {
                 <ul className="edit-dropdown-items">
                     <li className="edit-dropdown-item">
                         <p>Edit {header}</p>
-                        <p className='red'>Delete {header}</p>
+                        <p className='red' onClick={handleDelete}>Delete {header}</p>
                     </li>
                 </ul>
             </div>
