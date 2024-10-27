@@ -17,10 +17,38 @@ export default function page() {
   const budgetsData = data?.budgetsData ?? [];
 
   const [isPopped, setIsPopped] = useState(false);
+  const [budgetData, setBudgetData] = useState({
+    category: '',
+    maximum: 0,
+    theme: '',
+  });
 
   const handleClick = () => {
     setIsPopped(prev => !prev);
   }
+
+  const handleAddBudget = async () => {
+    try {
+      const response = await fetch('/api/addBudget', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(budgetData),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log(result.message);
+        setIsPopped(false);
+        window.location.reload();
+      } else {
+        console.error('Error adding budget');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   const uniqueCategories = getUniqueCategories(transactionsData);
 
@@ -36,19 +64,28 @@ export default function page() {
                 <label>Budget Category</label>
                 <Dropdown buttonName='Entertainment'>
                   {uniqueCategories.map(category => (
-                    <p key={category}>{category}</p>
+                    <p key={category} onClick={() => setBudgetData({
+                      ...budgetData,
+                      category: category,
+                    })}>{category}</p>
                   ))}
                 </Dropdown>
 
                 <label htmlFor="spend">Maximum Spend</label>
-                <input type="text" placeholder='$ e.g.2000' className='modal-input-item' />
+                <input type="numeric" placeholder='$ e.g.2000' className='modal-input-item' onChange={(e) => setBudgetData({
+                  ...budgetData,
+                  maximum: parseInt(e.target.value),
+                })} />
 
                 <label>Theme</label>
                 <Dropdown buttonName={
                   'Choose a color'
                 }>
                   {Object.entries(colors).map(([colorName, colorValue]) => (
-                    <div key={colorName} className='color-option'>
+                    <div key={colorName} className='color-option' onClick={() => setBudgetData({
+                      ...budgetData,
+                      theme: colorValue,
+                    })}>
                       <div className='ellipse' style={{ backgroundColor: colorValue }}></div>
                       <p>{colorName}</p>
                     </div>
@@ -56,7 +93,7 @@ export default function page() {
                 </Dropdown>
               </div>
             </div>
-            <button className="add-button">Add Budget</button>
+            <button className="add-button" onClick={handleAddBudget}>Add Budget</button>
           </Modal>
         )}
 
@@ -77,7 +114,7 @@ export default function page() {
                 category={budget.category}
                 cardTheme={budget.theme}
                 maximum={budget.maximum}
-                spend={budget.spend}
+                spend={budget.spend | 0}
                 posts={filteredTransactions}
               />
             );
