@@ -2,7 +2,7 @@ import axios from "axios";
 import { Balance, Budgets, Pots, Transactions } from '../types/finance';
 import useSWR from "swr";
 
-interface Data {
+export interface Data {
     balanceData : Balance;
     budgetsData : Budgets[];
     transactionsData : Transactions[];
