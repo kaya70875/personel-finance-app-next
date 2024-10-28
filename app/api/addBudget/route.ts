@@ -10,7 +10,6 @@ export async function POST(req: Request) {
         const { category, maximum, theme } = body;
 
         const newBudget = await budgets.create({category , maximum, theme});
-        console.log(newBudget);
 
         return NextResponse.json({
             message: "Budget added successfully",
