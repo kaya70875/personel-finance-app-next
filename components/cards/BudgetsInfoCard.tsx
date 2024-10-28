@@ -2,10 +2,7 @@ import DetailsLink from '@components/links/DetailsLink';
 import './styles/_BudgetsInfoCard.scss';
 import TransactionsComponent from './TransactionsComponent';
 import { Transactions } from '../../types/finance';
-import Image from 'next/image';
 import CardVisuals from './CardVisuals';
-import EditDropdown from '@components/dropdowns/EditDropdown';
-import Dropdown from '@components/dropdowns/Dropdown';
 import InfoCardHeader from './atomic/InfoCardHeader';
 
 interface BudgetsInfoCardProps {
