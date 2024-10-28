@@ -5,6 +5,7 @@ import './_Dropdown.scss';
 import Image from 'next/image';
 import editButton from '@public/assets/images/icon-ellipsis.svg';
 import { useState } from 'react';
+import useDelete from '@hooks/useDelete';
 
 interface EditDropdownProps {
     header: string;
@@ -13,13 +14,14 @@ interface EditDropdownProps {
 export default function EditDropdown({ header }: EditDropdownProps) {
 
     const [isOpen, setIsOpen] = useState(false);
+    const { deleteItem } = useDelete();
 
     const handleOpen = () => {
         setIsOpen(prev => (!prev));
     }
 
     const handleDelete = () => {
-        
+        deleteItem(header , 'Budget');
     }
 
     return (
