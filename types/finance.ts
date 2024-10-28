@@ -5,6 +5,7 @@ export interface Balance {
 }
 
 export interface Budgets {
+    _id : string;
     category : string;
     maximum : number;
     theme : string;
@@ -22,6 +23,7 @@ export interface Transactions {
 }
 
 export interface Pots {
+    _id : string;
     name : string;
     target : number;
     total : number;
