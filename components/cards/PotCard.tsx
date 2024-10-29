@@ -5,16 +5,17 @@ interface PotCardProps {
   category: string;
   cardTheme: string;
   total: number;
-  target : number
+  target : number;
+  id : string;
 }
 
-export default function PotCard({ category, cardTheme, total , target }: PotCardProps) {
+export default function PotCard({ category, cardTheme, total , target , id}: PotCardProps) {
 
   let progressBarWidth = (total / 1000) * 100;
 
   return (
     <div className="pot-wrapper">
-      <InfoCardHeader category={category} cardTheme={cardTheme} />
+      <InfoCardHeader type='Pot' category={category} cardTheme={cardTheme} id={id}/>
       <div className="pot-details">
         <div className="pot-details-info">
           <p>Total Saved</p>
