@@ -30,7 +30,6 @@ export default function RootLayout({
             </main>
           </div>
         </TransactionProvider>
-
       </body>
     </html>
   );
