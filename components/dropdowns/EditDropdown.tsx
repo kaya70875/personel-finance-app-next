@@ -9,9 +9,11 @@ import useDelete from '@hooks/useDelete';
 
 interface EditDropdownProps {
     header: string;
+    id : string;
+    type : string;
 }
 
-export default function EditDropdown({ header }: EditDropdownProps) {
+export default function EditDropdown({ header , id , type}: EditDropdownProps) {
 
     const [isOpen, setIsOpen] = useState(false);
     const { deleteItem } = useDelete();
@@ -21,7 +23,8 @@ export default function EditDropdown({ header }: EditDropdownProps) {
     }
 
     const handleDelete = () => {
-        deleteItem(header , 'Budget');
+        deleteItem(id , type);
+        window.location.reload();
     }
 
     return (

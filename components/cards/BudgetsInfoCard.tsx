@@ -11,16 +11,17 @@ interface BudgetsInfoCardProps {
     maximum: number;
     spend: number;
     posts: Transactions[] | null;
-}
+    id : string;
+} 
 
-export default function BudgetsInfoCard({ category, cardTheme, maximum, spend, posts }: BudgetsInfoCardProps) {
+export default function BudgetsInfoCard({ category, cardTheme, maximum, spend, posts , id}: BudgetsInfoCardProps) {
 
     let progressBarWidth = (spend / maximum) * 100;
 
     return (
         <div className="budgets-info-card-wrapper">
             <section className="budgets-info-card-top">
-                <InfoCardHeader category={category} cardTheme={cardTheme} />
+                <InfoCardHeader type='Budget' id={id} category={category} cardTheme={cardTheme} />
                 <div className="budgets-info-card-progress">
                     <p>Maximum of ${maximum}</p>
                     <div className="progress-bar">
