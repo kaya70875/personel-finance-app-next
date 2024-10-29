@@ -3,12 +3,12 @@
 import Budgets from '@components/cards/Budgets';
 import './_global.scss';
 import BudgetsInfoCard from '@components/cards/BudgetsInfoCard';
-import useFetch from '@hooks/useFetch';
 import { useState } from 'react';
 import Modal from '@components/cards/Modal';
 import Dropdown from '@components/dropdowns/Dropdown';
 import { getUniqueCategories } from '@utils/helpers';
 import { colors } from '@utils/colors';
+import useFetch from '@hooks/useFetch';
 
 export default function page() {
   const { data, loading, error } = useFetch();
@@ -62,7 +62,7 @@ export default function page() {
             <div className="inputs-wrapper">
               <div className="modal-input">
                 <label>Budget Category</label>
-                <Dropdown buttonName='Entertainment'>
+                <Dropdown buttonName='Choose a category'>
                   {uniqueCategories.map(category => (
                     <p key={category} onClick={() => setBudgetData({
                       ...budgetData,
@@ -116,6 +116,7 @@ export default function page() {
                 maximum={budget.maximum}
                 spend={budget.spend | 0}
                 posts={filteredTransactions}
+                id={budget._id}
               />
             );
           })}
