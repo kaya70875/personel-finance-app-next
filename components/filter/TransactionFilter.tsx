@@ -21,15 +21,14 @@ export default function TransactionFilter({ transactionData, setFilteredData, cu
     const [currentSortBy, setCurrentSortBy] = useState('Latest');
 
     useEffect(() => {
-        const filteredTransactions = currentPosts?.filter(transaction => transaction.name.toLowerCase().includes(currentSearch.toLowerCase()));
+        const filteredTransactions = transactionData?.filter(transaction => transaction.name.toLowerCase().includes(currentSearch.toLowerCase()));
         setFilteredData(filteredTransactions);
     }, [currentSearch]);
 
     const uniqueCategories = getUniqueCategories(transactionData);
-    
+
     const handleCategorySorting = (currentIndex: number) => {
         const currentCategory = uniqueCategories[currentIndex];
-        console.log(currentCategory);
 
         const categorizedTransactions = transactionData?.filter(transaction => transaction.category === currentCategory);
         setFilteredData(categorizedTransactions);
@@ -40,8 +39,8 @@ export default function TransactionFilter({ transactionData, setFilteredData, cu
         const currentSortBy = sortBy[currentIndex];
 
         const sortedTransactions = sortTransactions(currentPosts, currentSortBy);
-
-        setFilteredData(sortedTransactions);
+        const dataToSort = [...sortedTransactions]; // Create a new referance so react will trigger a rerender. (Note that data is not changing in sorting actions!)
+        setFilteredData(dataToSort);
         setCurrentSortBy(currentSortBy);
     }
 
@@ -59,7 +58,9 @@ export default function TransactionFilter({ transactionData, setFilteredData, cu
                     <h5>Sort By</h5>
                     <Dropdown buttonName={currentSortBy}>
                         {sortBy.map((sort, index) => (
-                            <p onClick={() => handleSortBy(index)} key={index}>{sort}</p>
+                            <li className='dropdown-item' onClick={() => handleSortBy(index)} key={index}>
+                                <p>{sort}</p>
+                            </li>
                         ))}
                     </Dropdown>
 
@@ -68,7 +69,9 @@ export default function TransactionFilter({ transactionData, setFilteredData, cu
                     <h5>Category</h5>
                     <Dropdown buttonName={currentCategory}>
                         {uniqueCategories.map((category, index) => (
-                            <p onClick={() => handleCategorySorting(index)} key={index}>{category}</p>
+                            <li className="dropdown-item" onClick={() => handleCategorySorting(index)} key={index}>
+                                <p>{category}</p>
+                            </li>
                         ))}
                     </Dropdown>
                 </div>

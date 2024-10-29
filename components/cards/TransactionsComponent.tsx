@@ -29,7 +29,7 @@ export default function TransactionsComponent({ transactionFilters, pagination =
   // Manage filtered data
   const [filteredData, setFilteredData] = useState<Transactions[] | null | undefined>(null);
 
-  const transactionData = useMemo(() => data?.transactionsData ?? [], [data]);
+  const transactionData = data?.transactionsData ?? [];
 
   // When fetching is done, set the filtered data initially
   useEffect(() => {
@@ -42,14 +42,15 @@ export default function TransactionsComponent({ transactionFilters, pagination =
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = filteredData?.slice(firstPostIndex, lastPostIndex);
-
+  
+  // Handle page change
   return (
     <article className="transactions-wrapper">
       {transactionFilters && (
         <TransactionFilter
           transactionData={transactionData}  // Provide the full data for filtering
           setFilteredData={setFilteredData}
-          currentPosts={currentPosts!}
+          currentPosts={filteredData!}
         />
       )}
 
