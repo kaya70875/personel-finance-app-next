@@ -13,7 +13,7 @@ export default function Modal({onClose , modalHeaderText , modalDesc , children}
       <div className="modal-backdrop"></div>
       <div className="modal-overlay">
         <header className="modal-header">
-          <h2>Add New {modalHeaderText}</h2>
+          <h2>{modalHeaderText}</h2>
           <div className="modal-close-button" onClick={() => onClose(false)}>
             <SvgIcon path={"close-modal"}/>
           </div>
