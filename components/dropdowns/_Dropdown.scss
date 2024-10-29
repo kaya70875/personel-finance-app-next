@@ -9,13 +9,14 @@
 
 .dropdown-button-wrapper {
     border: 1px solid $color-navy;
-    padding: 1em 1.5em;
+    padding: .75em 1.5em;
     border-radius: 5px;
 
     display: flex;
     align-items: center;
     gap : $spacing-sm;
     transition : all 0.3s ease-in;
+    cursor: pointer;
 
     &:hover {
         border: 1px solid $color-gray-dark;
@@ -32,23 +33,39 @@
     }
 }
 
+.dropdown-btn {
+    cursor: pointer;
+}
+
 .dropdown-menu {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
     position: absolute;
     background: white;
-    width: 100%;
+    min-width: 100%;
+    left : 50%;
+    transform: translateX(-50%);
+    
     overflow: auto;
 
-    padding: 1em;
+    padding: .75em;
     border-radius: 10px;
 
     z-index: 9999;
+    transition: all 0.3s ease-in;
 
     &.active {
-        display: block;
+        opacity: 1;
+        visibility: visible;
     }
 
     max-height: 300px;
+}
+
+.dropdown-items {
+    display: flex;
+    flex-direction: column;
+    gap : $spacing-md;
 }
 
 .dropdown-item {
@@ -58,12 +75,11 @@
     gap : $spacing-lg;
 
     text-align: start;
+    padding: .5em;
+    border-radius: 5px;
 
-    p {
-        padding-block: .25em;
-        &:hover {
-            background: $color-gray-light;
-        }
+    &:hover {
+        background: $color-yellow;
     }
 
 }

@@ -32,9 +32,7 @@ export default function Dropdown({ buttonName , children }: DropdownProps) {
             </div>
             <div className={`dropdown-menu ${isOpen ? 'active' : ''}`}>
                 <ul className="dropdown-items">
-                    <li className="dropdown-item">
-                        {children}
-                    </li>
+                    {children}
                 </ul>
             </div>
         </div>
