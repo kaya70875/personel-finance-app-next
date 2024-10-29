@@ -7,10 +7,12 @@ import useFetch from '@hooks/useFetch';
 import { useState } from 'react';
 import Dropdown from '@components/dropdowns/Dropdown';
 import { colors } from '@utils/colors';
+import useAdd from '@hooks/useAdd';
 
 export default function page() {
 
     const { data, error, loading } = useFetch();
+    const { handleAddCard } = useAdd();
 
     const potsData = data?.potsData ?? [];
 
@@ -20,33 +22,14 @@ export default function page() {
         target: 0,
         theme: '',
     })
+    
+    const handleAddPot = () => {
+        handleAddCard(potData , 'addPot' , setIsPopped);
+    }
 
     const handleClick = () => {
         setIsPopped(prev => !prev);
     }
-
-    const handleAddPot = async () => {
-        try {
-          const response = await fetch('/api/addPot', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(potData),
-          });
-    
-          if (response.ok) {
-            const result = await response.json();
-            console.log(result.message);
-            setIsPopped(false);
-            window.location.reload();
-          } else {
-            console.error('Error adding pot');
-          }
-        } catch (error) {
-          console.error('Error:', error);
-        }
-      };
 
     return (
         <div className="home">
@@ -70,17 +53,17 @@ export default function page() {
                                 })} />
 
                                 <label>Theme</label>
-                                <Dropdown buttonName={
+                              <Dropdown buttonName={
                                     'Choose a color'
                                 }>
                                     {Object.entries(colors).map(([colorName, colorValue]) => (
-                                        <div key={colorName} className='color-option' onClick={() => setPotData({
+                                        <li key={colorName} className='color-option' onClick={() => setPotData({
                                             ...potData,
                                             theme: colorValue,
                                         })}>
                                             <div className='ellipse' style={{ backgroundColor: colorValue }}></div>
                                             <p>{colorName}</p>
-                                        </div>
+                                        </li>
                                     ))}
                                 </Dropdown>
                             </div>

@@ -9,9 +9,11 @@ import Dropdown from '@components/dropdowns/Dropdown';
 import { getUniqueCategories } from '@utils/helpers';
 import { colors } from '@utils/colors';
 import useFetch from '@hooks/useFetch';
+import useAdd from '@hooks/useAdd';
 
 export default function page() {
   const { data, loading, error } = useFetch();
+  const {handleAddCard} = useAdd();
 
   const transactionsData = data?.transactionsData ?? [];
   const budgetsData = data?.budgetsData ?? [];
@@ -22,32 +24,17 @@ export default function page() {
     maximum: 0,
     theme: '',
   });
+  const [activeDropdownItem , setActiveDropdownItem] = useState({
+    budgetCategory : 'Choose a category',
+    budgetTheme : 'Choose a color',
+  });
 
   const handleClick = () => {
     setIsPopped(prev => !prev);
   }
 
-  const handleAddBudget = async () => {
-    try {
-      const response = await fetch('/api/addBudget', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(budgetData),
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        console.log(result.message);
-        setIsPopped(false);
-        window.location.reload();
-      } else {
-        console.error('Error adding budget');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  const handleAddBudget = () => {
+    handleAddCard(budgetData , 'addBudget' , setIsPopped);
   };
 
   const uniqueCategories = getUniqueCategories(transactionsData);
@@ -62,12 +49,20 @@ export default function page() {
             <div className="inputs-wrapper">
               <div className="modal-input">
                 <label>Budget Category</label>
-                <Dropdown buttonName='Choose a category'>
+                <Dropdown buttonName={activeDropdownItem.budgetCategory}>
                   {uniqueCategories.map(category => (
-                    <p key={category} onClick={() => setBudgetData({
-                      ...budgetData,
-                      category: category,
-                    })}>{category}</p>
+                    <li className='dropdown-item' key={category} onClick={() => {
+                      setBudgetData({
+                        ...budgetData,
+                        category: category,
+                      })
+                      setActiveDropdownItem({
+                        ...activeDropdownItem,
+                        budgetCategory: category,
+                      });
+                    }}>
+                      <p>{category}</p>
+                    </li>
                   ))}
                 </Dropdown>
 
@@ -79,16 +74,22 @@ export default function page() {
 
                 <label>Theme</label>
                 <Dropdown buttonName={
-                  'Choose a color'
+                  activeDropdownItem.budgetTheme
                 }>
                   {Object.entries(colors).map(([colorName, colorValue]) => (
-                    <div key={colorName} className='color-option' onClick={() => setBudgetData({
-                      ...budgetData,
-                      theme: colorValue,
-                    })}>
+                    <li key={colorName} className='color-option' onClick={() => {
+                      setBudgetData({
+                        ...budgetData,
+                        theme: colorValue,
+                      })
+                      setActiveDropdownItem({
+                        ...activeDropdownItem,
+                        budgetTheme: colorName,
+                      });
+                    }}>
                       <div className='ellipse' style={{ backgroundColor: colorValue }}></div>
                       <p>{colorName}</p>
-                    </div>
+                    </li>
                   ))}
                 </Dropdown>
               </div>
