@@ -13,20 +13,21 @@ import useAdd from '@hooks/useAdd';
 
 export default function page() {
   const { data, loading, error } = useFetch();
-  const {handleAddCard} = useAdd();
+  const { handleAddCard } = useAdd();
 
-  const transactionsData = data?.transactionsData ?? [];
-  const budgetsData = data?.budgetsData ?? [];
-
-  const [isPopped, setIsPopped] = useState(false);
   const [budgetData, setBudgetData] = useState({
     category: '',
     maximum: 0,
     theme: '',
   });
-  const [activeDropdownItem , setActiveDropdownItem] = useState({
-    budgetCategory : 'Choose a category',
-    budgetTheme : 'Choose a color',
+
+  const transactionsData = data?.transactionsData ?? [];
+  const budgetsData = data?.budgetsData ?? [];
+
+  const [isPopped, setIsPopped] = useState(false);
+  const [activeDropdownItem, setActiveDropdownItem] = useState({
+    budgetCategory: 'Choose a category',
+    budgetTheme: 'Choose a color',
   });
 
   const handleClick = () => {
@@ -34,7 +35,7 @@ export default function page() {
   }
 
   const handleAddBudget = () => {
-    handleAddCard(budgetData , 'addBudget' , setIsPopped);
+    handleAddCard(budgetData, 'addBudget', setIsPopped);
   };
 
   const uniqueCategories = getUniqueCategories(transactionsData);
@@ -45,7 +46,7 @@ export default function page() {
         <h1>Budgets</h1>
         <button className="add-button" onClick={handleClick}>+ Add New Budget</button>
         {isPopped && (
-          <Modal onClose={setIsPopped} modalHeaderText={'Budget'} modalDesc={'Choose a category to set a spending budget. These categories can help you monitor spending.'}>
+          <Modal onClose={setIsPopped} modalHeaderText={'Add New Budget'} modalDesc={'Choose a category to set a spending budget. These categories can help you monitor spending.'}>
             <div className="inputs-wrapper">
               <div className="modal-input">
                 <label>Budget Category</label>
@@ -111,17 +112,12 @@ export default function page() {
 
             return (
               <BudgetsInfoCard
-                key={budget.category}
-                category={budget.category}
-                cardTheme={budget.theme}
-                maximum={budget.maximum}
-                spend={budget.spend | 0}
-                posts={filteredTransactions}
-                id={budget._id}
+                key={budget._id}
+                budget={budget}
+                filteredTransactions={filteredTransactions}
               />
             );
           })}
-
         </div>
       </div>
     </div>

@@ -4,20 +4,21 @@ import './_EditDropdown.scss';
 import './_Dropdown.scss';
 import Image from 'next/image';
 import editButton from '@public/assets/images/icon-ellipsis.svg';
-import { useState } from 'react';
+import { Children, useState } from 'react';
 import useDelete from '@hooks/useDelete';
 import Modal from '@components/cards/Modal';
-
 interface EditDropdownProps {
-    header: string;
-    id : string;
     type : string;
+    id : string;
+    category : string;
+    children : React.ReactNode;
 }
 
-export default function EditDropdown({ header , id , type}: EditDropdownProps) {
+export default function EditDropdown({ type , id , category , children}: EditDropdownProps) {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [isPopped , setIsPopped] = useState(false);
+    const [deletePop , setDeletePop] = useState(false);
+    const [editPop , setEditPop] = useState(false);
     const { deleteItem } = useDelete();
 
     const handleOpen = () => {
@@ -25,8 +26,10 @@ export default function EditDropdown({ header , id , type}: EditDropdownProps) {
     }
 
     const handleDelete = () => {
-        deleteItem(id , type);
-        window.location.reload();
+        if (id) {
+            deleteItem(id, type);
+            window.location.reload();
+        }
     }
 
     return (
@@ -43,16 +46,22 @@ export default function EditDropdown({ header , id , type}: EditDropdownProps) {
             <div className={`edit-dropdown-menu ${isOpen ? 'active' : ''}`}>
                 <ul className="edit-dropdown-items">
                     <li className="edit-dropdown-item">
-                        <p>Edit {header}</p>
-                        <p className='red' onClick={() => setIsPopped(true)}>Delete {header}</p>
+                        <p onClick={() => setEditPop(true)}>Edit {category}</p>
+                        <p className='red' onClick={() => setDeletePop(true)}>Delete {category}</p>
                     </li>
                 </ul>
             </div>
-            {isPopped && (
-                <Modal modalHeaderText={`Delete '${header}' ?`} modalDesc={`Are you sure you want to delete this ${header} ? This action cannot be reversed , and all the
-                data inside it will be removed forever.`} onClose={setIsPopped}>
+            {deletePop && (
+                <Modal modalHeaderText={`Delete '${category}' ?`} modalDesc={`Are you sure you want to delete this ${category} ? This action cannot be reversed , and all the
+                data inside it will be removed forever.`} onClose={setDeletePop}>
                     <button onClick={handleDelete} className="card-delete">Yes , Confirm Deletion</button>
-                    <button onClick={() => setIsPopped(false)} className="card-back">No , Go Back</button>
+                    <button onClick={() => setDeletePop(false)} className="card-back">No , Go Back</button>
+                </Modal>
+            )}
+
+            {editPop && (
+                <Modal modalHeaderText={`Edit ${category}`} modalDesc={`As your ${type}s change , feel free to update your spending limits.`} onClose={setEditPop}>
+                    {children}
                 </Modal>
             )}
         </div>

@@ -1,35 +1,45 @@
+'use client';
+
 import DetailsLink from '@components/links/DetailsLink';
 import './styles/_BudgetsInfoCard.scss';
 import TransactionsComponent from './TransactionsComponent';
-import { Transactions } from '../../types/finance';
+import { Budgets, Transactions } from '../../types/finance';
 import CardVisuals from './CardVisuals';
 import InfoCardHeader from './atomic/InfoCardHeader';
+import EditDropdown from '@components/dropdowns/EditDropdown';
+import ModalClassic from './modal/ModalClassic';
+import useFetch from '@hooks/useFetch';
 
 interface BudgetsInfoCardProps {
-    category: string;
-    cardTheme: string;
-    maximum: number;
-    spend: number;
-    posts: Transactions[] | null;
-    id : string;
-} 
+    budget: Budgets;
+    filteredTransactions: Transactions[];
+}
 
-export default function BudgetsInfoCard({ category, cardTheme, maximum, spend, posts , id}: BudgetsInfoCardProps) {
+export default function BudgetsInfoCard({ budget, filteredTransactions }: BudgetsInfoCardProps) {
 
-    let progressBarWidth = (spend / maximum) * 100;
+    const { data } = useFetch();
+    const transactionsData = data?.transactionsData ?? [];
+
+    let progressBarWidth = (budget.spend / budget.maximum) * 100;
+
+    const { theme, maximum, spend, _id, category } = budget;
 
     return (
         <div className="budgets-info-card-wrapper">
             <section className="budgets-info-card-top">
-                <InfoCardHeader type='Budget' id={id} category={category} cardTheme={cardTheme} />
+                <InfoCardHeader category={category} theme={theme}>
+                    <EditDropdown category={category} id={_id} type={'Budget'}>
+                        <ModalClassic category={category} maximum={maximum} theme={theme} transactionsData={transactionsData} />
+                    </EditDropdown>
+                </InfoCardHeader>
                 <div className="budgets-info-card-progress">
                     <p>Maximum of ${maximum}</p>
                     <div className="progress-bar">
-                        <div className="progress" style={{ width: `${progressBarWidth.toString()}%`, backgroundColor: cardTheme }}></div>
+                        <div className="progress" style={{ width: `${progressBarWidth.toString()}%`, backgroundColor: theme }}></div>
                     </div>
                 </div>
                 <div className="budgets-info-card-visuals">
-                    <CardVisuals cardHeader='Spent' cardPrice={15} cardVisualColor={cardTheme} cardSpend={spend} />
+                    <CardVisuals cardHeader='Spent' cardPrice={15} cardVisualColor={theme} cardSpend={spend} />
                     <CardVisuals cardHeader='Remaining' cardPrice={maximum - spend} cardVisualColor={'transparent'} />
                 </div>
             </section>
@@ -43,7 +53,7 @@ export default function BudgetsInfoCard({ category, cardTheme, maximum, spend, p
                     <TransactionsComponent
                         transactionFilters={false}
                         pagination={false}
-                        posts={posts}
+                        posts={filteredTransactions}
                         amount=''
                         middle={[]}
                         sender=''
