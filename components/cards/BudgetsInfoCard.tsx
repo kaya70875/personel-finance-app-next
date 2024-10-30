@@ -8,7 +8,6 @@ import CardVisuals from './CardVisuals';
 import InfoCardHeader from './atomic/InfoCardHeader';
 import EditDropdown from '@components/dropdowns/EditDropdown';
 import ModalClassic from './modal/ModalClassic';
-import useFetch from '@hooks/useFetch';
 
 interface BudgetsInfoCardProps {
     budget: Budgets;
@@ -16,9 +15,6 @@ interface BudgetsInfoCardProps {
 }
 
 export default function BudgetsInfoCard({ budget, filteredTransactions }: BudgetsInfoCardProps) {
-
-    const { data } = useFetch();
-    const transactionsData = data?.transactionsData ?? [];
 
     let progressBarWidth = (budget.spend / budget.maximum) * 100;
 
@@ -29,7 +25,7 @@ export default function BudgetsInfoCard({ budget, filteredTransactions }: Budget
             <section className="budgets-info-card-top">
                 <InfoCardHeader category={category} theme={theme}>
                     <EditDropdown category={category} id={_id} type={'Budget'}>
-                        <ModalClassic category={category} maximum={maximum} theme={theme} transactionsData={transactionsData} />
+                        <ModalClassic category={category} maximum={maximum} theme={theme} />
                     </EditDropdown>
                 </InfoCardHeader>
                 <div className="budgets-info-card-progress">

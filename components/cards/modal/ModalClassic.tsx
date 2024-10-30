@@ -3,22 +3,25 @@ import { Transactions } from '../../../types/finance';
 import { colors } from '@utils/colors';
 import { getUniqueCategories } from '@utils/helpers';
 import React, { useState } from 'react'
+import useFetch from '@hooks/useFetch';
 
 interface ModalClassicProps {
-    transactionsData: Transactions[];
-    category : string;
-    theme : string;
-    maximum : number;
+    category: string;
+    theme: string;
+    maximum: number;
 }
 
-export default function ModalClassic({ transactionsData , category , maximum ,theme}: ModalClassicProps) {
+export default function ModalClassic({ category, maximum, theme }: ModalClassicProps) {
+
+    const { data } = useFetch();
+    const transactionsData = data?.transactionsData ?? [];
 
     const uniqueCategories = getUniqueCategories(transactionsData);
 
-    const [activeDropdownItem , setActiveDropdownItem] = useState({
-        budgetCategory : category,
-        budgetTheme : theme,
-      });
+    const [activeDropdownItem, setActiveDropdownItem] = useState({
+        budgetCategory: category,
+        budgetTheme: theme,
+    });
 
     return (
         <>
@@ -30,7 +33,7 @@ export default function ModalClassic({ transactionsData , category , maximum ,th
                             <li className='dropdown-item' key={category} onClick={() => {
                                 setActiveDropdownItem({
                                     ...activeDropdownItem,
-                                    budgetCategory : category,
+                                    budgetCategory: category,
                                 })
                             }}>
                                 <p>{category}</p>
