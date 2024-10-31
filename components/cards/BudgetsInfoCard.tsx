@@ -3,29 +3,29 @@
 import DetailsLink from '@components/links/DetailsLink';
 import './styles/_BudgetsInfoCard.scss';
 import TransactionsComponent from './TransactionsComponent';
-import { Budgets, Transactions } from '../../types/finance';
+import { Budgets, Pots, Transactions } from '../../types/finance';
 import CardVisuals from './CardVisuals';
 import InfoCardHeader from './atomic/InfoCardHeader';
 import EditDropdown from '@components/dropdowns/EditDropdown';
 import ModalClassic from './modal/ModalClassic';
-
 interface BudgetsInfoCardProps {
     budget: Budgets;
     filteredTransactions: Transactions[];
+    cardType : 'budget' | 'pot';
 }
 
-export default function BudgetsInfoCard({ budget, filteredTransactions }: BudgetsInfoCardProps) {
-
-    let progressBarWidth = (budget.spend / budget.maximum) * 100;
+export default function BudgetsInfoCard({ budget, filteredTransactions}: BudgetsInfoCardProps) {
 
     const { theme, maximum, spend, _id, category } = budget;
+
+    let progressBarWidth = (spend / maximum) * 100;
 
     return (
         <div className="budgets-info-card-wrapper">
             <section className="budgets-info-card-top">
                 <InfoCardHeader category={category} theme={theme}>
                     <EditDropdown category={category} id={_id} type={'Budget'}>
-                        <ModalClassic category={category} maximum={maximum} theme={theme} />
+                        <ModalClassic cardType='budget' id={_id} actionType='update' name={category} price={maximum} theme={theme} />
                     </EditDropdown>
                 </InfoCardHeader>
                 <div className="budgets-info-card-progress">
