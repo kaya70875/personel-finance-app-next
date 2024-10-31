@@ -47,11 +47,11 @@ export async function PATCH(req: Request) {
     await connectToDB();
 
     const body = await req.json();
-    const { name, target, theme, _id } = body;
+    const { name, target, theme, _id , total} = body;
 
     const newPot = await pots.findByIdAndUpdate(
       _id,
-      { name, target, theme },
+      { name, target, theme , total },
       { new: true }
     );
 
