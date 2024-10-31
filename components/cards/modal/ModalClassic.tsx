@@ -1,63 +1,127 @@
+import React, { useState, useEffect } from 'react';
 import Dropdown from '@components/dropdowns/Dropdown';
-import { Transactions } from '../../../types/finance';
 import { colors } from '@utils/colors';
 import { getUniqueCategories } from '@utils/helpers';
-import React, { useState } from 'react'
 import useFetch from '@hooks/useFetch';
+import useAdd from '@hooks/useAdd';
+import useUpdate from '@hooks/useUpdate';
+import { cardMappings } from '@utils/cardMappings';
 
 interface ModalClassicProps {
-    category: string;
-    theme: string;
-    maximum: number;
+  name?: string;
+  theme?: string;
+  price?: number;
+  actionType: 'update' | 'add';
+  cardType: 'pot' | 'budget';
+  id?: string;
+  setIsPopped?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function ModalClassic({ category, maximum, theme }: ModalClassicProps) {
+export default function ModalClassic({ name, price, theme, actionType, setIsPopped, id, cardType }: ModalClassicProps) {
+  const { data } = useFetch();
+  const { handleAddCard } = useAdd();
+  const { handleUpdateCard } = useUpdate();
+  const transactionsData = data?.transactionsData ?? [];
+  const uniqueCategories = getUniqueCategories(transactionsData);
 
-    const { data } = useFetch();
-    const transactionsData = data?.transactionsData ?? [];
+  // Map the fields according to the card type
+  const cardFields = cardMappings[cardType];
 
-    const uniqueCategories = getUniqueCategories(transactionsData);
+  const [cardData, setCardData] = useState({
+    [cardFields.name]: actionType === 'add' ? '' : name,
+    [cardFields.price]: actionType === 'add' ? 0 : price,
+    [cardFields.theme]: actionType === 'add' ? '' : theme,
+  });
 
-    const [activeDropdownItem, setActiveDropdownItem] = useState({
-        budgetCategory: category,
-        budgetTheme: theme,
-    });
+  const [activeDropdownItem, setActiveDropdownItem] = useState({
+    budgetCategory: actionType === 'add' ? 'Choose A Budget' : name,
+    budgetTheme: actionType === 'add' ? 'Choose A Color' : theme,
+  });
 
-    return (
-        <>
-            <div className="inputs-wrapper">
-                <div className="modal-input">
-                    <label>Budget Category</label>
-                    <Dropdown buttonName={activeDropdownItem.budgetCategory}>
-                        {uniqueCategories.map(category => (
-                            <li className='dropdown-item' key={category} onClick={() => {
-                                setActiveDropdownItem({
-                                    ...activeDropdownItem,
-                                    budgetCategory: category,
-                                })
-                            }}>
-                                <p>{category}</p>
-                            </li>
-                        ))}
-                    </Dropdown>
+  useEffect(() => {
+    if (price) {
+      setCardData(prev => ({
+        ...prev,
+        [cardFields.price]: price,
+      }));
+    }
+  }, [price]);
 
-                    <label htmlFor="spend">Maximum Spend</label>
-                    <input type="numeric" value={maximum} placeholder='$ e.g.2000' className='modal-input-item' />
+  const handleClick = () => {
+    if (actionType === 'update') {
+      handleUpdateCard(cardData, cardType, id!);
+      console.log('update');
+      setIsPopped?.(false);
+    } else if (actionType === 'add') {
+      handleAddCard(cardData, cardType);
+      setIsPopped?.(false);
+    }
+  };
 
-                    <label>Theme</label>
-                    <Dropdown buttonName={
-                        theme
-                    }>
-                        {Object.entries(colors).map(([colorName, colorValue]) => (
-                            <li key={colorName} className='color-option'>
-                                <div className='ellipse' style={{ backgroundColor: colorValue }}></div>
-                                <p>{colorName}</p>
-                            </li>
-                        ))}
-                    </Dropdown>
-                </div>
-            </div>
-            <button className="add-button">Save Changes</button>
-        </>
-    )
+  return (
+    <>
+      <div className="inputs-wrapper">
+        <div className="modal-input">
+          <label>{cardType === 'budget' ? 'Budget Category' : 'Pot Name'}</label>
+          {cardType === 'pot' ? (
+            <input type="text" placeholder="e.g Vacation Fund" className="modal-input-item" onChange={(e) => setCardData({
+              ...cardData,
+              [cardFields.name]: e.target.value,
+            })} />
+          ) : (
+            <Dropdown buttonName={activeDropdownItem.budgetCategory}>
+              {uniqueCategories.map(category => (
+                <li key={category} className="dropdown-item" onClick={() => {
+                  setCardData({
+                    ...cardData,
+                    [cardFields.name]: category,
+                  });
+                  setActiveDropdownItem({
+                    ...activeDropdownItem,
+                    budgetCategory: category,
+                  });
+                }}>
+                  <p>{category}</p>
+                </li>
+              ))}
+            </Dropdown>
+          )}
+
+          <label htmlFor="spend">{cardType === 'budget' ? 'Maximum Spend' : 'Target'}</label>
+          <input
+            type="numeric"
+            value={cardData[cardFields.price]}
+            placeholder="$ e.g.2000"
+            className="modal-input-item"
+            onChange={(e) => {
+              setCardData({
+                ...cardData,
+                [cardFields.price]: parseInt(e.currentTarget.value, 10) || 0,
+              });
+            }}
+          />
+
+          <label>Theme</label>
+          <Dropdown buttonName={activeDropdownItem.budgetTheme}>
+            {Object.entries(colors).map(([colorName, colorValue]) => (
+              <li key={colorName} className="color-option" onClick={() => {
+                setCardData({
+                  ...cardData,
+                  [cardFields.theme]: colorValue,
+                });
+                setActiveDropdownItem({
+                  ...activeDropdownItem,
+                  budgetTheme: colorName,
+                });
+              }}>
+                <div className="ellipse" style={{ backgroundColor: colorValue }}></div>
+                <p>{colorName}</p>
+              </li>
+            ))}
+          </Dropdown>
+        </div>
+      </div>
+      <button className="add-button" onClick={handleClick}>{actionType === 'add' ? 'Add Budget' : 'Save Changes'}</button>
+    </>
+  );
 }
