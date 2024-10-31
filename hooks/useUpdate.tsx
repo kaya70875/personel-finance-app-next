@@ -7,9 +7,9 @@ const useUpdate = <T extends object>() => {
      * @param {string} cardType - Budget or Pot card.
      */
     const handleUpdateCard = async (
-        cardData: T,
+        cardData: Partial<T>,
         _id : string,
-        cardType : string,
+        cardType : 'pot' | 'budget',
     ) => {
         try {
             const response = await fetch(`api/${cardType}Methods`, {

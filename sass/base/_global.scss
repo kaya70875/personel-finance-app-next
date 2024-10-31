@@ -101,13 +101,18 @@ main {
     overflow: hidden;
     height: 20px;
     position: relative;  
-  }
+
+    display: flex;
+    align-items: center;
+    gap : .15rem;
+}
 
 .progress {
     height: 100%;
     width: 0%;           
     border-radius: 10px 0 0 10px;
     transition: width 0.3s ease-in-out;
+    position: relative;
 }
 
 .modal-input-item {
