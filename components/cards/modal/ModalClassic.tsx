@@ -49,8 +49,7 @@ export default function ModalClassic({ name, price, theme, actionType, setIsPopp
 
   const handleClick = () => {
     if (actionType === 'update') {
-      handleUpdateCard(cardData, cardType, id!);
-      console.log('update');
+      handleUpdateCard(cardData, id! , cardType);
       setIsPopped?.(false);
     } else if (actionType === 'add') {
       handleAddCard(cardData, cardType);

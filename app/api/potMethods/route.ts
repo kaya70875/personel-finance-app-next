@@ -3,53 +3,66 @@ import { connectToDB } from "@utils/database";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-    try {        
-        await connectToDB();
+  try {
+    await connectToDB();
 
-        const body = await req.json();
-        const { name, target, theme } = body;
+    const body = await req.json();
+    const { name, target, theme } = body;
 
-        const newPot = await pots.create({name , target, theme});
+    const newPot = await pots.create({ name, target, theme });
 
-        return NextResponse.json({
-            message: "Pot added successfully",
-            data: newPot,
-        });
-
-    } catch(e) {
-        console.log(e);
-        return NextResponse.json({
-            message: "Error adding budget",
-        });
-    }
+    return NextResponse.json({
+      message: "Pot added successfully",
+      data: newPot,
+    });
+  } catch (e) {
+    console.log(e);
+    return NextResponse.json({
+      message: "Error adding budget",
+    });
+  }
 }
 
 export async function DELETE(req: Request) {
-    try {
-        await connectToDB();
-        const { id } = await req.json();
+  try {
+    await connectToDB();
+    const { id } = await req.json();
 
-        const deletedPot = await pots.findByIdAndDelete(id);
-        
-        return NextResponse.json({
-            message: "Pot deleted successfully",
-            data: deletedPot,
-        });
-    } catch (e) {
-        console.error(e);
-        return NextResponse.json({
-            message: "Error deleting pot",
-        });
-    }
+    const deletedPot = await pots.findByIdAndDelete(id);
+
+    return NextResponse.json({
+      message: "Pot deleted successfully",
+      data: deletedPot,
+    });
+  } catch (e) {
+    console.error(e);
+    return NextResponse.json({
+      message: "Error deleting pot",
+    });
+  }
 }
 
-export async function PATCH(req : Request) {
-    try {
+export async function PATCH(req: Request) {
+  try {
+    await connectToDB();
 
-    } catch (e) {
-        console.error(e);
-        return NextResponse.json({
-            message : "Error updating pot",
-        })
-    }
+    const body = await req.json();
+    const { name, target, theme, _id } = body;
+
+    const newPot = await pots.findByIdAndUpdate(
+      _id,
+      { name, target, theme },
+      { new: true }
+    );
+
+    return NextResponse.json({
+      message: "Pot updated successfully",
+      data: newPot,
+    });
+  } catch (e) {
+    console.log(e);
+    return NextResponse.json({
+      message: "Error updating pot",
+    });
+  }
 }

@@ -19,6 +19,8 @@ const useUpdate = <T extends object>() => {
                 },
                 body: JSON.stringify({...cardData, _id}),
             });
+
+            console.log('data' , cardData);
   
             if (response.ok) {
                 const result = await response.json();
