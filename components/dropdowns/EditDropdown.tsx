@@ -4,7 +4,7 @@ import './_EditDropdown.scss';
 import './_Dropdown.scss';
 import Image from 'next/image';
 import editButton from '@public/assets/images/icon-ellipsis.svg';
-import { Children, useState } from 'react';
+import { useState } from 'react';
 import useDelete from '@hooks/useDelete';
 import Modal from '@components/cards/Modal';
 interface EditDropdownProps {
@@ -27,7 +27,7 @@ export default function EditDropdown({ type , id , category , children}: EditDro
 
     const handleDelete = () => {
         if (id) {
-            deleteItem(id, type);
+            deleteItem(id, type.toLowerCase());
             window.location.reload();
         }
     }
