@@ -3,16 +3,14 @@ const useAdd = <T extends object>() => {
    * Adds a new card by posting `cardData` to the given `url`.
    *
    * @param {T} cardData - The data object for the card to be added.
-   * @param {string} url - API endpoint (relative path) where the card data should be sent.
-   * @param {React.Dispatch<React.SetStateAction<boolean>>} setIsPopped - Function to toggle the pop-up state.
+   * @param {string} cardType - Budget or Pot card. 
    */
   const handleAddCard = async (
       cardData: T,
-      url: string,
-      setIsPopped: React.Dispatch<React.SetStateAction<boolean>>
+      cardType : string,
   ) => {
       try {
-          const response = await fetch(`api/${url}`, {
+          const response = await fetch(`api/${cardType}Methods`, {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
@@ -23,7 +21,6 @@ const useAdd = <T extends object>() => {
           if (response.ok) {
               const result = await response.json();
               console.log(result.message);
-              setIsPopped(false);
               window.location.reload();
           } else {
               console.error('Error adding card');
