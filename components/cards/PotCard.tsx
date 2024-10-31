@@ -1,28 +1,32 @@
+import EditDropdown from '@components/dropdowns/EditDropdown';
+import { Pots } from '../../types/finance';
 import InfoCardHeader from './atomic/InfoCardHeader';
 import './styles/_PotCard.scss';
+import ModalClassic from './modal/ModalClassic';
 
 interface PotCardProps {
-  category: string;
-  cardTheme: string;
-  total: number;
-  target : number;
-  id : string;
+  pot: Pots;
 }
 
-export default function PotCard({ category, cardTheme, total , target , id}: PotCardProps) {
+export default function PotCard({ pot }: PotCardProps) {
 
-  let progressBarWidth = (total / 1000) * 100;
+  const { name, target, total, _id, theme } = pot;
+  let progressBarWidth = (total / target) * 100;
 
   return (
     <div className="pot-wrapper">
-      <InfoCardHeader type='Pot' category={category} cardTheme={cardTheme} id={id}/>
+      <InfoCardHeader category={name} theme={theme} >
+        <EditDropdown category={name} id={_id} type={'Pot'}>
+          <ModalClassic cardType='pot' id={_id} actionType='update' name={name} price={target} theme={theme} />
+        </EditDropdown>
+      </InfoCardHeader>
       <div className="pot-details">
         <div className="pot-details-info">
           <p>Total Saved</p>
           <h2>${total}</h2>
         </div>
         <div className="progress-bar" style={{ height: '10px' }}>
-          <div className="progress" style={{ width: `${progressBarWidth.toString()}%`, backgroundColor: cardTheme }}></div>
+          <div className="progress" style={{ width: `${progressBarWidth.toString()}%`, backgroundColor: theme }}></div>
         </div>
         <div className="progress-bar-info">
           <p>{progressBarWidth}%</p>
