@@ -2,10 +2,12 @@
 
 import Image from 'next/image';
 import logo from '@public/assets/images/logo-large.svg';
+import logoMini from '@public/assets/images/logo-small.svg';
 import './styles/_Sidebar.scss';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import SvgIcon from './reusables/SvgIcon';
 
 const menuItems = [
     {
@@ -52,7 +54,14 @@ const menuItems = [
 
 function Sidebar() {
     const [activeNav, setActiveNav] = useState(0);
+    const [isMinimized, setIsMinimized] = useState(false);
     const pathName = usePathname();
+
+    if(isMinimized) {
+        document.documentElement.style.setProperty('--sidebar-width', '5%');
+    }else {
+        document.documentElement.style.setProperty('--sidebar-width', '22%');
+    }
 
     useEffect(() => {
         const index = menuItems.findIndex(item => item.route === pathName);
@@ -60,13 +69,13 @@ function Sidebar() {
     } , [pathName]);
 
     return (
-        <nav className="sidebar-main">
+        <nav className={`sidebar-main ${isMinimized ? 'minimized' : ''}`}>
             <div className="sidebar-menu">
                 <header className="logo">
                     <Image
-                        src={logo}
+                        src={isMinimized ? logoMini : logo}
                         alt='FinanceG Logo'
-                        width={150}
+                        width={isMinimized ? 20 : 150}
                         height={75}
                     />
                 </header>
@@ -84,6 +93,10 @@ function Sidebar() {
                             )
                         ))}
                     </ul>
+                    <div className='minimize-menu' onClick={() => setIsMinimized(prev => !prev)}>
+                        <SvgIcon path='minimize-menu' />
+                        <h3 className='h3-nav'>Minimize Menu</h3>
+                    </div>
                 </section>
             </div>
         </nav>

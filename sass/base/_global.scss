@@ -7,6 +7,10 @@
     box-sizing: border-box;
 }
 
+:root {
+    --sidebar-width : #{$sidebar-width};
+}
+
 .layout {
     display: flex;
     background-color: $color-beige-light;
@@ -25,8 +29,10 @@ main {
     display: flex;
     flex-direction: column;
     gap : $spacing-3xl;
-    margin-left: $sidebar-width;
+    margin-left: var(--sidebar-width);
     height: 100vh;
+
+    transition: all 0.4s ease-in-out;
 }
 
 /* Card Header Section */
