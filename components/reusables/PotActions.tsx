@@ -1,5 +1,5 @@
 import useCardActions from '@hooks/useCardActions';
-import { formatCurrency } from '@utils/helpers';
+import { formatCurrency, formatPercentage } from '@utils/helpers';
 import React, { useState } from 'react';
 
 interface PotActionsProps {
@@ -32,11 +32,11 @@ export default function PotActions({ total, target, _id, actionType }: PotAction
 
             <div className='progress-bar' style={{ height: '10px' }}>
                 <div className="progress" style={{ width: `${(total / target) * 100}%`, backgroundColor: '#201F24' }}></div>
-                <div className="progress" style={{ width: `${calculateNewAmountBarWidth()}%`, backgroundColor: progressBarColor, borderRadius: '0 10px 10px 0' }}></div>
+                <div className="progress" style={{ width: `${formatPercentage(calculateNewAmountBarWidth())}`, backgroundColor: progressBarColor, borderRadius: '0 10px 10px 0' }}></div>
             </div>
 
             <div className="progress-info">
-                <h4 style={{ color: isAddition ? undefined : '#C94736' }}>{calculateNewAmountBarWidth() || 0}%</h4>
+                <h4 style={{ color: isAddition ? undefined : '#C94736' }}>{formatPercentage(calculateNewAmountBarWidth()) || 0}</h4>
                 <h5>Target of ${target}</h5>
             </div>
 
