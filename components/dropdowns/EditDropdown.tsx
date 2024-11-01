@@ -8,17 +8,17 @@ import { useState } from 'react';
 import Modal from '@components/cards/Modal';
 import useCardActions from '@hooks/useCardActions';
 interface EditDropdownProps {
-    type : string;
-    id : string;
-    category : string;
-    children : React.ReactNode;
+    type: string;
+    id: string;
+    category: string;
+    children: React.ReactNode;
 }
 
-export default function EditDropdown({ type , id , category , children}: EditDropdownProps) {
+export default function EditDropdown({ type, id, category, children }: EditDropdownProps) {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [deletePop , setDeletePop] = useState(false);
-    const [editPop , setEditPop] = useState(false);
+    const [deletePop, setDeletePop] = useState(false);
+    const [editPop, setEditPop] = useState(false);
     const { handleDeleteCard } = useCardActions();
 
     const handleOpen = () => {
@@ -51,19 +51,18 @@ export default function EditDropdown({ type , id , category , children}: EditDro
                     </li>
                 </ul>
             </div>
-            {deletePop && (
-                <Modal modalHeaderText={`Delete '${category}' ?`} modalDesc={`Are you sure you want to delete this ${category} ? This action cannot be reversed , and all the
-                data inside it will be removed forever.`} onClose={setDeletePop}>
-                    <button onClick={handleDelete} className="card-delete">Yes , Confirm Deletion</button>
-                    <button onClick={() => setDeletePop(false)} className="card-back">No , Go Back</button>
-                </Modal>
-            )}
 
-            {editPop && (
-                <Modal modalHeaderText={`Edit ${category}`} modalDesc={`As your ${type}s change , feel free to update your spending limits.`} onClose={setEditPop}>
-                    {children}
-                </Modal>
-            )}
+            {/* Delete Modal */}
+            <Modal isPopped={deletePop} modalHeaderText={`Delete '${category}' ?`} modalDesc={`Are you sure you want to delete this ${category} ? This action cannot be reversed , and all the
+                data inside it will be removed forever.`} onClose={setDeletePop}>
+                <button onClick={handleDelete} className="card-delete">Yes , Confirm Deletion</button>
+                <button onClick={() => setDeletePop(false)} className="card-back">No , Go Back</button>
+            </Modal>
+
+            {/* Edit Modal */}
+            <Modal isPopped={editPop} modalHeaderText={`Edit ${category}`} modalDesc={`As your ${type}s change , feel free to update your spending limits.`} onClose={setEditPop}>
+                {children}
+            </Modal>
         </div>
     )
 }

@@ -24,17 +24,15 @@ export default function page() {
             <header className="page-header">
                 <h1>Pots</h1>
                 <button className="add-button" onClick={handleClick}>+ Add New Pot</button>
-                {isPopped && (
-                    <Modal modalHeaderText='Pot' modalDesc='Create a pot to set savings targets. These can help keep you on track with your savings goals.' onClose={setIsPopped}>
-                        <ModalClassic actionType='add' setIsPopped={setIsPopped}  cardType='pot'/>
-                    </Modal>
-                )}
+                <Modal isPopped={isPopped} modalHeaderText='Pot' modalDesc='Create a pot to set savings targets. These can help keep you on track with your savings goals.' onClose={setIsPopped}>
+                    <ModalClassic actionType='add' setIsPopped={setIsPopped} cardType='pot' />
+                </Modal>
             </header>
             <div className="pots-wrapper">
                 {potsData.map((pot, index) => (
                     <PotCard
-                    key={index}
-                    pot={pot}
+                        key={index}
+                        pot={pot}
                     />
                 ))}
             </div>

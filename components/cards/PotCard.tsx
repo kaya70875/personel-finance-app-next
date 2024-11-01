@@ -56,17 +56,15 @@ export default function PotCard({ pot }: PotCardProps) {
         <button className="add-button add-button--light" onClick={() => setIsModalOpen({ ...isModalOpen, withdrawModal: true })}>Withdraw</button>
       </section>
 
-      {isModalOpen.moneyModal && (
-        <Modal onClose={handleCloseModal} modalHeaderText={`Add to '${name}'`} modalDesc='Add your savings to reach your ultimate goal. Keep going I believe you can accomplish this.'>
-          <PotActions actionType='add' _id={_id} target={target} total={total}/>
-        </Modal>
-      )}
+      {/* Modal for adding money to pot */}
+      <Modal isPopped={isModalOpen.moneyModal} onClose={handleCloseModal} modalHeaderText={`Add to '${name}'`} modalDesc='Add your savings to reach your ultimate goal. Keep going I believe you can accomplish this.'>
+        <PotActions actionType='add' _id={_id} target={target} total={total} />
+      </Modal>
 
-      {isModalOpen.withdrawModal && (
-        <Modal onClose={handleCloseModal} modalHeaderText={`Withdraw from '${name}'`} modalDesc='Withdraw from your savings to betray yourself for not reacing your ultimate goal. Keep going like this and you will be broke soon.'>
-          <PotActions actionType='withdraw' _id={_id} target={target} total={total}/>
-        </Modal>
-      )}
+      {/* Modal for withdrawing money from pot */}
+      <Modal isPopped={isModalOpen.withdrawModal} onClose={handleCloseModal} modalHeaderText={`Withdraw from '${name}'`} modalDesc='Withdraw from your savings to betray yourself for not reacing your ultimate goal. Keep going like this and you will be broke soon.'>
+        <PotActions actionType='withdraw' _id={_id} target={target} total={total} />
+      </Modal>
 
     </div>
   )

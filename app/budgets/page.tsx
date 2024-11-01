@@ -25,11 +25,9 @@ export default function page() {
       <header className="page-header">
         <h1>Budgets</h1>
         <button className="add-button" onClick={handleClick}>+ Add New Budget</button>
-        {isPopped && (
-          <Modal onClose={setIsPopped} modalHeaderText={'Add New Budget'} modalDesc={'Choose a category to set a spending budget. These categories can help you monitor spending.'}>
-            <ModalClassic cardType='budget' setIsPopped={setIsPopped} actionType='add'/>
-          </Modal>
-        )}
+        <Modal isPopped={isPopped} onClose={setIsPopped} modalHeaderText={'Add New Budget'} modalDesc={'Choose a category to set a spending budget. These categories can help you monitor spending.'}>
+          <ModalClassic cardType='budget' setIsPopped={setIsPopped} actionType='add' />
+        </Modal>
 
       </header>
       <div className="budgets-main">
