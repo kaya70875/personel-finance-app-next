@@ -29,3 +29,15 @@
     width: 100%!important;
     height: 100%!important;
 }
+
+@media (max-width : 1354px) {
+    .chart-main {
+        flex-direction: column;
+        gap : $spacing-md;
+    }
+
+    .budget-visuals {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

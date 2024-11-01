@@ -60,3 +60,9 @@
     flex-direction: column;
     gap : $spacing-2xl;
 }
+
+@media (max-width : 1354px) {
+    .overview-left {
+        width: 50%;
+    }
+}
