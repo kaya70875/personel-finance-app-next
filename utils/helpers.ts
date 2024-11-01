@@ -53,3 +53,7 @@ export function getUniqueCategories(transactions: Transactions[] | null) {
 export const formatCurrency = (amount: number) => {
   return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 }
+
+export const formatPercentage = (amount: number) => {
+  return amount.toFixed(1) + '%';
+}

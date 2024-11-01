@@ -6,7 +6,7 @@ import ModalClassic from './modal/ModalClassic';
 import { useState } from 'react';
 import Modal from './Modal';
 import PotActions from '@components/reusables/PotActions';
-import { formatCurrency } from '@utils/helpers';
+import { formatCurrency, formatPercentage } from '@utils/helpers';
 
 interface PotCardProps {
   pot: Pots;
@@ -46,7 +46,7 @@ export default function PotCard({ pot }: PotCardProps) {
           <div className="progress" style={{ width: `${progressBarWidth.toString()}%`, backgroundColor: theme }}></div>
         </div>
         <div className="progress-bar-info">
-          <p>{progressBarWidth}%</p>
+          <p>{formatPercentage(progressBarWidth)}</p>
           <p>Target of ${target}</p>
         </div>
       </div>

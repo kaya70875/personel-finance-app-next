@@ -5,6 +5,7 @@ import OverviewCard from '@components/OverviewCard'
 import useFetch from '@hooks/useFetch'
 import './_global.scss';
 import { useTransactionDetails } from '@context/RecurBillsContext';
+import { formatCurrency } from '@utils/helpers';
 
 export default function page() {
 
@@ -37,7 +38,7 @@ export default function page() {
               <h4>Summary</h4>
               <div className="paid-bills">
                 <p>Paid Bills</p>
-                <h4>{paidCount}(${paidTotal})</h4>
+                <h4>{paidCount}({formatCurrency(paidTotal)})</h4>
               </div>
               <div className="total-upcomings">
                 <p>Total Upcomings</p>
@@ -45,7 +46,7 @@ export default function page() {
               </div>
               <div className="due-soon">
                 <p className='p--alert'>Due Soon</p>
-                <h4 className='h4--alert'>{dueCount}(${dueTotal})</h4>
+                <h4 className='h4--alert'>{dueCount}({formatCurrency(dueTotal)})</h4>
               </div>
             </div>
           </section>
