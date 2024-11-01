@@ -30,7 +30,7 @@ const useCardActions = <T extends object>() => {
       if (response.ok) {
         const result = await response.json();
         console.log(result.message);
-        window.location.reload();
+        await mutate('/api/getData');
       } else {
         console.error('Error adding card');
       }
