@@ -10,13 +10,13 @@ export interface Data {
 }
 
 const fetcher = async () => {
-    const response = await axios.get<Data>(`api/getData`);
+    const response = await axios.get<Data>(`/api/getData`);
     return response.data;
 }
 
 const useFetch = () => {
 
-    const {data , error , isValidating} = useSWR('api/getData', fetcher, {
+    const {data , error , isValidating} = useSWR('/api/getData', fetcher, {
         revalidateOnFocus : false,
         revalidateOnReconnect : false,
         revalidateOnMount : true,
