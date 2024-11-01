@@ -1,3 +1,4 @@
+import { formatCurrency } from '@utils/helpers';
 import './styles/_CardVisuals.scss';
 
 interface CardVisualsProps {
@@ -16,15 +17,15 @@ const CardVisuals = ({ cardVisualColor, cardHeader, cardPrice, cardSpend, isFull
         <div className="card-extra-info">
           {isFullPage ? (
             <>
-              <h3>${cardSpend}
+              <h3>{formatCurrency(cardSpend || 0)}
               </h3>
               <p>
-                of ${cardPrice}
+                of {formatCurrency(cardPrice)}
               </p>
             </>
 
           ) : (
-            <h3>${cardPrice}</h3>
+            <h3>{formatCurrency(cardPrice)}</h3>
           )}
         </div>
       </div>

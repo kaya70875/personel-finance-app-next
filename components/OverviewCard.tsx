@@ -3,6 +3,7 @@ import '@components/styles/_OverviewCard.scss'
 import Image from 'next/image';
 
 import billImage from '@public/assets/images/icon-recurring-bills.svg';
+import { formatCurrency } from '@utils/helpers';
 
 interface OverviewCardProps {
     cardHeader : string;
@@ -24,7 +25,7 @@ const OverviewCard = ({cardHeader , cardPrice , isActive , hasImage} : OverviewC
         <header className="overview-card-header-section">
             {cardHeader}
         </header>
-        <h1>{cardPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</h1>
+        <h1>{formatCurrency(cardPrice)}</h1>
     </div>
   )
 }

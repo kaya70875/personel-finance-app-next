@@ -35,8 +35,8 @@ export default function BudgetsInfoCard({ budget, filteredTransactions}: Budgets
                     </div>
                 </div>
                 <div className="budgets-info-card-visuals">
-                    <CardVisuals cardHeader='Spent' cardPrice={15} cardVisualColor={theme} cardSpend={spend} />
-                    <CardVisuals cardHeader='Remaining' cardPrice={maximum - spend} cardVisualColor={'transparent'} />
+                    <CardVisuals cardHeader='Spent' cardPrice={spend || 0} cardVisualColor={theme} cardSpend={spend} />
+                    <CardVisuals cardHeader='Remaining' cardPrice={maximum - spend || maximum} cardSpend={spend} cardVisualColor={'transparent'} />
                 </div>
             </section>
 

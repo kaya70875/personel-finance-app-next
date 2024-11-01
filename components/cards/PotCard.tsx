@@ -6,6 +6,7 @@ import ModalClassic from './modal/ModalClassic';
 import { useState } from 'react';
 import Modal from './Modal';
 import PotActions from '@components/reusables/PotActions';
+import { formatCurrency } from '@utils/helpers';
 
 interface PotCardProps {
   pot: Pots;
@@ -39,7 +40,7 @@ export default function PotCard({ pot }: PotCardProps) {
       <div className="pot-details">
         <div className="pot-details-info">
           <p>Total Saved</p>
-          <h2>${total}</h2>
+          <h2>{formatCurrency(total)}</h2>
         </div>
         <div className="progress-bar" style={{ height: '10px' }}>
           <div className="progress" style={{ width: `${progressBarWidth.toString()}%`, backgroundColor: theme }}></div>

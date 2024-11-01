@@ -1,4 +1,5 @@
 import useCardActions from '@hooks/useCardActions';
+import { formatCurrency } from '@utils/helpers';
 import React, { useState } from 'react';
 
 interface PotActionsProps {
@@ -26,7 +27,7 @@ export default function PotActions({ total, target, _id, actionType }: PotAction
         <>
             <div className="new-amount">
                 <p>New Amount</p>
-                <h2>${calculateNewTotal()}</h2>
+                <h2>{formatCurrency(calculateNewTotal())}</h2>
             </div>
 
             <div className='progress-bar' style={{ height: '10px' }}>
