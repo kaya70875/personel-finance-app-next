@@ -5,7 +5,6 @@ import './styles/_PotCard.scss';
 import ModalClassic from './modal/ModalClassic';
 import { useState } from 'react';
 import Modal from './Modal';
-import useUpdate from '@hooks/useUpdate';
 import PotActions from '@components/reusables/PotActions';
 
 interface PotCardProps {

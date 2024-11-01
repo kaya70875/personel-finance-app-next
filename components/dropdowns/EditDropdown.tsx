@@ -5,8 +5,8 @@ import './_Dropdown.scss';
 import Image from 'next/image';
 import editButton from '@public/assets/images/icon-ellipsis.svg';
 import { useState } from 'react';
-import useDelete from '@hooks/useDelete';
 import Modal from '@components/cards/Modal';
+import useCardActions from '@hooks/useCardActions';
 interface EditDropdownProps {
     type : string;
     id : string;
@@ -19,7 +19,7 @@ export default function EditDropdown({ type , id , category , children}: EditDro
     const [isOpen, setIsOpen] = useState(false);
     const [deletePop , setDeletePop] = useState(false);
     const [editPop , setEditPop] = useState(false);
-    const { deleteItem } = useDelete();
+    const { handleDeleteCard } = useCardActions();
 
     const handleOpen = () => {
         setIsOpen(prev => (!prev));
@@ -27,7 +27,7 @@ export default function EditDropdown({ type , id , category , children}: EditDro
 
     const handleDelete = () => {
         if (id) {
-            deleteItem(id, type.toLowerCase());
+            handleDeleteCard(id, type.toLowerCase());
             window.location.reload();
         }
     }

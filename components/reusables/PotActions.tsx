@@ -1,4 +1,4 @@
-import useUpdate from '@hooks/useUpdate';
+import useCardActions from '@hooks/useCardActions';
 import React, { useState } from 'react';
 
 interface PotActionsProps {
@@ -9,7 +9,7 @@ interface PotActionsProps {
 }
 
 export default function PotActions({ total, target, _id, actionType }: PotActionsProps) {
-    const { handleUpdateCard } = useUpdate();
+    const { handleUpdateCard } = useCardActions();
     const [newAmount, setNewAmount] = useState(0);
 
     const isAddition = actionType === 'add';

@@ -3,9 +3,8 @@ import Dropdown from '@components/dropdowns/Dropdown';
 import { colors } from '@utils/colors';
 import { getUniqueCategories } from '@utils/helpers';
 import useFetch from '@hooks/useFetch';
-import useAdd from '@hooks/useAdd';
-import useUpdate from '@hooks/useUpdate';
 import { cardMappings } from '@utils/cardMappings';
+import useCardActions from '@hooks/useCardActions';
 
 interface ModalClassicProps {
   name?: string;
@@ -19,8 +18,7 @@ interface ModalClassicProps {
 
 export default function ModalClassic({ name, price, theme, actionType, setIsPopped, id, cardType }: ModalClassicProps) {
   const { data } = useFetch();
-  const { handleAddCard } = useAdd();
-  const { handleUpdateCard } = useUpdate();
+  const { handleAddCard , handleUpdateCard} = useCardActions();
   const transactionsData = data?.transactionsData ?? [];
   const uniqueCategories = getUniqueCategories(transactionsData);
 
