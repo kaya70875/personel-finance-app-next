@@ -49,3 +49,7 @@ export function getUniqueCategories(transactions: Transactions[] | null) {
 
   return uniqueCategories;
 }
+
+export const formatCurrency = (amount: number) => {
+  return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+}
