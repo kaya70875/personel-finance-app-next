@@ -82,9 +82,15 @@ main {
         background: $color-beige;
     }
 
-    &--light {
+    &.add-button--light {
         background: $color-beige-light;
         color : $color-gray-dark;
+        border : 1px solid transparent;
+
+        &:hover {
+            background: white;
+            border : 1px solid $color-gray-dark;
+        }
     }
 }
 
