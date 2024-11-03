@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: start;
     width: 65%;
+    max-width: 350px;
 
     position: relative;
 
@@ -39,5 +40,12 @@
     .budget-visuals {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width : 1248px) {
+    .chart-main {
+        flex-direction: row;
+        gap : 0;
     }
 }

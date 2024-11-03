@@ -2,6 +2,7 @@
 
 .overview-cards {
     display: flex;
+    width: 100%;
     gap : $spacing-2xl;
 }
 
@@ -64,5 +65,50 @@
 @media (max-width : 1354px) {
     .overview-left {
         width: 50%;
+    }
+
+    .pots-overview-card-content {
+        flex-direction: column;
+    }
+
+    .pots-overview-card-img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pots-overview-card-visuals {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .pots-overview-card-total {
+        width: 100%;
+        padding-inline: 0;
+    }
+}
+
+// Kırılma Noktası
+
+@media (max-width : 1248px) {
+    .overview-content-section {
+        flex-direction: column;
+    }
+
+    .overview-left , .overview-right {
+        width: 100%;
+    }
+
+    .overview-right {
+        padding-bottom: var(--sidebar-height);
+    }
+
+    .pots-overview-card-content {
+        flex-direction: row;
+    }
+
+    .pots-overview-card-total {
+        width: 100%;
+        padding-inline: 1em;
     }
 }
