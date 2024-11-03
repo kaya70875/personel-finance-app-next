@@ -32,7 +32,7 @@ const menuItems = [
         ),
         alt: 'Budgets',
         label: 'Budgets',
-        route : '/budgets'
+        route: '/budgets'
     },
     {
         svg: (
@@ -40,7 +40,7 @@ const menuItems = [
         ),
         alt: 'Pots',
         label: 'Pots',
-        route : '/pots',
+        route: '/pots',
     },
     {
         svg: (
@@ -48,25 +48,42 @@ const menuItems = [
         ),
         alt: 'Recurring Bils',
         label: 'Recurring Bills',
-        route : '/recurring',
+        route: '/recurring',
     }
 ];
 
 function Sidebar() {
     const [activeNav, setActiveNav] = useState(0);
     const [isMinimized, setIsMinimized] = useState(false);
+    const [isTablet, setIsTablet] = useState(false);
     const pathName = usePathname();
 
-    if(isMinimized) {
-        document.documentElement.style.setProperty('--sidebar-width', '5%');
-    }else {
-        document.documentElement.style.setProperty('--sidebar-width', '22%');
-    }
+    useEffect(() => {
+        const checkIsTablet = () => {
+            setIsTablet(window.innerWidth <= 1168);
+        };
+
+        checkIsTablet();
+
+        window.addEventListener('resize', checkIsTablet);
+
+        return () => window.removeEventListener('resize', checkIsTablet);
+    }, []);
+
+    useEffect(() => {
+        if (isMinimized) {
+            document.documentElement.style.setProperty('--sidebar-width', '80px');
+        } else if (isTablet) {
+            document.documentElement.style.setProperty('--sidebar-width', '0');
+        } else {
+            document.documentElement.style.setProperty('--sidebar-width', '22%');
+        }
+    }, [isMinimized, isTablet]);
 
     useEffect(() => {
         const index = menuItems.findIndex(item => item.route === pathName);
         setActiveNav(index);
-    } , [pathName]);
+    }, [pathName]);
 
     return (
         <nav className={`sidebar-main ${isMinimized ? 'minimized' : ''}`}>
