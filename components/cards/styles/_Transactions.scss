@@ -184,6 +184,12 @@
     }
 }
 
+@media (max-width : 1164px) {
+    .transactions-wrapper {
+        padding-bottom: calc(var(--sidebar-height) + 20px);
+    }
+}
+
 @media (max-width : 968px) {
     .transactions-filter-section {
         gap : $spacing-2xs;
@@ -230,6 +236,37 @@
     }
 
     .transactions-wrapper {
-        padding: 1em;
+        padding-inline: 1em;
+    }
+}
+
+@media (max-width : 582px) {
+
+    .pagination-section {
+        padding-inline: .75em;
+    }
+
+    .prev-btn , .next-btn{
+        p {
+            display: none;
+        }
+
+        padding: 0.7em .9em;
+    }
+
+    .transactions-button-section {
+        justify-content: space-evenly;
+    }
+
+    .pagination-btn {
+        padding: 0.65em .9em!important;
+    }
+}
+
+//Extra small devices
+
+@media (max-width : 450px) {
+    .transaction-sender-info h4 {
+        text-wrap: nowrap;
     }
 }
