@@ -174,3 +174,17 @@
         display: block;
     }
 }
+
+@media (max-width : 654px) {
+    .transactions-wrapper {
+        padding: 0;
+    }
+
+    .transaction-sender {
+        gap : $spacing-md;
+        img {
+            width: 36px;
+            height: 36px;
+        }
+    }
+}

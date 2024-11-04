@@ -49,3 +49,18 @@
         gap : 0;
     }
 }
+
+@media (max-width : 768px) {
+    .chart-main {
+        flex-direction: column;
+        gap : $spacing-md;
+    }
+
+    .budget-visuals {
+        gap : $spacing-2xl;
+    }
+
+    .chart-container {
+        min-width: 237.25px;
+    }
+}

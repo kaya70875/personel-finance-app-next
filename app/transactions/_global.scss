@@ -117,3 +117,25 @@
         padding-inline: 1em;
     }
 }
+
+// Mobile Size
+
+@media (max-width: 768px) {
+    .overview-cards {
+        flex-direction: column;
+    }
+
+    .pots-overview-card-content {
+        flex-direction: column;
+    }
+}
+
+@media (max-width : 568px) {
+    .pots-overview-card-visuals {
+        width: 85%;
+    }
+
+    .overview-right {
+        gap : $spacing-2xl;
+    }
+}

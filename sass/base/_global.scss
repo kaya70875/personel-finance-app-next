@@ -24,6 +24,10 @@ main {
     padding: 2em;
 
     width: 100%;
+
+    @media (max-width : 654px) {
+        padding: 1em;
+    }
 }
 
 .home {

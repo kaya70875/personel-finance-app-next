@@ -206,5 +206,31 @@
         font-size : $font-size-md!important;
     }
 }
+
+//Mobile Design 
+
+@media (max-width : 654px) {
+    .sidebar-item h3 {
+        display: none;
+    }
+
+    .sidebar-item {
+        padding: 1em;
+
+        &.active {
+            padding: .75em 2em;
+        }
+    }
+
+    .sidebar-items {
+        justify-content: space-evenly;
+        width: auto;
+    }
+
+    .sidebar-item-img svg {
+        width: 18px;
+        height: 18px;
+    }
+}
   
 
