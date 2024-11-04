@@ -195,5 +195,16 @@
         width: 100%;
     }
 }
+
+@media (max-width : 968px) {
+    .sidebar-item {
+        gap : $spacing-xs;
+        padding: 1em;
+    }
+
+    .h3-nav {
+        font-size : $font-size-md!important;
+    }
+}
   
 

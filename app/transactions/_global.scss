@@ -6,6 +6,11 @@
     gap : $spacing-2xl;
 }
 
+.overview-cards-section {
+    display: flex;
+    width: 100%;
+}
+
 .overview-content-section {
     width: 100%;
     display: flex;

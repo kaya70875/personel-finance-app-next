@@ -5,8 +5,8 @@
     padding: 2em;
 
     display: flex;
+    flex : 1;
     gap : $spacing-lg;
-    width: 100%;
     flex-direction: column;
     border-radius: 15px;
 
@@ -22,4 +22,10 @@
 .overview-card-header {
     color : $color-beige;
     font-weight: $font-weight-regular;
+}
+
+@media (max-width : 968px) {
+    .overview-card-wrapper h1 {
+        font-size: 1.5rem;
+    }
 }
