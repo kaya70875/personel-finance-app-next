@@ -1,13 +1,9 @@
 @import '@sass/utilities/_variables.scss';
-.budgets-info-card-top {
+.budgets-info-card-top  , .budgets-info-card-bottom{
     display: flex;
     flex-direction: column;
 
     gap : $spacing-2xl;
-    padding: 2em;
-}
-
-.budgets-info-card-bottom {
     padding: 2em;
 }
 
@@ -32,5 +28,17 @@
 
     gap : $spacing-md;
     padding-inline: 1em;
+}
+
+@media (max-width : 768px) {
+    .budgets-info-card-bottom , .budgets-info-card-top {
+        padding: 1em;
+    }
+
+    .budgets-info-card-transactions-section {
+        .transactions-wrapper {
+            padding: 0;
+        }
+    }
 }
 

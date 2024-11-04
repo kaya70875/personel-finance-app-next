@@ -144,3 +144,10 @@ main {
     justify-content: space-between;
     transition: all 0.3s ease-in;
 }
+
+@media (max-width : 768px) {
+    .add-button {
+        padding: 1.25em .75em;
+        font-size: $font-size-sm;
+    }
+}

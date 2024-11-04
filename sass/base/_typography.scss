@@ -77,12 +77,18 @@ a {
     color : $color-beige;
 }
 
+@media (max-width : 768px) {
+    h4 {
+        font-size: $font-size-sm;
+    }
+
+    h1 {
+        font-size: $font-size-xl;
+    }
+}
+
 @media (max-width : 654px) {
     h3 {
         font-size: $font-size-md!important;
-    }
-
-    h4 {
-        font-size: $font-size-sm;
     }
 }

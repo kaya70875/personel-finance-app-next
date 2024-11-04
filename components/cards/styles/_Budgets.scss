@@ -48,8 +48,36 @@
     gap : $spacing-xl;
 }
 
+@media (max-width : 1024px) {
+    .budgets-wrapper--main {
+        width: 100%;
+
+        .chart-main {
+            flex-direction: row;
+        }
+
+        .budget-visuals {
+            width: 40%;
+        }
+    }
+}
+
+@media (max-width : calc(768px + 10px)) {
+    .budgets-wrapper--main {
+        .budget-visuals {
+            width: 100%;
+        }
+    }
+}
+
 @media (max-width : 654px) {
     .budgets-wrapper {
         padding: 1em;
+
+        &--main {
+            .chart-main {
+                flex-direction: column;
+            }
+        }
     }
-}
+} 

@@ -12,4 +12,19 @@
 
     background: white;
     border-radius: 15px;
+
+}
+
+// The pixel that sidebar goes to the bottom.
+
+@media (max-width : 1168px) {
+    .budgets-cards {
+        padding-bottom: var(--sidebar-height);
+    }
+}
+
+@media (max-width : 1024px) {
+    .budgets-main {
+        flex-direction: column;
+    }
 }
