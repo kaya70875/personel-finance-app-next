@@ -175,6 +175,16 @@
     }
 }
 
+@media (max-width : 968px) {
+    .transactions-filter-section {
+        gap : $spacing-md;
+    }
+
+    .search-input {
+        width: auto;
+    }
+}
+
 @media (max-width : 654px) {
     .transactions-wrapper {
         padding: 0;
