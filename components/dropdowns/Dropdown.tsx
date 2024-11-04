@@ -8,12 +8,12 @@ import { ReactNode, useState } from 'react';
 
 interface DropdownProps {
     buttonName: string | ReactNode;
-    children : ReactNode;
+    children: ReactNode;
 }
 
-export default function Dropdown({ buttonName , children }: DropdownProps) {
+export default function Dropdown({ buttonName, children }: DropdownProps) {
 
-    const [isOpen , setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleOpen = () => {
         setIsOpen(prev => (!prev));
@@ -23,11 +23,12 @@ export default function Dropdown({ buttonName , children }: DropdownProps) {
         <div className="dropdown" onClick={handleOpen}>
             <div className="dropdown-button-wrapper">
                 <button className="dropdown-btn">{buttonName}</button>
-                <Image 
-                src={arrowDown}
-                alt='arrow'
-                width={12}
-                height={12}
+                <Image
+                    src={arrowDown}
+                    alt='arrow'
+                    width={12}
+                    height={12}
+                    className='filter-arrow'
                 />
             </div>
             <div className={`dropdown-menu ${isOpen ? 'active' : ''}`}>

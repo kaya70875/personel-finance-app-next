@@ -21,13 +21,16 @@ export default function TransactionsInfoWrapper({ currentPosts, isRecurring = fa
                             height={48}
                             className='avatar'
                         />
-                        <h4>{transaction.name}</h4>
+                        <div className="transaction-sender-info">
+                            <h4>{transaction.name}</h4>
+                            <h5>{transaction.category}</h5>
+                        </div>
                     </div>
 
                     <div className="transaction-middle">
                         {isRecurring ? (
                             <>
-                                <TransactionsInfoRecur transaction={transaction}/>
+                                <TransactionsInfoRecur transaction={transaction} />
                             </>
                         ) : (
                             <>

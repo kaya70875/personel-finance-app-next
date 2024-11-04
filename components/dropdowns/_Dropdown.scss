@@ -20,6 +20,10 @@
 
     &:hover {
         border: 1px solid $color-gray-dark;
+
+        @media (max-width : 768px) {
+            border : none;
+        }
     }
 
     button {
@@ -82,4 +86,24 @@
         background: $color-yellow;
     }
 
+}
+
+@media (max-width : 768px) {
+    .dropdown-button-wrapper {
+        border : none;
+    }
+
+    .filter-arrow {
+        display: none;
+    }
+
+    .dropdown-menu {
+        transform: translateX(-90%);
+    }
+}
+
+@media (max-width : 654px) {
+    .dropdown-button-wrapper {
+        padding: 0;
+    }
 }

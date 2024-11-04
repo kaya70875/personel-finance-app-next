@@ -97,7 +97,15 @@
     display: flex;
     align-items: center;
     gap : $spacing-lg;
-    width: 40%;
+    width: 100%;
+
+    &-info {
+        display: flex;
+        flex-direction: column;
+        h5 {
+            display: none;
+        }
+    }
 }
 
 .transaction-amount {
@@ -148,7 +156,8 @@
 
 .date-q {
     display: none;
-    text-align: end;
+    font-size: $font-size-xs;
+    text-wrap: nowrap;
 }
 
 .due-date {
@@ -177,7 +186,7 @@
 
 @media (max-width : 968px) {
     .transactions-filter-section {
-        gap : $spacing-md;
+        gap : $spacing-2xs;
     }
 
     .search-input {
@@ -185,8 +194,22 @@
     }
 }
 
+@media (max-width : 768px) {
+    .sort-by-wrapper h5 , .category-wrapper h5 {
+        display: none;
+    }
+
+    .transaction-sender-info {
+        gap : $spacing-md;
+        h5 {
+            display: flex;
+        }
+    }
+}
+
+
 @media (max-width : 654px) {
-    .transactions-wrapper {
+    .overview-card-wrapper .transactions-wrapper {
         padding: 0;
     }
 
@@ -196,5 +219,13 @@
             width: 36px;
             height: 36px;
         }
+    }
+
+    .actual-filters {
+        gap : $spacing-md;
+    }
+
+    .transactions-wrapper {
+        padding: 1em;
     }
 }

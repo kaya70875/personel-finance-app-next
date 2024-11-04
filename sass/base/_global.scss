@@ -15,6 +15,8 @@
 .layout {
     display: flex;
     background-color: $color-beige-light;
+
+    overflow-x: hidden;
 }
 
 main {

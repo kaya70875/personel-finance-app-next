@@ -7,6 +7,7 @@ import Dropdown from '@components/dropdowns/Dropdown';
 import { Transactions } from '../../types/finance';
 import { sortTransactions } from '@utils/sortTransactions';
 import { getUniqueCategories } from '@utils/helpers';
+import SvgIcon from '@components/reusables/SvgIcon';
 
 interface TransactionFilterProps {
     transactionData: Transactions[] | null;
@@ -19,6 +20,8 @@ export default function TransactionFilter({ transactionData, setFilteredData, cu
     const [currentSearch, setCurrentSearch] = useState('');
     const [currentCategory, setCurrentCategory] = useState('Transactions');
     const [currentSortBy, setCurrentSortBy] = useState('Latest');
+
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
     useEffect(() => {
         const filteredTransactions = transactionData?.filter(transaction => transaction.name.toLowerCase().includes(currentSearch.toLowerCase()));
@@ -56,7 +59,7 @@ export default function TransactionFilter({ transactionData, setFilteredData, cu
             <div className="actual-filters">
                 <div className="sort-by-wrapper">
                     <h5>Sort By</h5>
-                    <Dropdown buttonName={currentSortBy}>
+                    <Dropdown buttonName={isMobile ? <SvgIcon path='sort-mobile' /> : currentSortBy}>
                         {sortBy.map((sort, index) => (
                             <li className='dropdown-item' onClick={() => handleSortBy(index)} key={index}>
                                 <p>{sort}</p>
@@ -67,7 +70,7 @@ export default function TransactionFilter({ transactionData, setFilteredData, cu
                 </div>
                 <div className="category-wrapper">
                     <h5>Category</h5>
-                    <Dropdown buttonName={currentCategory}>
+                    <Dropdown buttonName={isMobile ? <SvgIcon path='filter-mobile' /> : currentCategory}>
                         {uniqueCategories.map((category, index) => (
                             <li className="dropdown-item" onClick={() => handleCategorySorting(index)} key={index}>
                                 <p>{category}</p>
