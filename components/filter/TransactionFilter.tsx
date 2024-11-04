@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import searchIcon from '@public/assets/images/icon-search.svg';
 import Dropdown from '@components/dropdowns/Dropdown';
 import { Transactions } from '../../types/finance';
@@ -21,7 +21,19 @@ export default function TransactionFilter({ transactionData, setFilteredData, cu
     const [currentCategory, setCurrentCategory] = useState('Transactions');
     const [currentSortBy, setCurrentSortBy] = useState('Latest');
 
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.matchMedia('(max-width: 768px)').matches);
+        };
+
+        // Run on component mount
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [])
 
     useEffect(() => {
         const filteredTransactions = transactionData?.filter(transaction => transaction.name.toLowerCase().includes(currentSearch.toLowerCase()));

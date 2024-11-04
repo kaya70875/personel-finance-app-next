@@ -28,7 +28,6 @@ export default function EditDropdown({ type, id, category, children }: EditDropd
     const handleDelete = () => {
         if (id) {
             handleDeleteCard(id, type.toLowerCase());
-            window.location.reload();
         }
     }
 
