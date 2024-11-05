@@ -1,13 +1,10 @@
+'use client';
+
 import Sidebar from "@components/Sidebar";
-import type { Metadata } from "next";
 import '@sass/styles/main.scss';
 import { Public_Sans } from "next/font/google";
 import { TransactionProvider } from "@context/RecurBillsContext";
-
-export const metadata: Metadata = {
-  title: "FinanceG",
-  description: "Personalized finance app for your financial goals",
-};
+import { usePathname } from "next/navigation";
 
 const publicSans = Public_Sans({
   subsets: ["latin"],
@@ -19,12 +16,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const path = usePathname();
+  const excludeSidebarRoutes = ["/signup", "/login"];
+
+  const shouldShowSidebar = !excludeSidebarRoutes.includes(path);
   return (
     <html lang="en">
       <body className={publicSans.className}>
         <TransactionProvider>
-          <div className="layout">
-            <Sidebar />
+          <div className={shouldShowSidebar ? 'layout' : 'auth'}>
+            {shouldShowSidebar && <Sidebar />}
             <main>
               {children}
             </main>
