@@ -10,7 +10,7 @@ interface BudgetsProps {
     isFullPage?: boolean;
 }
 
-export default function Budgets({ headerSection , isFullPage = false}: BudgetsProps) {
+export default function Budgets({ headerSection, isFullPage = false }: BudgetsProps) {
 
     const { data, error, loading } = useFetch();
     if (loading) return <div>loading</div>
@@ -34,13 +34,14 @@ export default function Budgets({ headerSection , isFullPage = false}: BudgetsPr
                             <h3>Spending Summary</h3>
                         </div>
                     )}
-                    {data?.budgetsData.map(budget => (
+                    {data?.budgetsData.map((budget, index) => (
                         <CardVisuals
                             cardHeader={budget.category}
                             cardPrice={budget.maximum}
                             cardVisualColor={budget.theme}
                             cardSpend={budget.spend}
                             isFullPage={isFullPage}
+                            key={index}
                         />
                     ))}
                 </div>

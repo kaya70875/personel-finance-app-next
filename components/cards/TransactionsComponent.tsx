@@ -65,8 +65,8 @@ export default function TransactionsComponent({ transactionFilters, pagination =
             <h5>{sender}</h5>
           </div>
           <div className="transaction-middle">
-            {middle?.map(item => (
-              <h5>{item}</h5>
+            {middle?.map((item, index) => (
+              <h5 key={index}>{item}</h5>
             ))}
           </div>
           <div className="transaction-amount">
