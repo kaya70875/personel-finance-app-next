@@ -11,6 +11,10 @@
     gap : $spacing-xl;
 
     width: 30%;
+
+    .overview-card-wrapper {
+        flex : 0;
+    }
 }
 
 .recurrings-filter-section {
@@ -44,4 +48,23 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+}
+
+@media (max-width : 1024px) {
+    .recurrings-wrapper {
+        flex-direction: column;
+    }
+
+    .recurrings-info-section {
+        flex-direction: row;
+        width: 100%;
+        
+        .overview-card-wrapper , .summary {
+            flex : 1;
+        }
+    }
+
+    .recurrings-filter-section {
+        width: 100%;
+    }
 }
