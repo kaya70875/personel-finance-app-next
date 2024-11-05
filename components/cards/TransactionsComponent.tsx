@@ -20,7 +20,7 @@ interface TransactionsProps {
 }
 
 export default function TransactionsComponent({ transactionFilters, pagination = true, postsCount = 10, posts
-  , isRecurring = false , sender = 'Recipient / Sender' , middle = ['Category' , 'Transaction Date'] , amount = 'Amount'}: TransactionsProps) {
+  , isRecurring = false, sender = 'Recipient / Sender', middle = ['Category', 'Transaction Date'], amount = 'Amount' }: TransactionsProps) {
   const { data, error, loading } = useFetch();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,7 +34,12 @@ export default function TransactionsComponent({ transactionFilters, pagination =
   // When fetching is done, set the filtered data initially
   useEffect(() => {
     if (transactionData) {
-      setFilteredData(transactionData);
+      // Fill filteredData with recurring posts or all data based on isRecurring boolean.
+      if (isRecurring) {
+        setFilteredData(posts);
+      } else {
+        setFilteredData(transactionData);
+      }
     }
   }, [transactionData]);
 
@@ -42,7 +47,7 @@ export default function TransactionsComponent({ transactionFilters, pagination =
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = filteredData?.slice(firstPostIndex, lastPostIndex);
-  
+
   // Handle page change
   return (
     <article className="transactions-wrapper">
@@ -62,7 +67,7 @@ export default function TransactionsComponent({ transactionFilters, pagination =
           <div className="transaction-middle">
             {middle?.map(item => (
               <h5>{item}</h5>
-            ))}            
+            ))}
           </div>
           <div className="transaction-amount">
             <h5>{amount}</h5>
@@ -71,9 +76,9 @@ export default function TransactionsComponent({ transactionFilters, pagination =
 
         <div className="transactions-info-section">
           {posts ? (
-            <TransactionsInfoWrapper currentPosts={posts} isRecurring={isRecurring} /> // Show max of 3 transactions.
+            <TransactionsInfoWrapper currentPosts={currentPosts!} isRecurring={isRecurring} /> // Recurring posts are passed here
           ) : (
-            <TransactionsInfoWrapper currentPosts={currentPosts!} />
+            <TransactionsInfoWrapper currentPosts={currentPosts!} /> // All transactions are passed here
           )}
         </div>
       </section>
