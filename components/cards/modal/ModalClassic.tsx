@@ -18,7 +18,7 @@ interface ModalClassicProps {
 
 export default function ModalClassic({ name, price, theme, actionType, setIsPopped, id, cardType }: ModalClassicProps) {
   const { data } = useFetch();
-  const { handleAddCard , handleUpdateCard} = useCardActions();
+  const { handleAddCard, handleUpdateCard } = useCardActions();
   const transactionsData = data?.transactionsData ?? [];
   const uniqueCategories = getUniqueCategories(transactionsData);
 
@@ -47,7 +47,7 @@ export default function ModalClassic({ name, price, theme, actionType, setIsPopp
 
   const handleClick = () => {
     if (actionType === 'update') {
-      handleUpdateCard(cardData, id! , cardType);
+      handleUpdateCard(cardData, id!, cardType);
       setIsPopped?.(false);
     } else if (actionType === 'add') {
       handleAddCard(cardData, cardType);
@@ -78,7 +78,7 @@ export default function ModalClassic({ name, price, theme, actionType, setIsPopp
                     budgetCategory: category,
                   });
                 }}>
-                  <p>{category}</p>
+                  <p className='p--black'>{category}</p>
                 </li>
               ))}
             </Dropdown>
@@ -112,7 +112,7 @@ export default function ModalClassic({ name, price, theme, actionType, setIsPopp
                 });
               }}>
                 <div className="ellipse" style={{ backgroundColor: colorValue }}></div>
-                <p>{colorName}</p>
+                <p className='p--black'>{colorName}</p>
               </li>
             ))}
           </Dropdown>

@@ -74,7 +74,7 @@ export default function TransactionFilter({ transactionData, setFilteredData, cu
                     <Dropdown buttonName={isMobile ? <SvgIcon path='sort-mobile' /> : currentSortBy}>
                         {sortBy.map((sort, index) => (
                             <li className='dropdown-item' onClick={() => handleSortBy(index)} key={index}>
-                                <p>{sort}</p>
+                                <p className='p--black'>{sort}</p>
                             </li>
                         ))}
                     </Dropdown>
@@ -85,7 +85,7 @@ export default function TransactionFilter({ transactionData, setFilteredData, cu
                     <Dropdown buttonName={isMobile ? <SvgIcon path='filter-mobile' /> : currentCategory}>
                         {uniqueCategories.map((category, index) => (
                             <li className="dropdown-item" onClick={() => handleCategorySorting(index)} key={index}>
-                                <p>{category}</p>
+                                <p className='p--black'>{category}</p>
                             </li>
                         ))}
                     </Dropdown>

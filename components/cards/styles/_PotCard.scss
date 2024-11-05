@@ -25,6 +25,11 @@
     width: 100%;
 }
 
+.progress-bar-info h5 {
+    font-weight: $font-weight-bold;
+    color : $color-gray-normal;
+}
+
 .pot-buttons-wrapper {
     display: flex;
     align-items: center;

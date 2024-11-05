@@ -46,7 +46,7 @@ export default function PotCard({ pot }: PotCardProps) {
           <div className="progress" style={{ width: `${progressBarWidth.toString()}%`, backgroundColor: theme }}></div>
         </div>
         <div className="progress-bar-info">
-          <p>{formatPercentage(progressBarWidth)}</p>
+          <h5>{formatPercentage(progressBarWidth)}</h5>
           <p>Target of ${target}</p>
         </div>
       </div>

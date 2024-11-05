@@ -47,6 +47,7 @@ export default function TransactionsInfoWrapper({ currentPosts, isRecurring = fa
 
                     <div className="transaction-amount">
                         <h4 style={transaction.amount > 0 ? { color: '#277C78' } : { color: '#201F24' }}>
+                            {transaction.amount > 0 ? '+' : ''}
                             {formatCurrency(transaction.amount)}
                         </h4>
                         <h5 className='date-q'>{new Date(transaction.date).toLocaleDateString('en-US', {

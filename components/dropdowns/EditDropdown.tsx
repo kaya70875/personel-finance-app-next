@@ -45,7 +45,7 @@ export default function EditDropdown({ type, id, category, children }: EditDropd
             <div className={`edit-dropdown-menu ${isOpen ? 'active' : ''}`}>
                 <ul className="edit-dropdown-items">
                     <li className="edit-dropdown-item">
-                        <p onClick={() => setEditPop(true)}>Edit {category}</p>
+                        <p className='p--black' onClick={() => setEditPop(true)}>Edit {category}</p>
                         <p className='red' onClick={() => setDeletePop(true)}>Delete {category}</p>
                     </li>
                 </ul>

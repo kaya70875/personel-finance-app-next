@@ -17,15 +17,15 @@ const CardVisuals = ({ cardVisualColor, cardHeader, cardPrice, cardSpend, isFull
         <div className="card-extra-info">
           {isFullPage ? (
             <>
-              <h3>{formatCurrency(cardSpend || 0)}
-              </h3>
+              <h4>{formatCurrency(cardSpend || 0)}
+              </h4>
               <p>
                 of {formatCurrency(cardPrice)}
               </p>
             </>
 
           ) : (
-            <h3>{formatCurrency(cardPrice)}</h3>
+            <h4>{formatCurrency(cardPrice)}</h4>
           )}
         </div>
       </div>
