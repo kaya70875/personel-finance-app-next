@@ -49,3 +49,11 @@
     justify-content: space-between;
     width: 100%;
 }
+
+// Extra small screens
+
+@media (max-width : 340px) {
+    .pot-details-info h2 {
+        font-size: $font-size-lg + .5rem;
+    }
+}
