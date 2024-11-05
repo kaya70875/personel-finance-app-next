@@ -5,3 +5,16 @@
     grid-template-columns: repeat(2, 1fr);
     gap: $spacing-lg;
 }
+
+@media (max-width : 1168px) {
+    .pots-wrapper {
+        padding-bottom: calc(var(--sidebar-height) + 20px);
+    }
+}
+
+@media (max-width : 1024px) {
+    .pots-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+}
