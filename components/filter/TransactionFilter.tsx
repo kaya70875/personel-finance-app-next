@@ -23,6 +23,11 @@ export default function TransactionFilter({ transactionData, setFilteredData, cu
 
     const [isMobile, setIsMobile] = useState(false);
 
+    const [activeItem, setActiveItem] = useState<{ activeCategory: number | null; activeSort: number | null }>({
+        activeCategory: null,
+        activeSort: null,
+    });
+
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.matchMedia('(max-width: 768px)').matches);
@@ -48,6 +53,7 @@ export default function TransactionFilter({ transactionData, setFilteredData, cu
         const categorizedTransactions = transactionData?.filter(transaction => transaction.category === currentCategory);
         setFilteredData(categorizedTransactions);
         setCurrentCategory(currentCategory);
+        setActiveItem(prev => ({ ...prev, activeCategory: currentIndex }));
     }
 
     const handleSortBy = (currentIndex: number) => {
@@ -57,6 +63,7 @@ export default function TransactionFilter({ transactionData, setFilteredData, cu
         const dataToSort = [...sortedTransactions]; // Create a new referance so react will trigger a rerender. (Note that data is not changing in sorting actions!)
         setFilteredData(dataToSort);
         setCurrentSortBy(currentSortBy);
+        setActiveItem(prev => ({ ...prev, activeSort: currentIndex }));
     }
 
     const sortBy = ['Latest', 'Oldest', 'A-Z', 'Z-A', 'Highest', 'Lowest'];
@@ -74,7 +81,7 @@ export default function TransactionFilter({ transactionData, setFilteredData, cu
                     <Dropdown buttonName={isMobile ? <SvgIcon path='sort-mobile' /> : currentSortBy}>
                         {sortBy.map((sort, index) => (
                             <li className='dropdown-item' onClick={() => handleSortBy(index)} key={index}>
-                                <p className='p--black'>{sort}</p>
+                                <p className={`p--black ${activeItem.activeSort === index ? 'active' : ''}`}>{sort}</p>
                             </li>
                         ))}
                     </Dropdown>
@@ -85,7 +92,7 @@ export default function TransactionFilter({ transactionData, setFilteredData, cu
                     <Dropdown buttonName={isMobile ? <SvgIcon path='filter-mobile' /> : currentCategory}>
                         {uniqueCategories.map((category, index) => (
                             <li className="dropdown-item" onClick={() => handleCategorySorting(index)} key={index}>
-                                <p className='p--black'>{category}</p>
+                                <p className={`p--black ${activeItem.activeCategory === index ? 'active' : ''}`}>{category}</p>
                             </li>
                         ))}
                     </Dropdown>

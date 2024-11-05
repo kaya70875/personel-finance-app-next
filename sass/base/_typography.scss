@@ -59,6 +59,10 @@ p , .p{
 
     &--black {
         color : $color-gray-dark;
+
+        &.active {
+            font-weight: $font-weight-bold;
+        }
     }
 }
 
