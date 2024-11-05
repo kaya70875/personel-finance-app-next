@@ -1,8 +1,7 @@
 'use client';
 
-import './_global.scss';
 import Image from 'next/image';
-
+import '../signup/_global.scss';
 import logo from '@public/assets/images/logo-large.svg';
 import SvgIcon from '@components/reusables/SvgIcon';
 
@@ -23,15 +22,10 @@ export default function page() {
             <div className="auth-form-wrapper">
                 <section className="auth-form-section">
                     <header className="form-header">
-                        <h2>Sign Up</h2>
+                        <h2>Login</h2>
                     </header>
 
                     <form className='auth-form'>
-                        <div className="form-input-wrapper">
-                            <label htmlFor="name">Name</label>
-                            <input className='modal-input-item' type="text" id='name' />
-                        </div>
-
                         <div className="form-input-wrapper">
                             <label htmlFor="email">Email</label>
                             <input className='modal-input-item' type="text" id='email' />
@@ -43,14 +37,13 @@ export default function page() {
                                 <input className='modal-input-item' type="text" id='pass' />
                                 <SvgIcon path='show-password' />
                             </div>
-                            <p>Password must be at least 8 characters</p>
                         </div>
 
-                        <button className="add-button">Create Account</button>
+                        <button className="add-button">Login</button>
 
                         <div className="have-account">
-                            <p>Already have an account ?</p>
-                            <a href="/login">Login</a>
+                            <p>Need to create an account ?</p>
+                            <a href="/signup">Sign Up</a>
                         </div>
 
                     </form>

@@ -12,7 +12,7 @@
 .auth-wrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
     height: 100%;
 
@@ -36,6 +36,8 @@
     background-size: cover;
 
     border-radius: 15px;
+
+    max-width: 543px;
 }
 
 .auth-illustration-article {
@@ -79,6 +81,9 @@
     background: white;
 
     border-radius: 15px;
+
+    max-width: 700px;
+
 }
 
 .auth-form {
@@ -93,4 +98,34 @@
     display: flex;
     flex-direction: column;
     gap: $spacing-2xs;
+
+    
+    p {
+        text-align: end;
+    }
+}
+
+.password-input-wrapper {
+    position: relative;
+
+    img {
+        position: absolute;
+        top : 45%;
+        right : 20px;
+
+        cursor: pointer;
+    }
+}
+
+.have-account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap : $spacing-md;
+
+    a {
+        color : $color-gray-dark;
+        font-weight: $font-weight-bold;
+        text-decoration: underline;
+    }
 }
