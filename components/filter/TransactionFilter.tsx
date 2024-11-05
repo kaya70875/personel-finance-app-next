@@ -18,15 +18,23 @@ interface TransactionFilterProps {
 export default function TransactionFilter({ transactionData, setFilteredData, currentPosts }: TransactionFilterProps) {
 
     const [currentSearch, setCurrentSearch] = useState('');
-    const [currentCategory, setCurrentCategory] = useState('Transactions');
+    const [currentCategory, setCurrentCategory] = useState('All Transactions');
     const [currentSortBy, setCurrentSortBy] = useState('Latest');
 
     const [isMobile, setIsMobile] = useState(false);
 
     const [activeItem, setActiveItem] = useState<{ activeCategory: number | null; activeSort: number | null }>({
-        activeCategory: null,
-        activeSort: null,
+        activeCategory: 0,
+        activeSort: 0,
     });
+
+    // Helper function to reset filters
+    const resetFilters = (currentIndex: number) => {
+        setFilteredData(transactionData);
+        setCurrentCategory('All Transactions');
+        setCurrentSortBy('Latest');
+        setActiveItem({ activeCategory: currentIndex, activeSort: currentIndex });
+    }
 
     useEffect(() => {
         const handleResize = () => {
@@ -45,15 +53,21 @@ export default function TransactionFilter({ transactionData, setFilteredData, cu
         setFilteredData(filteredTransactions);
     }, [currentSearch]);
 
-    const uniqueCategories = getUniqueCategories(transactionData);
+    const uniqueCategories = ['All Transactions', ...getUniqueCategories(transactionData)];
 
     const handleCategorySorting = (currentIndex: number) => {
-        const currentCategory = uniqueCategories[currentIndex];
-
-        const categorizedTransactions = transactionData?.filter(transaction => transaction.category === currentCategory);
-        setFilteredData(categorizedTransactions);
-        setCurrentCategory(currentCategory);
-        setActiveItem(prev => ({ ...prev, activeCategory: currentIndex }));
+        if (currentIndex === 0) {
+            // If "All Transactions" is selected reset filters and sort by latest
+            resetFilters(currentIndex);
+        } else {
+            const currentCategory = uniqueCategories[currentIndex];
+            const categorizedTransactions = transactionData?.filter(
+                transaction => transaction.category === currentCategory
+            );
+            setFilteredData(categorizedTransactions);
+            setCurrentCategory(currentCategory);
+            setActiveItem(prev => ({ ...prev, activeCategory: currentIndex }));
+        }
     }
 
     const handleSortBy = (currentIndex: number) => {
