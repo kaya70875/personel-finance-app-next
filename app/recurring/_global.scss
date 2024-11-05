@@ -68,3 +68,19 @@
         width: 100%;
     }
 }
+
+@media (max-width : 584px) {
+    .recurrings-info-section {
+        flex-direction: column;
+    }
+
+    .recurrings-filter-section {
+        .transaction-sender-info h4{
+            text-wrap: wrap;
+        }
+
+        .search-input {
+            width: auto;
+        }
+    }
+}
