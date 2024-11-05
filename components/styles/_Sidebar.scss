@@ -65,8 +65,8 @@
 .sidebar-item {
     display: flex;
     align-items: center;
-    padding-inline : 2em;
     padding-block: 1.2em;
+    padding-inline: 2em;
     border-radius: 0 15px 15px 0;
 
     gap : $spacing-lg;
@@ -172,6 +172,7 @@
         border-radius: 10px;
 
         &.active {
+            padding-inline: 3em;
             &::before {
                 content: '';
                 position: absolute;
@@ -200,10 +201,28 @@
     .sidebar-item {
         gap : $spacing-xs;
         padding: 1em;
+
+        &.active {
+            padding-inline: 2.5em;
+            justify-content: center;
+        }
     }
 
     .h3-nav {
         font-size : $font-size-md!important;
+    }
+
+    .sidebar-item-img {
+
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            width: 18px;
+            height: 18px;
+        }
     }
 }
 
@@ -215,10 +234,15 @@
     }
 
     .sidebar-item {
-        padding: 1em;
+        padding: .75em;
 
         &.active {
             padding: .75em 2em;
+            border-radius: 10px 10px 0 0;
+
+            &::before {
+                height: 5px;
+            }
         }
     }
 
@@ -226,10 +250,11 @@
         justify-content: space-evenly;
         width: auto;
     }
+}
 
-    .sidebar-item-img svg {
-        width: 18px;
-        height: 18px;
+@media (max-width : 450px) {
+    .sidebar-item.active {
+        padding: .5em 1.5em;
     }
 }
   
