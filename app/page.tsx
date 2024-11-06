@@ -10,8 +10,24 @@ import DetailsLink from "@components/links/DetailsLink";
 import Budgets from "@components/cards/Budgets";
 import TransactionsComponent from "@components/cards/TransactionsComponent";
 import RecurringOverviewCard from "@components/cards/RecurringOverviewCard";
+import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  // Redirect to login if not authenticated
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (!session) {
+    // Optional: Use `signIn` to show the default NextAuth login
+    // signIn("credentials"); 
+    router.push("/login");
+    return null;
+  }
 
   const { data, error, loading } = useFetch();
 
@@ -23,10 +39,15 @@ export default function Home() {
     return <div>An error occured!</div>
   }
 
+  const handleSignOut = () => {
+    signOut();
+  }
+
   return (
     <div className="home">
       <section className="page-header-section">
         <h1>Overview</h1>
+        <button className="add-button" onClick={handleSignOut}>Sign Out</button>
       </section>
 
       <section className="overview-cards-section">

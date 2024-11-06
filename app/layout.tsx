@@ -1,36 +1,37 @@
-'use client';
-
 import Sidebar from "@components/Sidebar";
 import '@sass/styles/main.scss';
 import { Public_Sans } from "next/font/google";
 import { TransactionProvider } from "@context/RecurBillsContext";
-import { usePathname } from "next/navigation";
-
+import { getServerSession } from "next-auth";
+import SessionProvider from "@providers/SessionProvider";
+import { useRouter } from "next/router";
 const publicSans = Public_Sans({
   subsets: ["latin"],
   weight: ["400", "700"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const path = usePathname();
-  const excludeSidebarRoutes = ["/signup", "/login"];
 
-  const shouldShowSidebar = !excludeSidebarRoutes.includes(path);
+  const session = await getServerSession();
+
   return (
     <html lang="en">
       <body className={publicSans.className}>
-        <TransactionProvider>
-          <div className={shouldShowSidebar ? 'layout' : 'auth'}>
-            {shouldShowSidebar && <Sidebar />}
-            <main>
-              {children}
-            </main>
-          </div>
-        </TransactionProvider>
+        <SessionProvider session={session}>
+          <TransactionProvider>
+            <div className={session ? 'layout' : 'auth'}>
+              {session && <Sidebar />}
+              <main>
+                {children}
+              </main>
+            </div>
+          </TransactionProvider>
+        </SessionProvider>
+
       </body>
     </html>
   );
