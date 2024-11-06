@@ -4,8 +4,32 @@ import Image from 'next/image';
 import '../signup/_global.scss';
 import logo from '@public/assets/images/logo-large.svg';
 import SvgIcon from '@components/reusables/SvgIcon';
+import { useState } from 'react';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function page() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const router = useRouter();
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const result = await signIn("credentials", {
+            redirect: false,
+            email,
+            password,
+        })
+
+        if (result?.error) {
+            alert('Invalid credentials');
+        } else {
+            router.push('/');
+        }
+    }
+
     return (
         <div className="auth-wrapper">
             <section className="auth-illustration">
@@ -25,21 +49,21 @@ export default function page() {
                         <h2>Login</h2>
                     </header>
 
-                    <form className='auth-form'>
+                    <form className='auth-form' onSubmit={handleSubmit}>
                         <div className="form-input-wrapper">
                             <label htmlFor="email">Email</label>
-                            <input className='modal-input-item' type="text" id='email' />
+                            <input className='modal-input-item' type="text" id='email' onChange={(e) => setEmail(e.currentTarget.value)} />
                         </div>
 
                         <div className="form-input-wrapper">
                             <label htmlFor="pass">Create Password</label>
                             <div className="password-input-wrapper">
-                                <input className='modal-input-item' type="text" id='pass' />
+                                <input className='modal-input-item' type="password" id='pass' onChange={(e) => setPassword(e.currentTarget.value)} />
                                 <SvgIcon path='show-password' />
                             </div>
                         </div>
 
-                        <button className="add-button">Login</button>
+                        <button className="add-button" type='submit'>Login</button>
 
                         <div className="have-account">
                             <p>Need to create an account ?</p>

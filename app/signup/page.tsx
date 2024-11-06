@@ -56,7 +56,7 @@ export default function page() {
                         <div className="form-input-wrapper">
                             <label htmlFor="pass">Create Password</label>
                             <div className="password-input-wrapper">
-                                <input className='modal-input-item' type="text" id='pass' onChange={(e) => setForm({ ...form, password: e.currentTarget.value })} />
+                                <input className='modal-input-item' type="password" id='pass' onChange={(e) => setForm({ ...form, password: e.currentTarget.value })} />
                                 <SvgIcon path='show-password' />
                             </div>
                             <p>Password must be at least 8 characters</p>
