@@ -45,7 +45,7 @@ export default function Home() {
 
   return (
     <div className="home">
-      <section className="page-header-section">
+      <section className="page-header">
         <h1>Overview</h1>
         <button className="add-button" onClick={handleSignOut}>Sign Out</button>
       </section>
