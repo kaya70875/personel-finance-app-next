@@ -4,7 +4,6 @@ import { Public_Sans } from "next/font/google";
 import { TransactionProvider } from "@context/RecurBillsContext";
 import { getServerSession } from "next-auth";
 import SessionProvider from "@providers/SessionProvider";
-import { useRouter } from "next/router";
 const publicSans = Public_Sans({
   subsets: ["latin"],
   weight: ["400", "700"],
@@ -24,7 +23,7 @@ export default async function RootLayout({
         <SessionProvider session={session}>
           <TransactionProvider>
             <div className={session ? 'layout' : 'auth'}>
-              {session && <Sidebar />}
+              <Sidebar />
               <main>
                 {children}
               </main>

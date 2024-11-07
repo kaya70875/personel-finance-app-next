@@ -1,11 +1,8 @@
 @import '@sass/utilities/variables';
 
 .auth {
-    main {
-        padding: 0;
-        height: 100vh;
-    }
-
+    padding: 0;
+    height: 100vh;
     background: $color-beige-light;
 }
 
@@ -30,7 +27,7 @@
 
     padding: 2em;
 
-    background-image: url('../../public/assets/images/illustration-authentication.svg');
+    background-image: url('../../../public/assets/images/illustration-authentication.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
