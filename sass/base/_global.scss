@@ -37,7 +37,6 @@ main {
     flex-direction: column;
     gap : $spacing-3xl;
     margin-left: var(--sidebar-width);
-    height: 100vh;
 
     transition: all 0.4s ease-in-out;
 }
