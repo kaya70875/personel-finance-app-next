@@ -1,4 +1,4 @@
-import { Transactions } from '../types/finance';
+import { Transactions } from "../types/finance";
 
 export function isBillPaid(dateString: string): boolean {
   const date = new Date(dateString);
@@ -51,9 +51,14 @@ export function getUniqueCategories(transactions: Transactions[] | null) {
 }
 
 export const formatCurrency = (amount: number) => {
-  return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-}
+  if (amount) {
+    return amount.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+  }
+};
 
 export const formatPercentage = (amount: number) => {
-  return amount.toFixed(1) + '%';
-}
+  return amount.toFixed(1) + "%";
+};
