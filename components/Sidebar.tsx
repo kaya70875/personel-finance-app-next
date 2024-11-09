@@ -60,7 +60,7 @@ function Sidebar() {
 
     useEffect(() => {
         const checkIsTablet = () => {
-            setIsTablet(window.innerWidth <= 1168);
+            setIsTablet(window.matchMedia('(max-width: 1168px)').matches);
         };
 
         checkIsTablet();

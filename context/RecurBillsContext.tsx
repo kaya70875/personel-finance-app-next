@@ -30,7 +30,7 @@ export const TransactionProvider: React.FC<{ children: React.ReactNode }> = ({ c
         const billsIds = transactionsData.transactionsData.filter((transaction) => transaction.recurring);
         const totalCount = billsIds.length;
 
-        billsIds.forEach(({ date, amount } , index) => {
+        billsIds.forEach(({ date, amount }) => {
             const isPaid = isBillPaid(date.toString());
             const isDue = isBillDue(date.toString());
 
