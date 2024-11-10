@@ -72,6 +72,14 @@ label , .label {
     color: $color-gray-normal;
 }
 
+.details-link {
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        color : $color-gray-dark;
+    }
+}
+
 
 // list-items
 
