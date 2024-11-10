@@ -12,6 +12,7 @@ import TransactionsComponent from "@components/cards/TransactionsComponent";
 import RecurringOverviewCard from "@components/cards/RecurringOverviewCard";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -22,12 +23,14 @@ export default function Home() {
     return <div>Loading...</div>;
   }
 
-  if (!session) {
-    // Optional: Use `signIn` to show the default NextAuth login
-    // signIn("credentials"); 
-    router.push("/login");
-    return null;
-  }
+  useEffect(() => {
+    if (!session) {
+      // Optional: Use `signIn` to show the default NextAuth login
+      // signIn("credentials");
+      router.push("/login");
+    }
+  } , [session])
+
 
   const { data, error, loading } = useFetch();
 

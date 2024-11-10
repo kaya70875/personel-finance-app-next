@@ -4,13 +4,15 @@ import Image from 'next/image';
 import '../signup/_global.scss';
 import logo from '@public/assets/images/logo-large.svg';
 import SvgIcon from '@components/reusables/SvgIcon';
-import { useState } from 'react';
-import { signIn } from 'next-auth/react';
+import { useEffect, useState } from 'react';
+import { signIn, SignInResponse } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 export default function page() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const [authResults , setAuthResults] = useState<SignInResponse | undefined>(undefined);
 
     const router = useRouter();
 
@@ -23,12 +25,16 @@ export default function page() {
             password,
         })
 
-        if (result?.error) {
+        setAuthResults(result);
+    }
+
+    useEffect(() => {
+        if (authResults?.error) {
             alert('Invalid credentials');
         } else {
             router.push('/');
         }
-    }
+    } , [authResults])
 
     return (
         <div className="auth-wrapper">

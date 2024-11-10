@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import React from 'react'
-import rightArrow from '@public/assets/images/icon-caret-right.svg';
-import Image from 'next/image';
 import SvgIcon from '@components/reusables/SvgIcon';
 
 interface DetailsLinkProps {
