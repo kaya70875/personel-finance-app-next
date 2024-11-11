@@ -29,10 +29,10 @@ export default function page() {
     }
 
     useEffect(() => {
-        if (authResults?.error) {
-            alert('Invalid credentials');
-        } else {
+        if (authResults && !authResults?.error) {
             router.push('/');
+        } else if(authResults?.error){
+            alert('invalid credentials');
         }
     } , [authResults])
 
