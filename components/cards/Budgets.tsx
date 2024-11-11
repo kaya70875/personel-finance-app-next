@@ -38,7 +38,7 @@ export default function Budgets({ headerSection, isFullPage = false }: BudgetsPr
                         </div>
                     )}
                     {loading ? (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width : '125px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width : '100%' }}>
                             <Skeleton width={'100%'} height={'20px'} />
                             <Skeleton width={'100%'} height={'20px'} />
                             <Skeleton width={'100%'} height={'20px'} />

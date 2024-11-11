@@ -100,14 +100,19 @@ export default function Home() {
               </div>
 
               <div className="pots-overview-card-visuals">
-                {data?.potsData.slice(0, 4).map((pot, index) => (
-                  <CardVisuals
-                    cardHeader={pot.name}
-                    cardPrice={pot.total}
-                    cardVisualColor={pot.theme}
-                    key={index}
-                  ></CardVisuals>
-                ))}
+                {loading ? (
+                  <OverviewSkeleton count={2} height={'1rem'} />
+                ) : (
+                  data?.potsData.slice(0, 4).map((pot, index) => (
+                    <CardVisuals
+                      cardHeader={pot.name}
+                      cardPrice={pot.total}
+                      cardVisualColor={pot.theme}
+                      key={index}
+                    ></CardVisuals>
+                  ))
+                )}
+                
 
               </div>
             </div>

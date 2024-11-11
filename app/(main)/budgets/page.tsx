@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Modal from '@components/cards/Modal';
 import useFetch from '@hooks/useFetch';
 import ModalClassic from '@components/cards/modal/ModalClassic';
+import BudgetCardSkeleton from '@components/skeletons/BudgetCardSkeleton';
 
 export default function page() {
   const { data, loading, error } = useFetch();
@@ -19,6 +20,8 @@ export default function page() {
   const handleClick = () => {
     setIsPopped(prev => !prev);
   }
+
+  if(error) return <div>Error</div>
 
   return (
     <div className="home">
@@ -35,20 +38,25 @@ export default function page() {
           isFullPage={true}
         />
         <div className="budgets-cards">
-          {budgetsData.map(budget => {
-            const filteredTransactions = transactionsData.filter(
-              transaction => transaction.category === budget.category
-            );
-
-            return (
-              <BudgetsInfoCard
-                key={budget._id}
-                budget={budget}
-                filteredTransactions={filteredTransactions}
-                cardType='budget'
-              />
-            );
-          })}
+          {loading ? (
+            <BudgetCardSkeleton />
+          ) : (
+            budgetsData.map(budget => {
+              const filteredTransactions = transactionsData.filter(
+                transaction => transaction.category === budget.category
+              );
+  
+              return (
+                <BudgetsInfoCard
+                  key={budget._id}
+                  budget={budget}
+                  filteredTransactions={filteredTransactions}
+                  cardType='budget'
+                />
+              );
+            })
+          )}
+          
         </div>
       </div>
     </div>

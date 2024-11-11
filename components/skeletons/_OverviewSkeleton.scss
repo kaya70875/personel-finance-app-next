@@ -1,3 +1,30 @@
 .skeleton-overview-wrapper {
     width: 100%;
 }
+
+.budget-card-skeleton-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap : 1rem;
+
+    padding: 2em;
+
+}
+
+.bills-skeleton {
+    display: flex;
+    align-items: center;
+    gap : 1rem;
+    width: 100%;
+}
+
+.skeleton-visuals {
+    display: flex;
+    align-items: center;
+    gap : 2rem;
+    width: 100%;
+
+    & > * {
+        width: 100%;
+    }
+}
