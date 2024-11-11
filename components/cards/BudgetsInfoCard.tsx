@@ -8,6 +8,7 @@ import CardVisuals from './CardVisuals';
 import InfoCardHeader from './atomic/InfoCardHeader';
 import EditDropdown from '@components/dropdowns/EditDropdown';
 import ModalClassic from './modal/ModalClassic';
+import { convertThemeToString } from '@utils/colors';
 interface BudgetsInfoCardProps {
     budget: Budgets;
     filteredTransactions: Transactions[];
@@ -25,7 +26,7 @@ export default function BudgetsInfoCard({ budget, filteredTransactions}: Budgets
             <section className="budgets-info-card-top">
                 <InfoCardHeader category={category} theme={theme}>
                     <EditDropdown category={category} id={_id} type={'Budget'}>
-                        <ModalClassic cardType='budget' id={_id} actionType='update' name={category} price={maximum} theme={theme} />
+                        <ModalClassic cardType='budget' id={_id} actionType='update' name={category} price={maximum} theme={convertThemeToString(theme)} />
                     </EditDropdown>
                 </InfoCardHeader>
                 <div className="budgets-info-card-progress">

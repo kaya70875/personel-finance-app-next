@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Modal from './Modal';
 import PotActions from '@components/reusables/PotActions';
 import { formatCurrency, formatPercentage } from '@utils/helpers';
+import { convertThemeToString } from '@utils/colors';
 
 interface PotCardProps {
   pot: Pots;
@@ -34,7 +35,7 @@ export default function PotCard({ pot }: PotCardProps) {
     <div className="pot-wrapper">
       <InfoCardHeader category={name} theme={theme} >
         <EditDropdown category={name} id={_id} type={'Pot'}>
-          <ModalClassic cardType='pot' id={_id} actionType='update' name={name} price={target} theme={theme} />
+          <ModalClassic cardType='pot' id={_id} actionType='update' name={name} price={target} theme={convertThemeToString(theme)} />
         </EditDropdown>
       </InfoCardHeader>
       <div className="pot-details">
