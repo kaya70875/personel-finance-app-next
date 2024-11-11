@@ -81,12 +81,12 @@ export default function Home() {
               <div className="pots-overview-card-total">
                 <div className="pots-overview-card-img">
                   {loading ? (
-                    <Skeleton width={'64px'} height={'64px'} circle baseColor="#e0e0e0" highlightColor="#f0f0f0" />
+                    <Skeleton width={'64px'} height={'64px'} circle />
                   ) : (
                     <Image src={iconPot} alt="pot" width={50} height={50} />
                   )}
                 </div>
-                <div className="pots-overview-card-total-info">
+                <div className="pots-overview-card-total-info" style={{width: '100%'}}>
                   {loading ? (
                     <OverviewSkeleton height="1rem" count={2} />
                   ) : (
