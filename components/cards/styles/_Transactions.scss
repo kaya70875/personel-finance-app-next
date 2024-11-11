@@ -37,18 +37,19 @@
     input {
         border: none;
         outline: none;
+        width: 100%;
+        padding: .75em;
 
         &::placeholder {
             font-size: $font-size-md;
             color : $color-gray-light;
         }
     }
+    padding: .5em;
 
     border : 1px solid $color-navy;
     border-radius: 10px;
-    padding: 1em 1em;
     width: 30%;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -56,6 +57,10 @@
 
     &:hover {
         border: 1px solid $color-gray-dark;
+    }
+
+    img {
+        margin-right: 1rem;
     }
 }
 
