@@ -10,6 +10,8 @@ interface TransactionContextProps {
     paidCount: number;
     dueTotal: number;
     dueCount: number;
+    loading: boolean;
+    error: any;
 }
 
 // Create the context
@@ -17,10 +19,10 @@ const TransactionContext = createContext<TransactionContextProps | undefined>(un
 
 // Create the Provider
 export const TransactionProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const { data: transactionsData } = useFetch();
+    const { data: transactionsData, error, loading } = useFetch();
 
     const billsDetails = useMemo(() => {
-        if (!transactionsData) return { totalBills: 0, totalCount: 0, paidTotal: 0, paidCount: 0, dueTotal: 0, dueCount: 0 };
+        if (!transactionsData) return { totalBills: 0, totalCount: 0, paidTotal: 0, paidCount: 0, dueTotal: 0, dueCount: 0, loading, error };
 
         let totalBills = 0,
             paidTotal = 0,
@@ -44,12 +46,11 @@ export const TransactionProvider: React.FC<{ children: React.ReactNode }> = ({ c
             }
         });
 
-        return { totalBills, totalCount, paidTotal, paidCount, dueTotal, dueCount };
-    }, [transactionsData]);
+        return { totalBills, totalCount, paidTotal, paidCount, dueTotal, dueCount, loading, error };
+    }, [transactionsData, loading, error]);
 
     return <TransactionContext.Provider value={billsDetails}>{children}</TransactionContext.Provider>;
 };
-
 // Create a custom hook for consuming the context
 export const useTransactionDetails = () => {
     const context = useContext(TransactionContext);
