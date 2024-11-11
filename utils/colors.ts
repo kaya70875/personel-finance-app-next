@@ -15,3 +15,11 @@ export const colors = {
     Gold: '#CAB361',
     Orange: '#BE6C49'
 }
+
+export const convertThemeToString = (theme : string) => {
+    const colorName = Object.keys(colors).find(
+        key => colors[key as keyof typeof colors].toLowerCase() === theme.toLowerCase()
+    );
+
+    return colorName || 'Unknown Color';
+}
