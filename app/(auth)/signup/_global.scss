@@ -126,3 +126,37 @@
         text-decoration: underline;
     }
 }
+
+@media (max-width : 1254px) {
+    .auth-illustration {
+        width: 50%;
+    }
+
+    .auth-form-section {
+        width: 100%;
+    }
+}
+
+@media (max-width : 948px) {
+    .auth-illustration {
+        display: none;
+    }
+
+    .auth-wrapper {
+        justify-content: center;
+    }
+
+    .auth-form-wrapper {
+        width: 80%;
+    }
+}
+
+@media (max-width : 456px) {
+    .have-account {
+        flex-direction: column;
+    }
+    
+    .auth-form-wrapper {
+        width: 100%;
+    }
+}
