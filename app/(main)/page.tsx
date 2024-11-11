@@ -6,13 +6,16 @@ import CardVisuals from "@components/cards/CardVisuals";
 import iconPot from '@public/assets/images/icon-pot.svg';
 import Image from "next/image";
 import useFetch from "@hooks/useFetch";
-import DetailsLink from "@components/links/DetailsLink";
 import Budgets from "@components/cards/Budgets";
 import TransactionsComponent from "@components/cards/TransactionsComponent";
 import RecurringOverviewCard from "@components/cards/RecurringOverviewCard";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css';
+import OverviewSkeleton from "@components/skeletons/OverviewSkeleton";
+import OverviewCardHeaderSection from "@components/reusables/OverviewCardHeaderSection";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -29,21 +32,16 @@ export default function Home() {
       // signIn("credentials");
       router.push("/login");
     }
-  } , [session])
-
-
-  const { data, error, loading } = useFetch();
-
-  if (loading) {
-    return <div>Loading</div>
-  }
-
-  if (error) {
-    return <div>An error occured!</div>
-  }
+  }, [session])
 
   const handleSignOut = () => {
     signOut();
+  }
+
+  const { data, error, loading } = useFetch();
+
+  if (error) {
+    return <div>An error occured!</div>
   }
 
   return (
@@ -55,9 +53,17 @@ export default function Home() {
 
       <section className="overview-cards-section">
         <div className="overview-cards">
-          <OverviewCard isActive={true} cardHeader="Current Balance" cardPrice={data?.balanceData?.current ?? 0} />
-          <OverviewCard cardHeader="Income" cardPrice={data?.balanceData.income ?? 0} />
-          <OverviewCard cardHeader="Expenses" cardPrice={2300} />
+          {loading ? (
+            <OverviewSkeleton height="10rem" />
+          ) : (
+            <>
+              <OverviewCard isActive={true} cardHeader="Current Balance" cardPrice={data?.balanceData?.current ?? 0} />
+              <OverviewCard cardHeader="Income" cardPrice={data?.balanceData.income ?? 0} />
+              <OverviewCard cardHeader="Expenses" cardPrice={2300} />
+            </>
+
+          )}
+
         </div>
       </section>
 
@@ -68,18 +74,28 @@ export default function Home() {
 
           <section className="overview-card-wrapper">
             <header className="overview-card-header-section">
-              <h3>Pots</h3>
-              <DetailsLink href="/pots" />
+              <OverviewCardHeaderSection name="Pots" loading={loading} href="/pots" />
             </header>
 
             <div className="pots-overview-card-content">
               <div className="pots-overview-card-total">
                 <div className="pots-overview-card-img">
-                  <Image src={iconPot} alt="pot" width={50} height={50} />
+                  {loading ? (
+                    <Skeleton width={'64px'} height={'64px'} circle baseColor="#e0e0e0" highlightColor="#f0f0f0" />
+                  ) : (
+                    <Image src={iconPot} alt="pot" width={50} height={50} />
+                  )}
                 </div>
                 <div className="pots-overview-card-total-info">
-                  <p>Total Saved</p>
-                  <h1>$850</h1>
+                  {loading ? (
+                    <OverviewSkeleton height="1rem" count={2} />
+                  ) : (
+                    <>
+                      <p>Total Saved</p>
+                      <h1>$850</h1>
+                    </>
+                  )}
+
                 </div>
               </div>
 
@@ -99,8 +115,7 @@ export default function Home() {
 
           <section className="overview-card-wrapper">
             <header className="overview-card-header-section">
-              <h3>Transactions</h3>
-              <DetailsLink href="/transactions" header="View All" />
+            <OverviewCardHeaderSection name="Transactions" loading={loading} href="/transactions" />
             </header>
 
             <TransactionsComponent transactionFilters={false} pagination={false} postsCount={5}
@@ -108,7 +123,6 @@ export default function Home() {
               middle={[]}
               amount=''
             />
-
           </section>
         </div>
 
