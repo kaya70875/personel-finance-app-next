@@ -16,26 +16,22 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         await connectToDB();
 
-        // Query the database for a user with the provided email
         const currentUser = await User.findOne({
           email: credentials?.email,
-        }).select("+password"); // Explicitly selecting password if it's excluded by default
+        }).select("+password");
 
-        console.log("cu", currentUser);
-
-        // Check if user exists
         if (!currentUser) throw new Error("Wrong Email");
 
-        // Verify the password
         const passwordMatch = await bcrypt.compare(
           credentials!.password,
           currentUser.password
         );
         if (!passwordMatch) throw new Error("Wrong Password");
 
-        // Return the user object if authorization succeeds
+        console.log("currentUser", currentUser);
+
         return {
-          id: currentUser._id,
+          id: currentUser._id.toString(),
           name: currentUser.name,
           email: currentUser.email,
         };
@@ -44,5 +40,18 @@ export const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: "jwt",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        console.log('token is assiggned', token);
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.user.id = token.id;
+      return session;
+    },
   },
 };

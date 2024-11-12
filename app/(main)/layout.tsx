@@ -4,6 +4,7 @@ import { Public_Sans } from "next/font/google";
 import { TransactionProvider } from "@context/RecurBillsContext";
 import { getServerSession } from "next-auth";
 import SessionProvider from "@providers/SessionProvider";
+import { authOptions } from "@lib/auth";
 const publicSans = Public_Sans({
   subsets: ["latin"],
   weight: ["400", "700"],
@@ -15,7 +16,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
 
   return (
     <html lang="en">

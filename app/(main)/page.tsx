@@ -30,6 +30,9 @@ export default function Home() {
     if (!session) {
       router.push("/login");
     }
+    else {
+      console.log("session", session?.user.id);
+    }
   }, [session])
 
   const handleSignOut = () => {
@@ -39,7 +42,7 @@ export default function Home() {
   const { data, error, loading } = useFetch();
 
   const potContainerVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       y: 10
     },
@@ -58,7 +61,7 @@ export default function Home() {
 
   const potItemVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
       transition: { duration: 0.3 }
     }
@@ -91,28 +94,28 @@ export default function Home() {
 
       <section className="overview-content-section">
         <div className="overview-left">
-          <motion.section 
+          <motion.section
             className="overview-card-wrapper"
             variants={potContainerVariants}
             initial="hidden"
             animate="visible"
           >
-            <motion.header 
+            <motion.header
               className="overview-card-header-section"
               variants={potItemVariants}
             >
               <OverviewCardHeaderSection name="Pots" loading={loading} href="/pots" />
             </motion.header>
 
-            <motion.div 
+            <motion.div
               className="pots-overview-card-content"
               variants={potItemVariants}
             >
-              <motion.div 
+              <motion.div
                 className="pots-overview-card-total"
                 variants={potItemVariants}
               >
-                <motion.div 
+                <motion.div
                   className="pots-overview-card-img"
                   variants={potItemVariants}
                   whileHover={{ scale: 1.05 }}
@@ -123,7 +126,7 @@ export default function Home() {
                     <Image src={iconPot} alt="pot" width={50} height={50} />
                   )}
                 </motion.div>
-                <div className="pots-overview-card-total-info" style={{width: '100%'}}>
+                <div className="pots-overview-card-total-info" style={{ width: '100%' }}>
                   {loading ? (
                     <OverviewSkeleton height="1rem" count={2} />
                   ) : (
@@ -135,7 +138,7 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 className="pots-overview-card-visuals"
                 variants={potItemVariants}
               >
@@ -143,7 +146,7 @@ export default function Home() {
                   <OverviewSkeleton count={2} height={'1rem'} />
                 ) : (
                   data?.potsData.slice(0, 4).map((pot, index) => (
-                    <motion.div 
+                    <motion.div
                       key={index}
                       variants={potItemVariants}
                       whileHover={{ scale: 1.02 }}
