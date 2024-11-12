@@ -278,6 +278,10 @@
     .transaction-sender-info h4 {
         text-wrap: nowrap;
     }
+
+    .search-input input {
+        padding: .5em;
+    }
 }
 
 @media (max-width : 360px) {

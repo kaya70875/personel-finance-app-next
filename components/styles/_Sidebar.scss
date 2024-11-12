@@ -164,6 +164,7 @@
         padding-block-start: 1em;
         width: 100%;
         justify-content: space-around;
+        cursor: auto; // For disabling default click overlay.
     }
 
     .sidebar-item {
@@ -255,6 +256,10 @@
 @media (max-width : 450px) {
     .sidebar-item.active {
         padding: .5em 1.5em;
+    }
+
+    .sidebar-items {
+        width: 100%;
     }
 }
   
