@@ -28,3 +28,11 @@
         color : white;
     }
 }
+
+/* Small Devices */
+
+@media (max-width : 375px) {
+    .pagination-wrapper {
+        gap : $spacing-sm;
+    }
+}

@@ -252,7 +252,7 @@
 @media (max-width : 582px) {
 
     .pagination-section {
-        padding-inline: .75em;
+        padding-inline: .35em;
     }
 
     .prev-btn , .next-btn{
@@ -277,5 +277,11 @@
 @media (max-width : 450px) {
     .transaction-sender-info h4 {
         text-wrap: nowrap;
+    }
+}
+
+@media (max-width : 360px) {
+    .transaction-sender-info h4 {
+        text-wrap: wrap;
     }
 }
