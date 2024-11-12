@@ -16,20 +16,18 @@ import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css';
 import OverviewSkeleton from "@components/skeletons/OverviewSkeleton";
 import OverviewCardHeaderSection from "@components/reusables/OverviewCardHeaderSection";
+import { motion } from 'framer-motion';
 
 export default function Home() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  // Redirect to login if not authenticated
   if (status === "loading") {
     return <div>Loading...</div>;
   }
 
   useEffect(() => {
     if (!session) {
-      // Optional: Use `signIn` to show the default NextAuth login
-      // signIn("credentials");
       router.push("/login");
     }
   }, [session])
@@ -39,6 +37,32 @@ export default function Home() {
   }
 
   const { data, error, loading } = useFetch();
+
+  const potContainerVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 10
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 20,
+        stiffness: 100,
+        duration: 0.4,
+        staggerChildren: 0.05
+      }
+    }
+  };
+
+  const potItemVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { duration: 0.3 }
+    }
+  };
 
   if (error) {
     return <div>An error occured!</div>
@@ -61,66 +85,84 @@ export default function Home() {
               <OverviewCard cardHeader="Income" cardPrice={data?.balanceData.income ?? 0} />
               <OverviewCard cardHeader="Expenses" cardPrice={2300} />
             </>
-
           )}
-
         </div>
       </section>
 
       <section className="overview-content-section">
-
         <div className="overview-left">
-          {/* Pots Overview Card */}
-
-          <section className="overview-card-wrapper">
-            <header className="overview-card-header-section">
+          <motion.section 
+            className="overview-card-wrapper"
+            variants={potContainerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.header 
+              className="overview-card-header-section"
+              variants={potItemVariants}
+            >
               <OverviewCardHeaderSection name="Pots" loading={loading} href="/pots" />
-            </header>
+            </motion.header>
 
-            <div className="pots-overview-card-content">
-              <div className="pots-overview-card-total">
-                <div className="pots-overview-card-img">
+            <motion.div 
+              className="pots-overview-card-content"
+              variants={potItemVariants}
+            >
+              <motion.div 
+                className="pots-overview-card-total"
+                variants={potItemVariants}
+              >
+                <motion.div 
+                  className="pots-overview-card-img"
+                  variants={potItemVariants}
+                  whileHover={{ scale: 1.05 }}
+                >
                   {loading ? (
                     <Skeleton width={'64px'} height={'64px'} circle />
                   ) : (
                     <Image src={iconPot} alt="pot" width={50} height={50} />
                   )}
-                </div>
+                </motion.div>
                 <div className="pots-overview-card-total-info" style={{width: '100%'}}>
                   {loading ? (
                     <OverviewSkeleton height="1rem" count={2} />
                   ) : (
-                    <>
+                    <motion.div variants={potItemVariants}>
                       <p>Total Saved</p>
                       <h1>$850</h1>
-                    </>
+                    </motion.div>
                   )}
-
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="pots-overview-card-visuals">
+              <motion.div 
+                className="pots-overview-card-visuals"
+                variants={potItemVariants}
+              >
                 {loading ? (
                   <OverviewSkeleton count={2} height={'1rem'} />
                 ) : (
                   data?.potsData.slice(0, 4).map((pot, index) => (
-                    <CardVisuals
-                      cardHeader={pot.name}
-                      cardPrice={pot.total}
-                      cardVisualColor={pot.theme}
+                    <motion.div 
                       key={index}
-                    ></CardVisuals>
+                      variants={potItemVariants}
+                      whileHover={{ scale: 1.02 }}
+                    >
+                      <CardVisuals
+                        cardHeader={pot.name}
+                        cardPrice={pot.total}
+                        cardVisualColor={pot.theme}
+                      />
+                    </motion.div>
                   ))
                 )}
-                
-
-              </div>
-            </div>
-          </section>
+              </motion.div>
+            </motion.div>
+          </motion.section>
 
           <section className="overview-card-wrapper">
             <header className="overview-card-header-section">
-            <OverviewCardHeaderSection name="Transactions" loading={loading} href="/transactions" />
+              <OverviewCardHeaderSection name="Transactions" loading={loading} href="/transactions" />
             </header>
 
             <TransactionsComponent transactionFilters={false} pagination={false} postsCount={5}
@@ -132,8 +174,7 @@ export default function Home() {
         </div>
 
         <div className="overview-right">
-          <Budgets headerSection={true}
-          />
+          <Budgets headerSection={true} />
           <RecurringOverviewCard />
         </div>
       </section>
