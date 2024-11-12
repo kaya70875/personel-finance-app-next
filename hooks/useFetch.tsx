@@ -3,10 +3,10 @@ import { Balance, Budgets, Pots, Transactions } from '../types/finance';
 import useSWR from "swr";
 
 export interface Data {
-    balanceData : Balance;
-    budgetsData : Budgets[];
-    transactionsData : Transactions[];
-    potsData : Pots[];
+    balanceData: Balance;
+    budgetsData: Budgets[];
+    transactionsData: Transactions[];
+    potsData: Pots[];
 }
 
 const fetcher = async () => {
@@ -16,16 +16,18 @@ const fetcher = async () => {
 
 const useFetch = () => {
 
-    const {data , error , isValidating} = useSWR('/api/getData', fetcher, {
-        revalidateOnFocus : false,
-        revalidateOnReconnect : false,
-        revalidateOnMount : true,
+    const { data, error, isValidating } = useSWR('/api/getData', fetcher, {
+        dedupingInterval : 0,
+        revalidateOnFocus: false,
+        revalidateOnReconnect: false,
+        revalidateOnMount: true,
+        suspense : true,
     });
 
     return {
         data,
-        loading : isValidating,
-        error : error ? error.message : '',
+        loading: isValidating,
+        error: error ? error.message : '',
     }
 }
 
