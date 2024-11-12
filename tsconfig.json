@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/api/insertData"
-  ],
+, "lib/auth.ts"  ],
   "exclude": [
     "node_modules"
   ]
