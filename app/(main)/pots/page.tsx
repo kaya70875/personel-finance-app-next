@@ -4,8 +4,8 @@ import Modal from '@components/cards/Modal';
 import './_global.scss';
 import PotCard from '@components/cards/PotCard';
 import useFetch from '@hooks/useFetch';
-import { useState } from 'react';
 import ModalClassic from '@components/cards/modal/ModalClassic';
+import { useState } from 'react';
 
 export default function page() {
 
@@ -33,7 +33,9 @@ export default function page() {
                     <PotCard
                         key={index}
                         pot={pot}
+                        loading={loading}
                     />
+
                 ))}
             </div>
         </div>
