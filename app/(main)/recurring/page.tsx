@@ -6,12 +6,12 @@ import useFetch from '@hooks/useFetch'
 import './_global.scss';
 import { useTransactionDetails } from '@context/RecurBillsContext';
 import { formatCurrency } from '@utils/helpers';
+import Skeleton from 'react-loading-skeleton';
 
 export default function page() {
 
   const { data, error, loading } = useFetch();
 
-  if (loading) return <div>Loading...</div>
   if (error) return <div>Error! {error}</div>
 
   const transactionsData = data?.transactionsData ?? [];
@@ -23,7 +23,7 @@ export default function page() {
     return (total + transaction.amount)
   }, 0)
 
-  const { totalBills, totalCount, paidTotal, paidCount, dueTotal, dueCount } = useTransactionDetails();
+  const { totalBills, paidTotal, paidCount, dueTotal, dueCount } = useTransactionDetails();
 
   return (
     <div className="home">
@@ -33,20 +33,55 @@ export default function page() {
 
       <div className="recurrings-wrapper">
         <section className="recurrings-info-section">
-          <OverviewCard cardHeader='Total Bills' cardPrice={Math.abs(totalBills)} isActive={true} hasImage={true} />
+          <OverviewCard loading={loading} cardHeader='Total Bills' cardPrice={Math.abs(totalBills)} isActive={true} hasImage={true} />
           <div className="summary">
-            <h4>Summary</h4>
+            {loading ? (
+              <Skeleton width={'20%'} height={15} />
+            ) : (
+              <h4>Summary</h4>
+
+            )}
             <div className="paid-bills">
-              <p>Paid Bills</p>
-              <h4>{paidCount}({formatCurrency(paidTotal)})</h4>
+              {loading ? (
+                <div className="paid-sk-wrapper" style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+                  <Skeleton width={100} height={15} />
+                  <Skeleton width={100} height={15} />
+                </div>
+              ) : (
+                <>
+                  <p>Paid Bills</p>
+                  <h4>{paidCount}({formatCurrency(paidTotal)})</h4>
+                </>
+              )}
+
             </div>
             <div className="total-upcomings">
-              <p>Total Upcomings</p>
-              <h4>$252</h4>
+              {loading ? (
+                <div className="total-sk-wrapper" style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+                  <Skeleton width={100} height={15} />
+                  <Skeleton width={100} height={15} />
+                </div>
+              ) : (
+                <>
+                  <p>Total Upcomings</p>
+                  <h4>$252</h4>
+                </>
+              )}
+
             </div>
             <div className="due-soon">
-              <p className='p--alert'>Due Soon</p>
-              <h4 className='h4--alert'>{dueCount}({formatCurrency(dueTotal)})</h4>
+              {loading ? (
+                <div className="due-sk" style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+                  <Skeleton width={100} height={15} />
+                  <Skeleton width={100} height={15} />
+                </div>
+              ) : (
+                <>
+                  <p className='p--alert'>Due Soon</p>
+                  <h4 className='h4--alert'>{dueCount}({formatCurrency(dueTotal)})</h4>
+                </>
+              )}
+
             </div>
           </div>
         </section>
@@ -58,7 +93,7 @@ export default function page() {
             middle={['Due Date']}
             amount='Amount' />
         </section>
-      </div>
-    </div>
+      </div >
+    </div >
   )
 }

@@ -76,7 +76,7 @@ export default function TransactionsComponent({ transactionFilters, pagination =
 
         <div className="transactions-info-section">
           {posts ? (
-            <TransactionsInfoWrapper currentPosts={currentPosts!} isRecurring={isRecurring} /> // Recurring posts are passed here
+            <TransactionsInfoWrapper loading={loading} currentPosts={currentPosts!} isRecurring={isRecurring} /> // Recurring posts are passed here
           ) : (
             <TransactionsInfoWrapper loading={loading} currentPosts={currentPosts!} /> // All transactions are passed here
           )}

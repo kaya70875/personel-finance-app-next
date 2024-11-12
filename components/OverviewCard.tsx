@@ -10,22 +10,29 @@ interface OverviewCardProps {
     cardPrice : number;
     isActive? : boolean;
     hasImage? : boolean;
+    loading? : boolean;
 }
 
-const OverviewCard = ({cardHeader , cardPrice , isActive , hasImage} : OverviewCardProps) => {
+const OverviewCard = ({cardHeader , cardPrice , isActive , hasImage , loading} : OverviewCardProps) => {
   return (
     <div className={`overview-card-wrapper ${isActive ? 'active' : ''}`}>
-        {hasImage && (
-          <Image 
-          src={billImage}
-          alt='bill'
-          width={48}
-          height={48}/>
-        )}
-        <header className="overview-card-header-section">
-            {cardHeader}
-        </header>
-        <h1>{formatCurrency(cardPrice)}</h1>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          {hasImage && (
+            <Image 
+            src={billImage}
+            alt='bill'
+            width={48}
+            height={48}/>
+          )}
+          <header className="overview-card-header-section">
+              {cardHeader}
+          </header>
+          <h1>{formatCurrency(cardPrice)}</h1>
+        </>
+      )}
     </div>
   )
 }
