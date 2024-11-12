@@ -30,31 +30,46 @@ export default function TransactionsComponent({ transactionFilters, pagination =
 
   const transactionData = data?.transactionsData ?? [];
 
+  // Animation variants
   const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { 
+      opacity: 0,
+      scale: 0.95,
+      y: 20
+    },
     visible: {
       opacity: 1,
+      scale: 1,
       y: 0,
       transition: {
         duration: 0.6,
-        when: "beforeChildren",
+        ease: "easeOut",
         staggerChildren: 0.1
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { 
+      opacity: 0,
+      y: 15
+    },
     visible: {
       opacity: 1,
-      x: 0,
-      transition: { duration: 0.4 }
+      y: 0,
+      transition: {
+        duration: 0.4
+      }
     }
   };
 
   useEffect(() => {
     if (transactionData) {
-      setFilteredData(isRecurring ? posts : transactionData);
+      if (isRecurring) {
+        setFilteredData(posts);
+      } else {
+        setFilteredData(transactionData);
+      }
     }
   }, [transactionData]);
 
@@ -65,9 +80,9 @@ export default function TransactionsComponent({ transactionFilters, pagination =
   return (
     <motion.article 
       className="transactions-wrapper"
-      variants={containerVariants}
       initial="hidden"
       animate="visible"
+      variants={containerVariants}
     >
       {transactionFilters && (
         <motion.div variants={itemVariants}>
@@ -87,29 +102,17 @@ export default function TransactionsComponent({ transactionFilters, pagination =
           className="transactions-main-header"
           variants={itemVariants}
         >
-          <motion.div 
-            className="transaction-sender"
-            whileHover={{ scale: 1.02 }}
-          >
+          <div className="transaction-sender">
             <h5>{sender}</h5>
-          </motion.div>
+          </div>
           <div className="transaction-middle">
             {middle?.map((item, index) => (
-              <motion.h5 
-                key={index}
-                variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
-              >
-                {item}
-              </motion.h5>
+              <h5 key={index}>{item}</h5>
             ))}
           </div>
-          <motion.div 
-            className="transaction-amount"
-            whileHover={{ scale: 1.02 }}
-          >
+          <div className="transaction-amount">
             <h5>{amount}</h5>
-          </motion.div>
+          </div>
         </motion.header>
 
         <motion.div 
