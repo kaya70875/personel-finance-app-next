@@ -17,11 +17,9 @@ const fetcher = async () => {
 const useFetch = () => {
 
     const { data, error, isValidating } = useSWR('/api/getData', fetcher, {
-        dedupingInterval : 0,
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
         revalidateOnMount: true,
-        suspense : true,
     });
 
     return {
