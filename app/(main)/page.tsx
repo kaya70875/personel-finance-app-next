@@ -30,9 +30,6 @@ export default function Home() {
     if (!session) {
       router.push("/login");
     }
-    else {
-      console.log("session", session?.user.id);
-    }
   }, [session])
 
   const handleSignOut = () => {

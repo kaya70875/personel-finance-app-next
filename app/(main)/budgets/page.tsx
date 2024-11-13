@@ -41,7 +41,8 @@ export default function page() {
           {loading ? (
             <BudgetCardSkeleton />
           ) : (
-            budgetsData.map(budget => {
+            
+            budgetsData.length > 0 ? (budgetsData.map(budget => {
               const filteredTransactions = transactionsData.filter(
                 transaction => transaction.category === budget.category
               );
@@ -54,7 +55,12 @@ export default function page() {
                   cardType='budget'
                 />
               );
-            })
+            })) : (
+              <div className="budgets-cards-empty">
+                <h3>Your Budget Cards Shown Here.</h3>
+                <p>Add Some budgets to get started!</p>
+              </div>
+            )
           )}
           
         </div>
