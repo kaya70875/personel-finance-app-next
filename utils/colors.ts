@@ -18,8 +18,8 @@ export const colors = {
 
 export const convertThemeToString = (theme : string) => {
     const colorName = Object.keys(colors).find(
-        key => colors[key as keyof typeof colors].toLowerCase() === theme.toLowerCase()
+        key => colors[key as keyof typeof colors].toLowerCase() === theme?.toLowerCase()
     );
 
-    return colorName || 'Unknown Color';
+    return colorName || 'red';
 }
