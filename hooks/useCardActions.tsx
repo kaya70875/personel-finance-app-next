@@ -5,7 +5,7 @@ interface DeleteHandler {
 }
 
 interface UpdateHandler<T> {
-  handleUpdateCard: (cardData: Partial<T>, id: string, cardType: string) => Promise<void>;
+  handleUpdateCard: (cardData: Partial<T>, id: string, cardType: string , userId : string) => Promise<void>;
 }
 
 const useCardActions = <T extends object>() => {
@@ -71,14 +71,14 @@ const useCardActions = <T extends object>() => {
    * @param {string} _id - ID of the card to update.
    * @param {string} cardType - Budget or Pot card.
    */
-  const handleUpdateCard: UpdateHandler<T>['handleUpdateCard'] = async (cardData, _id, cardType) => {
+  const handleUpdateCard: UpdateHandler<T>['handleUpdateCard'] = async (cardData, _id, cardType , userId) => {
     try {
       const response = await fetch(`/api/${cardType}Methods`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({...cardData , _id }),
+        body: JSON.stringify({...cardData , _id , userId }),
       });
 
       if (response.ok) {

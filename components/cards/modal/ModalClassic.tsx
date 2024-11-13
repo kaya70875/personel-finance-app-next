@@ -22,7 +22,7 @@ export default function ModalClassic({ name, price, theme, actionType, setIsPopp
 
   const {data : session} = useSession();
   const userId = session?.user.id;
-  
+
   const { handleAddCard, handleUpdateCard } = useCardActions();
   const transactionsData = data?.transactionsData ?? [];
   const uniqueCategories = getUniqueCategories(transactionsData);
@@ -52,7 +52,7 @@ export default function ModalClassic({ name, price, theme, actionType, setIsPopp
 
   const handleClick = () => {
     if (actionType === 'update') {
-      handleUpdateCard(cardData, id!, cardType);
+      handleUpdateCard(cardData, id!, cardType , userId!);
       setIsPopped?.(false);
     } else if (actionType === 'add') {
       handleAddCard(cardData, cardType , userId!);
