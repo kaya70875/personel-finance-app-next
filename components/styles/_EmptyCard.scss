@@ -1,0 +1,31 @@
+@import '@sass/utilities/variables';
+
+.empty-cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+
+    gap : $spacing-3xl; 
+}
+
+.empty-image-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+        width: 30%;
+        height: 100%;
+        border-radius: 15px;
+    }
+}
+
+.empty-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap : $spacing-md;
+    text-align: center;
+}
