@@ -8,6 +8,7 @@ import Modal from '@components/cards/Modal';
 import useFetch from '@hooks/useFetch';
 import ModalClassic from '@components/cards/modal/ModalClassic';
 import BudgetCardSkeleton from '@components/skeletons/BudgetCardSkeleton';
+import EmptyCard from '@components/EmptyCard';
 
 export default function page() {
   const { data, loading, error } = useFetch();
@@ -21,7 +22,7 @@ export default function page() {
     setIsPopped(prev => !prev);
   }
 
-  if(error) return <div>Error</div>
+  if (error) return <div>Error</div>
 
   return (
     <div className="home">
@@ -33,38 +34,37 @@ export default function page() {
         </Modal>
 
       </header>
-      <div className="budgets-main">
-        <Budgets headerSection={false}
-          isFullPage={true}
-        />
-        <div className="budgets-cards">
-          {loading ? (
-            <BudgetCardSkeleton />
-          ) : (
-            
-            budgetsData.length > 0 ? (budgetsData.map(budget => {
-              const filteredTransactions = transactionsData.filter(
-                transaction => transaction.category === budget.category
-              );
-  
-              return (
-                <BudgetsInfoCard
-                  key={budget._id}
-                  budget={budget}
-                  filteredTransactions={filteredTransactions}
-                  cardType='budget'
-                />
-              );
-            })) : (
-              <div className="budgets-cards-empty">
-                <h3>Your Budget Cards Shown Here.</h3>
-                <p>Add Some budgets to get started!</p>
-              </div>
-            )
-          )}
-          
+      {budgetsData.length > 0 ? (
+        <div className="budgets-main">
+          <Budgets headerSection={false}
+            isFullPage={true}
+          />
+          <div className="budgets-cards">
+            {loading ? (
+              <BudgetCardSkeleton />
+            ) : (
+              budgetsData.map(budget => {
+                const filteredTransactions = transactionsData.filter(
+                  transaction => transaction.category === budget.category
+                );
+
+                return (
+                  <BudgetsInfoCard
+                    key={budget._id}
+                    budget={budget}
+                    filteredTransactions={filteredTransactions}
+                    cardType='budget'
+                  />
+                );
+              })
+            )}
+
+          </div>
         </div>
-      </div>
+      ) : (
+        <EmptyCard />
+      )}
+
     </div>
   )
 }
