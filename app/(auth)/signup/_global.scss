@@ -131,6 +131,10 @@
     color : $color-red;
 }
 
+.password-see-wrapper {
+    cursor: pointer;
+}
+
 @media (max-width : 1254px) {
     .auth-illustration {
         width: 50%;

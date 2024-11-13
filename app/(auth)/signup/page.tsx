@@ -86,6 +86,9 @@ export default function page() {
     const [state, dispatch] = useReducer(reducer, initialState);
     const router = useRouter();
 
+    const [seePassword, setSeePassword] = useState(false);
+    const [passwordType , setPasswordType] = useState('password');
+
     const { handleSignUp } = useAuthActions();
 
     useEffect(() => {
@@ -110,8 +113,6 @@ export default function page() {
             alert('account created redirecting...');
             router.push('/login');
         }
-
-
     }
 
     return (
@@ -148,8 +149,17 @@ export default function page() {
                         <div className="form-input-wrapper">
                             <label htmlFor="pass">Create Password</label>
                             <div className="password-input-wrapper">
-                                <input className='modal-input-item' type="password" id='pass' onChange={(e) => dispatch({ type: REDUCER_ACTION_TYPE.SET_PASSWORD, payload: e.target.value })} />
-                                <SvgIcon path='show-password' />
+                                <input className='modal-input-item' type={passwordType} id='pass' onChange={(e) => dispatch({ type: REDUCER_ACTION_TYPE.SET_PASSWORD, payload: e.target.value })} />
+                                <div className="password-see-wrapper" onClick={() => {
+                                    setSeePassword(prev => !prev);
+                                    setPasswordType(prev => prev === 'password' ? 'text' : 'password');
+                                }}>
+                                    {!seePassword ? (
+                                        <SvgIcon path='show-password' />
+                                    ) : (
+                                        <SvgIcon path='hide-password' />
+                                    )}
+                                </div>
                             </div>
                             <p>Password must be at least 8 characters</p>
                             {state.password && !state.validatePassword && <div className='error-message'>Invalid Password</div>}
@@ -165,7 +175,6 @@ export default function page() {
                     </form>
                 </section>
             </div>
-
         </div>
     )
 }
