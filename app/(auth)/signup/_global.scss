@@ -127,6 +127,10 @@
     }
 }
 
+.error-message {
+    color : $color-red;
+}
+
 @media (max-width : 1254px) {
     .auth-illustration {
         width: 50%;
