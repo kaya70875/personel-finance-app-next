@@ -17,14 +17,14 @@ const useCardActions = <T extends object>() => {
    * @param {T} cardData - The data object for the card to be added.
    * @param {string} cardType - Budget or Pot card.
    */
-  const handleAddCard = async (cardData: T, cardType: string) => {
+  const handleAddCard = async (cardData: T, cardType: string , userId : string) => {
     try {
       const response = await fetch(`/api/${cardType}Methods`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(cardData),
+        body: JSON.stringify({...cardData, userId}),
       });
 
       if (response.ok) {

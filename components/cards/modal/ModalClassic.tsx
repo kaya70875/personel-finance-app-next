@@ -5,6 +5,7 @@ import { getUniqueCategories } from '@utils/helpers';
 import useFetch from '@hooks/useFetch';
 import { cardMappings } from '@utils/cardMappings';
 import useCardActions from '@hooks/useCardActions';
+import { useSession } from 'next-auth/react';
 
 interface ModalClassicProps {
   name?: string;
@@ -18,6 +19,10 @@ interface ModalClassicProps {
 
 export default function ModalClassic({ name, price, theme, actionType, setIsPopped, id, cardType }: ModalClassicProps) {
   const { data } = useFetch();
+
+  const {data : session} = useSession();
+  const userId = session?.user.id;
+  
   const { handleAddCard, handleUpdateCard } = useCardActions();
   const transactionsData = data?.transactionsData ?? [];
   const uniqueCategories = getUniqueCategories(transactionsData);
@@ -50,7 +55,7 @@ export default function ModalClassic({ name, price, theme, actionType, setIsPopp
       handleUpdateCard(cardData, id!, cardType);
       setIsPopped?.(false);
     } else if (actionType === 'add') {
-      handleAddCard(cardData, cardType);
+      handleAddCard(cardData, cardType , userId!);
       setIsPopped?.(false);
     }
   };

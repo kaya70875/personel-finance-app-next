@@ -7,9 +7,9 @@ export async function POST(req: Request) {
         await connectToDB();
 
         const body = await req.json();
-        const { category, maximum, theme } = body;
+        const { category, maximum, theme , userId} = body;
 
-        const newBudget = await budgets.create({category , maximum, theme});
+        const newBudget = await budgets.create({category , maximum, theme , userId});
 
         return NextResponse.json({
             message: "Budget added successfully",
@@ -27,9 +27,9 @@ export async function POST(req: Request) {
 export async function DELETE(req: Request) {
     try {
         await connectToDB();
-        const { id } = await req.json();
+        const { id  , userId} = await req.json();
 
-        const deletedBudget = await budgets.findByIdAndDelete(id);
+        const deletedBudget = await budgets.findOneAndDelete({_id : id , userId});
         
         return NextResponse.json({
             message: "Budget deleted successfully",
@@ -44,26 +44,22 @@ export async function DELETE(req: Request) {
 }
 
 export async function PATCH(req: Request) {
-    try {
+  try {
       await connectToDB();
-  
       const body = await req.json();
-      const { category, maximum, theme, _id } = body;
-  
-      const newBudget = await budgets.findByIdAndUpdate(
-        _id,
-        { category, maximum, theme },
-        { new: true }
+      const { category, maximum, theme, _id, userId } = body;
+
+      const newBudget = await budgets.findOneAndUpdate(
+          { _id, userId },
+          { category, maximum, theme },
+          { new: true }
       );
-  
       return NextResponse.json({
-        message: "Budget updated successfully",
-        data: newBudget,
+          message: "Budget updated successfully",
+          data: newBudget,
       });
-    } catch (e) {
+  } catch (e) {
       console.log(e);
-      return NextResponse.json({
-        message: "Error updating budget",
-      });
-    }
+      return NextResponse.json({ message: "Error updating budget" });
   }
+}
