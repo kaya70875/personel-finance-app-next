@@ -7,6 +7,7 @@ import editButton from '@public/assets/images/icon-ellipsis.svg';
 import { useState } from 'react';
 import Modal from '@components/cards/Modal';
 import useCardActions from '@hooks/useCardActions';
+import { useSession } from 'next-auth/react';
 interface EditDropdownProps {
     type: string;
     id: string;
@@ -15,6 +16,9 @@ interface EditDropdownProps {
 }
 
 export default function EditDropdown({ type, id, category, children }: EditDropdownProps) {
+
+    const {data : session} = useSession();
+    const userId = session?.user.id;
 
     const [isOpen, setIsOpen] = useState(false);
     const [deletePop, setDeletePop] = useState(false);
@@ -27,7 +31,7 @@ export default function EditDropdown({ type, id, category, children }: EditDropd
 
     const handleDelete = () => {
         if (id) {
-            handleDeleteCard(id, type.toLowerCase());
+            handleDeleteCard(id, type.toLowerCase() , userId!);
         }
     }
 

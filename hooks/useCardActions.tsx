@@ -1,7 +1,7 @@
 import { useSWRConfig } from 'swr';
 
 interface DeleteHandler {
-  deleteCard: (id: string, type: string) => Promise<void>;
+  deleteCard: (id: string, type: string , userId : string) => Promise<void>;
 }
 
 interface UpdateHandler<T> {
@@ -45,12 +45,12 @@ const useCardActions = <T extends object>() => {
    * @param {string} id - ID for the relevant card object.
    * @param {string} type - The card type, should be pot or budget card.
    */
-  const handleDeleteCard: DeleteHandler['deleteCard'] = async (id, type) => {
+  const handleDeleteCard: DeleteHandler['deleteCard'] = async (id, type , userId) => {
     try {
       const response = await fetch(`/api/${type}Methods`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id }),
+        body: JSON.stringify({ id , userId}),
       });
 
       if (response.ok) {
