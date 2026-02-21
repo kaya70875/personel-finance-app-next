@@ -13,6 +13,8 @@ export default function page() {
     const [password, setPassword] = useState('');
 
     const [isLogging, setIsLogging] = useState(false);
+    const [seePassword, setSeePassword] = useState(false);
+    const [passwordType, setPasswordType] = useState('password');
 
     const [authResults, setAuthResults] = useState<SignInResponse | undefined>(undefined);
 
@@ -68,8 +70,17 @@ export default function page() {
                         <div className="form-input-wrapper">
                             <label htmlFor="pass">Create Password</label>
                             <div className="password-input-wrapper">
-                                <input className='modal-input-item' type="password" id='pass' onChange={(e) => setPassword(e.currentTarget.value)} />
-                                <SvgIcon path='show-password' />
+                                <input className='modal-input-item' type={passwordType} id='pass' onChange={(e) => setPassword(e.currentTarget.value)} />
+                                <div className="password-see-wrapper" onClick={() => {
+                                    setSeePassword(prev => !prev);
+                                    setPasswordType(prev => prev === 'password' ? 'text' : 'password');
+                                }}>
+                                    {!seePassword ? (
+                                        <SvgIcon path='show-password' />
+                                    ) : (
+                                        <SvgIcon path='hide-password' />
+                                    )}
+                                </div>
                             </div>
                         </div>
 
