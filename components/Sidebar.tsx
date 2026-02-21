@@ -101,7 +101,7 @@ function Sidebar() {
                     <ul className="sidebar-items">
                         {menuItems.map((item, index) => (
                             item.route && (
-                                <Link href={item.route} key={index} className={`sidebar-item ${index === activeNav ? 'active' : ''}`}>
+                                <Link href={item.route} key={index} prefetch className={`sidebar-item ${index === activeNav ? 'active' : ''}`}>
                                     <div className="sidebar-item-img">
                                         {item.svg}
                                     </div>
