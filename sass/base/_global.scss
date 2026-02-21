@@ -22,7 +22,7 @@
 main {
     display: flex;
     flex-direction: column;
-    flex : 1;
+    flex: 1;
     padding: 2em;
 
     width: 100%;
@@ -35,7 +35,7 @@ main {
 .home {
     display: flex;
     flex-direction: column;
-    gap : $spacing-3xl;
+    gap: $spacing-3xl;
     margin-left: var(--sidebar-width);
 
     transition: all 0.4s ease-in-out;
@@ -49,7 +49,7 @@ main {
     justify-content: space-between;
 
     h3 {
-        color : $color-gray-dark;
+        color: $color-gray-dark;
         font-size: $font-size-lg + .25rem;
     }
 }
@@ -58,7 +58,7 @@ main {
     display: flex;
     flex-direction: column;
     padding: 2em;
-    gap : $spacing-md;
+    gap: $spacing-md;
 
     background: white;
     border-radius: 15px;
@@ -78,31 +78,36 @@ main {
     justify-content: center;
 
     background: $color-gray-dark;
-    color : $color-beige-light;
+    color: $color-beige-light;
 
     font-size: $font-size-md;
     padding: 1.5em;
     border-radius: 10px;
     outline: none;
-    border : none;
+    border: none;
 
     cursor: pointer;
     font-weight: $font-weight-bold;
     transition: all .3s ease-in-out;
 
     &:hover {
-        background: $color-beige;
+        background: $color-gray-normal;
     }
 
     &.add-button--light {
         background: $color-beige-light;
-        color : $color-gray-dark;
-        border : 1px solid transparent;
+        color: $color-gray-dark;
+        border: 1px solid transparent;
 
         &:hover {
             background: white;
-            border : 1px solid $color-gray-dark;
+            border: 1px solid $color-gray-dark;
         }
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        filter: grayscale(1);
     }
 }
 
@@ -118,16 +123,16 @@ main {
     border-radius: 10px;
     overflow: hidden;
     height: 20px;
-    position: relative;  
+    position: relative;
 
     display: flex;
     align-items: center;
-    gap : .15rem;
+    gap: .15rem;
 }
 
 .progress {
     height: 100%;
-    width: 0%;           
+    width: 0%;
     border-radius: 10px 0 0 10px;
     transition: width 0.3s ease-in-out;
     position: relative;

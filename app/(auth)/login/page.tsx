@@ -12,12 +12,15 @@ export default function page() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const [authResults , setAuthResults] = useState<SignInResponse | undefined>(undefined);
+    const [isLogging, setIsLogging] = useState(false);
+
+    const [authResults, setAuthResults] = useState<SignInResponse | undefined>(undefined);
 
     const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setIsLogging(true);
 
         const result = await signIn("credentials", {
             redirect: false,
@@ -26,15 +29,16 @@ export default function page() {
         })
 
         setAuthResults(result);
+        setIsLogging(false);
     }
 
     useEffect(() => {
         if (authResults && !authResults?.error) {
             router.push('/');
-        } else if(authResults?.error){
+        } else if (authResults?.error) {
             alert('invalid credentials');
         }
-    } , [authResults])
+    }, [authResults])
 
     return (
         <div className="auth-wrapper">
@@ -69,7 +73,13 @@ export default function page() {
                             </div>
                         </div>
 
-                        <button className="add-button" type='submit'>Login</button>
+                        <button
+                            className={`add-button ${isLogging ? 'button-disabled' : ''}`}
+                            type='submit'
+                            disabled={isLogging}
+                        >
+                            {isLogging ? 'Logging In...' : 'Login'}
+                        </button>
 
                         <div className="have-account">
                             <p>Need to create an account ?</p>
