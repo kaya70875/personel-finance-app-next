@@ -14,8 +14,8 @@
 
     display: flex;
     align-items: center;
-    gap : $spacing-sm;
-    transition : all 0.3s ease-in;
+    gap: $spacing-sm;
+    transition: all 0.1s ease-in;
     cursor: pointer;
 
     &:hover {
@@ -23,7 +23,7 @@
 
         @media (max-width : 768px) {
             .transactions-filter-section {
-                border : none;
+                border: none;
             }
         }
     }
@@ -33,7 +33,7 @@
         background: none;
         outline: none;
 
-        color : $color-gray-dark;
+        color: $color-gray-dark;
         font-weight: $font-weight-regular;
         font-size: $font-size-md;
     }
@@ -50,16 +50,16 @@
     position: absolute;
     background: white;
     min-width: 100%;
-    left : 50%;
+    left: 50%;
     transform: translateX(-50%);
-    
+
     overflow: auto;
 
     padding: .75em;
     border-radius: 10px;
 
     z-index: 9999;
-    transition: all 0.3s ease-in;
+    transition: all 0.1s ease-in;
 
     &.active {
         opacity: 1;
@@ -72,14 +72,14 @@
 .dropdown-items {
     display: flex;
     flex-direction: column;
-    gap : $spacing-md;
+    gap: $spacing-md;
 }
 
 .dropdown-item {
     display: flex;
     flex-direction: column;
     align-items: start;
-    gap : $spacing-lg;
+    gap: $spacing-lg;
 
     text-align: start;
     padding: .5em;
@@ -96,13 +96,13 @@
     // For Transactions Dropdown
     .transactions-filter-section {
         .dropdown-button-wrapper {
-            border : none;
+            border: none;
         }
-    
+
         .filter-arrow {
             display: none;
         }
-    
+
         .dropdown-menu {
             transform: translateX(-90%);
         }
@@ -112,7 +112,7 @@
 
 @media (max-width : 654px) {
     // For Transactions Dropdown
-    
+
     .transactions-filter-section {
         .dropdown-button-wrapper {
             padding: 0;

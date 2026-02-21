@@ -3,7 +3,7 @@
 .transactions-wrapper {
     display: flex;
     flex-direction: column;
-    gap : $spacing-3xl;
+    gap: $spacing-3xl;
 
     padding: 2em;
 
@@ -24,13 +24,14 @@
 .actual-filters {
     display: flex;
     align-items: center;
-    gap : $spacing-2xl;
+    gap: $spacing-2xl;
 }
 
-.sort-by-wrapper , .category-wrapper {
+.sort-by-wrapper,
+.category-wrapper {
     display: flex;
     align-items: center;
-    gap : $spacing-md;
+    gap: $spacing-md;
 }
 
 .search-input {
@@ -42,9 +43,10 @@
 
         &::placeholder {
             font-size: $font-size-md;
-            color : $color-gray-light;
+            color: $color-gray-light;
         }
     }
+
     padding: .5em;
 
     border : 1px solid $color-navy;
@@ -53,7 +55,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: all 0.3s ease-in;
+    transition: all 0.1s ease-in;
 
     &:hover {
         border: 1px solid $color-gray-dark;
@@ -67,14 +69,14 @@
 .transactions-main-section {
     display: flex;
     flex-direction: column;
-    gap : $spacing-2xl;
+    gap: $spacing-2xl;
 }
 
 .transactions-info-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap : $spacing-2xl;
+    gap: $spacing-2xl;
 }
 
 .transactions-info-wrapper {
@@ -101,12 +103,13 @@
 .transaction-sender {
     display: flex;
     align-items: center;
-    gap : $spacing-lg;
+    gap: $spacing-lg;
     width: 40%;
 
     &-info {
         display: flex;
         flex-direction: column;
+
         h5 {
             display: none;
         }
@@ -117,10 +120,10 @@
     width: 25%;
     display: flex;
     flex-direction: column;
-    gap : $spacing-md;
+    gap: $spacing-md;
     justify-content: end;
     align-items: end;
-  }
+}
 
 .avatar {
     border-radius: 50%;
@@ -133,28 +136,31 @@
     width: 100%;
 }
 
-.prev-btn , .next-btn {
+.prev-btn,
+.next-btn {
     background: none;
     outline: none;
-    border : 1px solid $color-gray-light;
+    border: 1px solid $color-gray-light;
 
     display: flex;
     align-items: center;
-    gap : $spacing-xl;
+    gap: $spacing-xl;
     padding: .8em 1.3em;
     border-radius: 5px;
 
     cursor: pointer;
-    transition: all 0.3s ease-in;
+    transition: all 0.1s ease-in;
 
     svg {
-        color : #696868;
+        color: #696868;
     }
 
     &:hover {
         background: $color-gray-light;
-        svg , p{
-            color : white;
+
+        svg,
+        p {
+            color: white;
         }
     }
 }
@@ -168,7 +174,7 @@
 .due-date {
     display: flex;
     align-items: center;
-    gap : $spacing-sm;
+    gap: $spacing-sm;
 
     span {
         text-wrap: nowrap;
@@ -201,7 +207,7 @@
 
 @media (max-width : 968px) {
     .transactions-filter-section {
-        gap : $spacing-2xs;
+        gap: $spacing-2xs;
     }
 
     .search-input {
@@ -214,12 +220,15 @@
 }
 
 @media (max-width : 768px) {
-    .sort-by-wrapper h5 , .category-wrapper h5 {
+
+    .sort-by-wrapper h5,
+    .category-wrapper h5 {
         display: none;
     }
 
     .transaction-sender-info {
-        gap : $spacing-md;
+        gap: $spacing-md;
+
         h5 {
             display: flex;
         }
@@ -233,7 +242,8 @@
     }
 
     .transaction-sender {
-        gap : $spacing-md;
+        gap: $spacing-md;
+
         img {
             width: 36px;
             height: 36px;
@@ -241,7 +251,7 @@
     }
 
     .actual-filters {
-        gap : $spacing-md;
+        gap: $spacing-md;
     }
 
     .transactions-wrapper {
@@ -255,7 +265,8 @@
         padding-inline: .35em;
     }
 
-    .prev-btn , .next-btn{
+    .prev-btn,
+    .next-btn {
         p {
             display: none;
         }
@@ -268,7 +279,7 @@
     }
 
     .pagination-btn {
-        padding: 0.65em .9em!important;
+        padding: 0.65em .9em !important;
     }
 }
 

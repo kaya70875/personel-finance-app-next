@@ -21,7 +21,7 @@
     position: absolute;
     right: 30%;
     z-index: 1;
-    transition: all .3s ease-in-out;
+    transition: all .1s ease-in-out;
     visibility: hidden;
 
     border-radius: 10px;
@@ -47,6 +47,6 @@
     }
 
     .red {
-        color : $color-red;
+        color: $color-red;
     }
 }

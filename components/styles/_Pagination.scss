@@ -3,11 +3,11 @@
 .pagination-wrapper {
     display: flex;
     align-items: center;
-    gap : $spacing-md;
+    gap: $spacing-md;
 }
 
 .pagination-btn {
-    border : 1px solid $color-navy;
+    border: 1px solid $color-navy;
     display: flex;
     align-items: center;
     padding: .9em 1.1em;
@@ -15,17 +15,17 @@
     border-radius: 5px;
     cursor: pointer;
 
-    color : $color-gray-dark;
-    transition: all .2s ease-in;
+    color: $color-gray-dark;
+    transition: all .1s ease-in;
 
     &:hover {
         background: $color-beige;
-        color : white;
+        color: white;
     }
 
     &.active {
         background: $color-gray-dark;
-        color : white;
+        color: white;
     }
 }
 
@@ -33,6 +33,6 @@
 
 @media (max-width : 375px) {
     .pagination-wrapper {
-        gap : $spacing-sm;
+        gap: $spacing-sm;
     }
 }

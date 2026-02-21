@@ -8,16 +8,16 @@
 
     width: 100%;
 
-    color : white;
+    color: white;
     font-weight: $font-weight-bold;
-    border : none;
+    border: none;
 
     border-radius: 5px;
 
     padding: 1.5em;
 
     cursor: pointer;
-    transition: all 0.2s ease-in;
+    transition: all 0.1s ease-in;
 
     &:hover {
         opacity: 0.8;
@@ -26,14 +26,14 @@
 
 .card-back {
 
-    border : none;
-    color : $color-beige;
+    border: none;
+    color: $color-beige;
     font-weight: $font-weight-bold;
     cursor: pointer;
-    transition: all 0.2s ease-in;
+    transition: all 0.1s ease-in;
 
     &:hover {
-        color : $color-gray-dark;
+        color: $color-gray-dark;
     }
-    
+
 }
