@@ -1,4 +1,5 @@
 import useCardActions from '@hooks/useCardActions';
+import { useSession } from '@node_modules/next-auth/react';
 import { formatCurrency, formatPercentage } from '@utils/helpers';
 import React, { useState } from 'react';
 
@@ -10,6 +11,7 @@ interface PotActionsProps {
 }
 
 export default function PotActions({ total, target, _id, actionType }: PotActionsProps) {
+    const { data: session } = useSession()
     const { handleUpdateCard } = useCardActions();
     const [newAmount, setNewAmount] = useState(0);
 
@@ -20,7 +22,7 @@ export default function PotActions({ total, target, _id, actionType }: PotAction
     const calculateNewAmountBarWidth = () => (newAmount / target) * 100;
 
     const handleClick = () => {
-        handleUpdateCard({ total: calculateNewTotal() }, _id, 'pot');
+        handleUpdateCard({ total: calculateNewTotal() }, _id, 'pot', session?.user.id as string);
     };
 
     return (
