@@ -104,10 +104,10 @@ export default function Budgets({ headerSection, isFullPage = false }: BudgetsPr
                     className='no-budgets'
                     variants={itemVariants}
                 >
-                    <div className="budgets-cards-empty">
+                    {!loading && <div className="budgets-cards-empty">
                         <h3>No budgets set yet</h3>
                         <p>Set a budget to track your spending and stay on track with your financial goals.</p>
-                    </div>
+                    </div>}
 
                 </motion.div>
             )}
