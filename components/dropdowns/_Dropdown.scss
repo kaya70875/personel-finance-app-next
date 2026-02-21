@@ -82,11 +82,11 @@
     gap: $spacing-lg;
 
     text-align: start;
-    padding: .5em;
+    padding: .75em;
     border-radius: 5px;
 
     &:hover {
-        background: $color-yellow;
+        background: gainsboro;
     }
 
 }
