@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 export default function page() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const [isLogging, setIsLogging] = useState(false);
     const [seePassword, setSeePassword] = useState(false);
@@ -38,7 +39,7 @@ export default function page() {
         if (authResults && !authResults?.error) {
             router.push('/');
         } else if (authResults?.error) {
-            alert('invalid credentials');
+            setErrorMessage('Invalid credentials.')
         }
     }, [authResults])
 
@@ -83,6 +84,8 @@ export default function page() {
                                 </div>
                             </div>
                         </div>
+
+                        {errorMessage && <div className='error-message'>{errorMessage}</div>}
 
                         <button
                             className={`add-button ${isLogging ? 'button-disabled' : ''}`}

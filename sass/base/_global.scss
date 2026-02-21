@@ -149,6 +149,22 @@ main {
     transition: all 0.3s ease-in;
 }
 
+.error-message {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    color: $color-red;
+    border: 2px solid $color-red;
+
+    font-size: $font-size-sm;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+
+    font-weight: $font-weight-bold
+}
+
 @media (max-width : 768px) {
     .add-button {
         padding: 1.25em .75em;

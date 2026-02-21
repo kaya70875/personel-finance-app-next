@@ -87,7 +87,7 @@ export default function page() {
     const router = useRouter();
 
     const [seePassword, setSeePassword] = useState(false);
-    const [passwordType , setPasswordType] = useState('password');
+    const [passwordType, setPasswordType] = useState('password');
 
     const { handleSignUp } = useAuthActions();
 
@@ -110,7 +110,6 @@ export default function page() {
             dispatch({ type: REDUCER_ACTION_TYPE.SET_LOADING, payload: true }); // Start Loading State.
             await handleSignUp({ name: state.name, email: state.email, password: state.password });
             dispatch({ type: REDUCER_ACTION_TYPE.SET_LOADING, payload: false });
-            alert('account created redirecting...');
             router.push('/login');
         }
     }
@@ -164,6 +163,8 @@ export default function page() {
                             <p>Password must be at least 8 characters</p>
                             {state.password && !state.validatePassword && <div className='error-message'>Invalid Password</div>}
                         </div>
+
+                        {state.error && <div className='error-message'>{state.error}</div>}
 
                         <button type='button' className="add-button" onClick={handleClick} disabled={state.loading}>{state.loading ? 'Loading...' : 'Sign Up'}</button>
 
